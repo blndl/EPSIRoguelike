@@ -61,6 +61,8 @@ class Week:
 
     def generate_week(self):
         self.generate_weekend()
+        if random.choice([True, False]):
+            self.event = "6B"
         for day_name in self.days:
             self.days[day_name].generate_day()
         
@@ -100,6 +102,7 @@ class Month:
 
     def return_month(self):
         for id, week in self.weeks.items():
+            self.list.append(week.event)
             self.list = week.display_week_schedule(self.list)
         return self.list
         
@@ -109,4 +112,6 @@ class Month:
 # Example usage
 month = Month()
 month.generateMonth()
-print(month.return_month())
+list = month.return_month()
+str = "".join(list)
+print(str,' ', len(str))
