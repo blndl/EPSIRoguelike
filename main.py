@@ -1,39 +1,54 @@
 import pygame
+import sys
+from GameLogic.menu import Menu
+from GameLogic.ingame import InGame
+from GameLogic.Inventory import Inventory
+from GameLogic.PauseMenu import PauseMenu
+from GameLogic.calendar import Calendar
 
-class Event:
-    def __init__(self):
-        pass
 
-
-class Render:
-    def __init__(self):
-        self.screen = pygame.display.set_mode((1280, 720))
-        self.screen.fill("white")
-        pygame.draw.line(self.screen,"black",[1,50],[1000,50])
-        pygame.draw.line(self.screen,"black",[1000,1],[1000,719])
-        pygame.draw.line(self.screen,"black",[1000,200],[1279,200])
-        pygame.draw.line(self.screen,"black",[1,450],[1279,450])
-        pygame.draw.line(self.screen,"black",[1000,500],[1279,500])
-        pygame.draw.line(self.screen,"black",[1000,550],[1279,550])
-
-    
 
 class Game:
     def __init__(self):
-        self.render = Render()
+        pygame.init()
+        self.screen = pygame.display.set_mode((1280, 720))
+        pygame.display.set_caption("EPSI Rogue-Like")
         self.clock = pygame.time.Clock()
         self.running = True
+        self.state = "menu"
+        self.menu = Menu(self.screen)
+        self.in_game= InGame(self.screen)
 
-game = Game()
-while game.running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            game.running = False
-        elif event.type == pygame.MOUSEBUTTONUP:
-            game.running = False
+    def handle_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+            if self.state == "menu":
+                self.menu.handle_events(event)
+                if self.menu.start_game:
+                    self.state = "in_game"
+            if self.state == "in_game":
+                # self.game.handle_events(event)
+                pass
 
-    
-    pygame.display.flip()
-    game.clock.tick(60)
+    def draw(self):
+        self.screen.fill((0, 0, 0))
+        if self.state == "menu":
+            self.menu.draw()
+        elif self.state == "in_game":
+            self.in_game.draw()
 
-pygame.quit()
+        pygame.display.flip()
+
+    def run(self):
+        while self.running:
+            self.handle_events()
+            self.draw()
+            self.clock.tick(60)
+        pygame.quit()
+        sys.exit()
+
+
+if __name__ == "__main__":
+    game = Game()
+    game.run()

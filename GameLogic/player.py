@@ -13,3 +13,5 @@ class Player:
 
         "bag"
         self.bag = []
+
+        self.effects = []
