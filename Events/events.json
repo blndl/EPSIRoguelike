@@ -33,7 +33,7 @@
         }
       ]
     },
-    "1C": {
+    "3": {
       "description": "This is the third event description",
       "time_slots": ["Weekend"],
       "phases": [
