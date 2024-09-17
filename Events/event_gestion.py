@@ -1,16 +1,18 @@
-import json
+from Events.json import Json
 
-class Event:
+class Event(Json):
     def __init__(self, event_id, description, time_slots, phases):
+        super().__init__(file_path=None)
         self.event_id = event_id
         self.description = description
         self.time_slots = time_slots
         self.phases = phases
 
+
+
     @classmethod
     def load_events(cls, file_path):
-        with open(file_path, 'r') as f:
-            data = json.load(f)
+        data = cls.load(file_path)
         return {event_id: cls(event_id, event_data['description'], event_data['time_slots'], event_data['phases'])
                 for event_id, event_data in data['events'].items()}
 
@@ -48,17 +50,7 @@ class Event:
 
 
 # Example usage
-events = Event.load_events('events.json')
-print(json.dumps(events, default=lambda o: o.__dict__, indent=4))
-
-event_id = '1A'
-if event_id in events:
-    print(f"Event ID: {event_id}")
-    print(json.dumps(events[event_id].get_event_data(), indent=4))
-    print(json.dumps(events[event_id].phases_data(), indent=4))
-    print(json.dumps(events[event_id].phases_choices_data(), indent=4))
-else:
-    print(f"Event ID not found: {event_id}")
+events = Event.load_events("events.json")
 
 # Example usage
 print(Event.load_events('events.json'))
