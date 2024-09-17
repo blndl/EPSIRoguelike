@@ -1,4 +1,3 @@
 class PauseMenu:
-    def __init__(self):
+    def __init__(self, screen):
         pass
-    
