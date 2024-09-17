@@ -8,15 +8,15 @@
           "description": "This is the first phase description",
           "sprite_path": "../Events/Sprites/e1_p1.png",
           "choices": [
-            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "effect":  "id_effet", "items" : "id_item"},
-            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "effect":  "id_effet", "items" : "id_item"}
+            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "progression_projet": "0" ,"effect":  "id_effet", "items" : "id_item"},
+            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "progression_projet": "0" ,"effect":  "id_effet", "items" : "id_item"}
           ]
         },
         {
           "sprite_path": "../Events/Sprites/e1_p2.png",
           "choices": [
-            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "effect":  "id_effet", "items" : "id_item"},
-            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "effect":  "id_effet", "items" : "id_item"}
+            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "progression_projet": "0", "effect":  "id_effet", "items" : "id_item"},
+            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "progression_projet": "0" ,"effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -28,7 +28,7 @@
         {
           "sprite_path": "../Events/Sprites/e2_p1.png",
           "choices": [
-            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "effect": "id_effet", "items" : "id_item"}
+            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "progression_projet": "0", "effect": "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -40,7 +40,7 @@
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "choices": [
-            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "effect":  "id_effet", "items" : "id_item"}
+            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "progression_projet": "0", "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]

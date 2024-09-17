@@ -1,13 +1,14 @@
 from Json.json import BaseEntity
 
 class Item(BaseEntity):
-    def __init__(self, item_id, description, price, moral, energy, effect):
+    def __init__(self, item_id, description, price, moral, energy, effect, consumable):
         self.item_id = item_id
         self.description = description
         self.price = price
         self.moral = moral
         self.energy = energy
         self.effect = effect
+        self.consumable = consumable
 
     # This method is used to create a list of instances of the class Item with the data from items
     @classmethod
@@ -49,8 +50,7 @@ class Item(BaseEntity):
     def get_shop_items(self):
         return [item for item in self.items if item['shop']]
 
-    # Used to return the list of no shop items
-    def get_no_shop_items(self):
+    # Used to return the list of no shop items    def get_no_shop_items(self):
         return [item for item in self.items if not item['shop']]
 
 
