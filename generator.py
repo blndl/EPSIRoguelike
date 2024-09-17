@@ -9,7 +9,7 @@ with open('items/items.json') as t:
 class Day:
     WEEKTIME = ["Early-Morning", "Morning", "Lunch", "Afternoon", "Evening"]
 
-    def __init__(self, max_event=4):
+    def __init__(self, max_event=5):
         self.max_event = max_event
         self.events = {time: 0 for time in self.WEEKTIME}  # Initialize each time slot with 0
         self.items = {items: "00" for items in self.WEEKTIME}
@@ -45,6 +45,8 @@ class Day:
 
 
 class Week:
+    WEEKTIME = ["Early-Morning", "Morning", "Lunch", "Afternoon", "Evening"]
+
     def __init__(self):
         self.days = {
             "Monday": Day(),
@@ -72,9 +74,16 @@ class Week:
                     self.days["Sunday"].add_event(event_id, "Morning")
                 
 
-    def display_week_schedule(self):
+    def display_week_schedule(self, list):
         for day_name, day in self.days.items():
-            print(f"{day_name}: {day.get_event_ids()}")
+            for i in day.get_event_ids():
+                if i != 0:
+                    list.append(i)
+                else:
+                    list.append("00")
+            
+        return(list)
+
 
 class Month:
     def __init__(self):
@@ -89,8 +98,12 @@ class Month:
             self.weeks[week].generate_week()
 
     def displayMonth(self):
+        self.list = []
         for id, week in self.weeks.items():
-            print(f"{id}: {week.display_week_schedule()}")
+            self.list = week.display_week_schedule(self.list)
+        print(self.list)
+        
+            
 
     
 # Example usage
