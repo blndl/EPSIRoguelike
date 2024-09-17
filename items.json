@@ -1,0 +1,152 @@
+{
+  "items": {
+    "shop_items": [
+      {
+        "id": "A1",
+        "name": "Manger",
+        "energie": 1,
+        "moral": 2,
+        "price": 5,
+        "consommable": true,
+        "description": "A manger."
+      },
+      {
+        "id": "A2",
+        "name": "Café",
+        "energie": 2,
+        "moral": 0,
+        "price": 5,
+        "consommable": true,
+        "description": "Boisson qui donne de l'energie."
+      },
+      {
+        "id": "A3",
+        "name": "Haribo",
+        "energie": 0,
+        "moral": 2,
+        "price": 5,
+        "consommable": true,
+        "description": "Bonbon sucré au sucre"
+      },
+      {
+        "id": "A4",
+        "name": "Redbull",
+        "energie": 4,
+        "moral": 0,
+        "price": 7,
+        "consommable": true,
+        "description": "Redbull donne des ailes."
+      },
+      {
+        "id": "A5",
+        "name": "Thé",
+        "energie": 1,
+        "moral": 1,
+        "price": 5,
+        "consommable": true,
+        "description": "Boisson chaude"
+      },
+      {
+        "id": "A6",
+        "name": "Sandwich",
+        "energie": 2,
+        "moral": 2,
+        "price": 7,
+        "consommable": true,
+        "description": "sandwich de fou"
+      },
+      {
+        "id": "A7",
+        "name": "Boîte de vitamin",
+        "energie": 1,
+        "moral": 0,
+        "price": 2,
+        "consommable": true,
+        "description": "Boîte de vitamin"
+      },
+      {
+        "id": "A8",
+        "name": "Dé 2020",
+        "energie": 0,
+        "moral": 0,
+        "price": 10,
+        "consommable": true,
+        "description": "Skip le prochain évenement."
+      },
+      {
+        "id": "B1",
+        "name": "ChatGPT",
+        "energie": 0,
+        "moral": 0,
+        "price": 30,
+        "consommable": false,
+        "description": "Permet d’ajouter +1 point par action de travail mais enlève 25%, Sur chaque projet utilisé."
+      },
+      {
+        "id": "B2",
+        "name": "Casque Audio",
+        "energie": 0,
+        "moral": 1,
+        "price": 20,
+        "consommable": false,
+        "description": "Remonte le moral chaque jour"
+      },
+      {
+        "id": "B3",
+        "name": "Lunette anti lumière bleu",
+        "energie": 0,
+        "moral": 0,
+        "price": 20,
+        "consommable": false,
+        "description": "Objet qui permet d'utiliser moins d'énergie lors du travail"
+      },
+      {
+        "id": "B4",
+        "name": "Multi-Prise",
+        "energie": 0,
+        "moral": 0,
+        "price": 15,
+        "consommable": false,
+        "description": "Objet qui permet de brancher plusieurs appareils en même temps"
+      },
+      {
+        "id": "B5",
+        "name": "Ordinateur",
+        "energie": 0,
+        "moral": 0,
+        "price": 30,
+        "consommable": false,
+        "description": "+1 point au début du projet"
+      },
+      {
+        "id": "B6",
+        "name": "Boule Anti-Stresse",
+        "energie": 1,
+        "moral": 0,
+        "price": 15,
+        "consommable": false,
+        "description": "+1 moral par jour si le personnage a moins de 5 de moral"
+      }
+      ],
+    "hors_items":[
+      {
+        "id": "C1",
+        "name": "Billet de retard RATP",
+        "energie": 0,
+        "moral": 0,
+        "price": 0,
+        "consommable": true,
+        "description": "Skip L'évenement du matin."
+      },
+      {
+        "id": "C2",
+        "name": "Coupon de Reduction",
+        "energie": 0,
+        "moral": 0,
+        "price": 0,
+        "consommable": true,
+        "description": "10% de réduction dans le shop lors de son utilisation"
+      }
+    ]
+  }
+}
