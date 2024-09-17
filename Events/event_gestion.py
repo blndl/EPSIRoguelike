@@ -1,28 +1,20 @@
-from Events.json import Json
+from Json.json import BaseEntity
 
-class Event(Json):
+class Event(BaseEntity):
     def __init__(self, event_id, description, time_slots, phases):
-        super().__init__(file_path=None)
         self.event_id = event_id
         self.description = description
         self.time_slots = time_slots
         self.phases = phases
 
-
-
     @classmethod
     def load_events(cls, file_path):
-        data = cls.load(file_path)
+        data = cls.load_entity(file_path)
         return {event_id: cls(event_id, event_data['description'], event_data['time_slots'], event_data['phases'])
                 for event_id, event_data in data['events'].items()}
 
     def get_event_data(self):
-        return {
-            "event_id": self.event_id,
-            "description": self.description,
-            "time_slots": self.time_slots,
-            "phases": self.phases
-        }
+        return self.return_entity_data(self,['event_id', 'description', 'time_slots', 'phases'])
 
     def phases_data(self):
         return [
@@ -42,7 +34,6 @@ class Event(Json):
                 'money': choice.get('money', 0),
                 'energy': choice.get('energy', 0),
                 'moral': choice.get('moral', 0),
-
             }
             for phase in self.phases
             for choice in phase['choices']
@@ -51,15 +42,9 @@ class Event(Json):
 
 # Example usage
 events = Event.load_events("events.json")
-
-# Example usage
-print(Event.load_events('events.json'))
-event_id = '1A'
-events_id = Event.load_events('events.json')
-if event_id in events_id:
+for event_id, event in events.items():
     print(f"Event ID: {event_id}")
-    print(events_id[event_id].get_event_data())
-    print(events_id[event_id].phases_data())
-    print(events_id[event_id].phases_choices_data())
-else:
-    print(f"Event ID not found: {event_id}")
+    print(event.get_event_data())
+    print(event.phases_data())
+    print(event.phases_choices_data())
+    print(event)
