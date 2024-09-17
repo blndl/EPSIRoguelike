@@ -5,6 +5,7 @@ from GameLogic.ingame import InGame
 from GameLogic.Inventory import Inventory
 from GameLogic.PauseMenu import PauseMenu
 from GameLogic.calendar import Calendar
+from GameLogic.player import Player
 
 
 
@@ -15,9 +16,17 @@ class Game:
         pygame.display.set_caption("EPSI Rogue-Like")
         self.clock = pygame.time.Clock()
         self.running = True
-        self.state = "menu"
+
+        self.state = "inventory"
+
         self.menu = Menu(self.screen)
         self.in_game= InGame(self.screen)
+        self.pause_menu = PauseMenu(self.screen)
+        self.inventory = Inventory(self.screen, self.player)
+        self.calendar = Calendar(self.screen)
+
+        self.player = Player("Gin")
+
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -30,6 +39,16 @@ class Game:
             if self.state == "in_game":
                 # self.game.handle_events(event)
                 pass
+            if self.state == "Pause_menu":
+                # self.pause_menu.handle_events(event)
+                pass
+            if self.state == "calendar":
+                # self.calendar.handle_events(event)
+                pass
+            if self.state == "inventory":
+                # self.inventory.handle_events(event)
+                pass
+
 
     def draw(self):
         self.screen.fill((0, 0, 0))

@@ -52,10 +52,10 @@ class Event(BaseEntity):
 
 
 # Example usage
-events = Event.load_events("events.json")
-for event_id, event in events.items():
-    print(f"Event ID: {event_id}")
-    print(event.get_event_data())
-    print(event.phases_data())
-    print(event.phases_choices_data())
-    print(event)
+#events = Event.load_events("events.json")
+#for event_id, event in events.items():
+#    print(f"Event ID: {event_id}")
+#    print(event.get_event_data())
+#    print(event.phases_data())
+#    print(event.phases_choices_data())
+#    print(event)
