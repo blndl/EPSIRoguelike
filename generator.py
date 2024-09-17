@@ -1,9 +1,9 @@
 import json
 import random
 
-with open('events/events.json') as f:
+with open('Events/events.json') as f:
     edata = json.load(f)
-with open('items/items.json') as t:
+with open('Items/items.json') as t:
     idata = json.load(t)
 
 class Day:
@@ -93,15 +93,15 @@ class Month:
             "2": Week(),
             "3": Week(),
         }
+        self.list = []
     def generateMonth(self):
         for week in self.weeks:
             self.weeks[week].generate_week()
 
-    def displayMonth(self):
-        self.list = []
+    def return_month(self):
         for id, week in self.weeks.items():
             self.list = week.display_week_schedule(self.list)
-        print(self.list)
+        return self.list
         
             
 
@@ -109,4 +109,4 @@ class Month:
 # Example usage
 month = Month()
 month.generateMonth()
-month.displayMonth()
+print(month.return_month())

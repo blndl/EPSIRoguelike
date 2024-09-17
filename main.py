@@ -19,13 +19,13 @@ class Game:
 
         self.state = "inventory"
 
+        self.player = Player("Gin")
+
         self.menu = Menu(self.screen)
-        self.in_game= InGame(self.screen)
+        self.in_game= InGame(self.screen, self.player)
         self.pause_menu = PauseMenu(self.screen)
         self.inventory = Inventory(self.screen, self.player)
         self.calendar = Calendar(self.screen)
-
-        self.player = Player("Gin")
 
 
     def handle_events(self):
