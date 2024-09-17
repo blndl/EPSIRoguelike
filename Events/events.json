@@ -1,6 +1,7 @@
 {
   "events": {
-    "1": {
+    "1A": {
+      "Name" : "Test",
       "description": "This is the event description",
       "time_slots": ["Morning", "Afternoon"],
       "phases": [
@@ -20,7 +21,7 @@
         }
       ]
     },
-    "2": {
+    "2A": {
       "description": "This is another event description",
       "time_slots": ["Early-Morning", "Evening"],
       "phases": [
@@ -32,7 +33,7 @@
         }
       ]
     },
-    "3": {
+    "3A": {
       "description": "This is the third event description",
       "time_slots": ["Weekend"],
       "phases": [
