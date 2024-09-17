@@ -1,46 +1,47 @@
 {
   "events": {
-    "1": {
+    "1A": {
       "description": "This is the event description",
       "time_slots": ["Morning", "Afternoon"],
       "phases": [
         {
+          "description": "This is the first phase description",
           "sprite_path": "../Events/Sprites/e1_p1.png",
-          "choices": {
-            "sleep": {"Energy": 20, "Morale": -5},
-            "work": {"Energy": -10, "Morale": 5, "Project Score": 2}
-          }
+          "choices": [
+            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "effect":  "id_effet", "items" : "id_item"},
+            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "effect":  "id_effet", "items" : "id_item"}
+          ]
         },
         {
           "sprite_path": "../Events/Sprites/e1_p2.png",
-          "choices": {
-            "sleep": {"Energy": 20, "Morale": -5},
-            "work": {"Energy": -10, "Morale": 5, "Project Score": 2}
-          }
+          "choices": [
+            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "effect":  "id_effet", "items" : "id_item"},
+            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "effect":  "id_effet", "items" : "id_item"}
+          ]
         }
       ]
     },
-    "2": {
+    "1B": {
       "description": "This is another event description",
       "time_slots": ["Early-Morning", "Evening"],
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e2_p1.png",
-          "choices": {
-            "accept": {"Energy": -5, "effect": "Skip"}
-          }
+          "choices": [
+            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "effect": "id_effet", "items" : "id_item"}
+          ]
         }
       ]
     },
-    "3": {
+    "1C": {
       "description": "This is the third event description",
       "time_slots": ["Weekend"],
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
-          "choices": {
-            "accept": {}
-          }
+          "choices": [
+            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "effect":  "id_effet", "items" : "id_item"}
+          ]
         }
       ]
     }

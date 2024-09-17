@@ -1,5 +1,6 @@
 import json
 import random
+from Events.event_gestion import Event
 
 with open('Events/events.json') as f:
     data = json.load(f)
@@ -14,7 +15,7 @@ class Day:
     def add_event(self, event_id, time_slot):
         """ Adds an event ID to the time slot """
         if self.events[time_slot] == 0:
-            self.events[time_slot] = int(event_id)
+            self.events[time_slot] = event_id
 
     def generate_day(self):
         """ Randomly generates a day's schedule with events assigned to available time slots """
@@ -37,6 +38,8 @@ class Day:
         print("Day's Schedule (Event IDs):", self.get_event_ids())
 
 # Example usage
-day = Day(4)
-day.generate_day()
-day.display_schedule()
+for i in range (1, 6):
+    day = Day(i)
+    day.generate_day()
+    day.display_schedule()
+
