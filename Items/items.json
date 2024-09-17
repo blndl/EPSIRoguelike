@@ -7,6 +7,7 @@
       "price": 5,
       "consommable": true,
       "description": "A manger.",
+      "image": "/images/manger.png",
       "itemshop": true
     },
     "A2": {
@@ -16,6 +17,7 @@
       "price": 5,
       "consommable": true,
       "description": "Boisson qui donne de l'energy.",
+      "image": "/images/cafe.png",
       "itemshop": true
     },
     "A3": {
@@ -25,6 +27,7 @@
       "price": 5,
       "consommable": true,
       "description": "Bonbon sucre au sucre",
+      "image": "/images/haribo.png",
       "itemshop": true
     },
     "A4": {
@@ -34,6 +37,7 @@
       "price": 7,
       "consommable": true,
       "description": "Redbull donne des ailes.",
+      "image": "/images/redbull.png",
       "itemshop": true
     },
     "A5": {
@@ -43,6 +47,7 @@
       "price": 5,
       "consommable": true,
       "description": "Boisson chaude",
+      "image": "/images/the.png",
       "itemshop": true
     },
     "A6": {
@@ -52,6 +57,7 @@
       "price": 7,
       "consommable": true,
       "description": "sandwich de fou",
+      "image": "/images/sandwich.png",
       "itemshop": true
     },
     "A7": {
@@ -61,6 +67,7 @@
       "price": 2,
       "consommable": true,
       "description": "Boîte de vitamin",
+      "image": "/images/boitedevitamin.png",
       "itemshop": true
     },
     "A8": {
@@ -70,6 +77,7 @@
       "price": 10,
       "consommable": true,
       "description": "Skip le prochain evenement.",
+      "image": "/images/de2020.png",
       "itemshop": true
     },
     "B1": {
@@ -79,6 +87,7 @@
       "price": 30,
       "consommable": false,
       "description": "Permet d’ajouter +1 point par action de travail mais enleve 25%, Sur chaque projet utilise.",
+      "image": "/images/chatgpt.png",
       "itemshop": true
     },
     "B2": {
@@ -88,6 +97,7 @@
       "price": 20,
       "consommable": false,
       "description": "Remonte le moral chaque jour",
+      "image": "/images/casqueaudio.png",
       "itemshop": true
     },
     "B3": {
@@ -97,6 +107,7 @@
       "price": 20,
       "consommable": false,
       "description": "Objet qui permet d'utiliser moins d'energy lors du travail",
+      "image": "/images/lunetteantilumierebleu.png",
       "itemshop": true
     },
     "B4": {
@@ -106,7 +117,7 @@
       "price": 15,
       "consommable": false,
       "description": "Objet qui permet de brancher plusieurs appareils en meme temps",
-      "effect": "exemple",
+      "image": "/images/multiprise.png",
       "itemshop": true
     },
     "B5": {
@@ -116,6 +127,7 @@
       "price": 30,
       "consommable": false,
       "description": "+1 point au debut du projet",
+      "image": "/images/ordinateur.png",
       "itemshop": true
     },
     "B6": {
@@ -125,16 +137,17 @@
       "price": 15,
       "consommable": false,
       "description": "+1 moral par jour si le personnage a moins de 5 de moral",
+      "image": "/images/bouleantistresse.png",
       "itemshop": true
     },
     "C1": {
-      "id": "C1",
       "name": "Billet de retard RATP",
       "energy": 0,
       "moral": 0,
       "price": 0,
       "consommable": true,
       "description": "Skip L'evenement du matin.",
+      "image": "/images/billetderetardratp",
       "itemshop": false
     },
     "C2": {
@@ -144,6 +157,7 @@
       "price": 0,
       "consommable": true,
       "description": "10% de reduction dans le shop lors de son utilisation",
+      "image": "/images/coupondereduction.png",
       "itemshop": false
     }
   }
