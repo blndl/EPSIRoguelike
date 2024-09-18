@@ -1,5 +1,56 @@
 {
   "events": {
+    "00":{
+      "name": "Void",
+      "description": "...",
+      "time_slots": ["Morning", "Afternoon"],
+      "week_end" : false,
+      "week_event" : false,
+      "is_choice": false,
+      "phases": [
+        {
+          "description": "...",
+          "sprite_path": "../Events/Sprites/e1_p1.png",
+          "choices": [
+            {"description": "...", "energy": -5, "moral": -5, "money": 0, "progression_projet": 1 ,"effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "01":{
+      "name": "Void Week_End",
+      "description": "...",
+      "time_slots": ["Morning", "Afternoon"],
+      "week_end" : true,
+      "week_event" : false,
+      "is_choice": false,
+      "phases": [
+        {
+          "description": "...",
+          "sprite_path": "../Events/Sprites/e1_p1.png",
+          "choices": [
+            {"description": "...", "energy": -5, "moral": -5, "money": 0, "progression_projet": 1 ,"effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "02":{
+      "name": "Void Week",
+      "description": "...",
+      "time_slots": ["Morning", "Afternoon"],
+      "week_end" : false,
+      "week_event" : true,
+      "is_choice": false,
+      "phases": [
+        {
+          "description": "...",
+          "sprite_path": "../Events/Sprites/e1_p1.png",
+          "choices": [
+            {"description": "...", "energy": -5, "moral": -5, "money": 0, "progression_projet": 1 ,"effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
     "1A": {
       "name": "Moral 0",
       "description": "Votre moral est à plat",
@@ -112,7 +163,7 @@
     "1G": {
       "name":"Portefeuille trouvé",
       "description": "Tu trouves un portefeuille sur le sol",
-      "time_slots": ["Morning","Afternoon\""],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -754,8 +805,8 @@
       "name":"Abandon de projet",
       "description": "Un camarade abandonne le projet",
       "time_slots": ["Morning"],
-      "week_end" : true,
-      "week_event": false,
+      "week_end" : false,
+      "week_event": true,
       "is_choice": false,
       "phases": [
         {
@@ -767,6 +818,41 @@
         }
       ]
     },
+    "4C": {
+      "name":"Boost d'energie",
+      "description": "Tu te sens en forme ce debut de semaine",
+      "time_slots": ["Morning"],
+      "week_end" : false,
+      "week_event": true,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu es plein d'energie",
+          "choices": [
+            {"description": "Go", "energy":5, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "4D": {
+      "name":"Boost de moral",
+      "description": "Tu as l'air d'excellente humeur",
+      "time_slots": ["Morning"],
+      "week_end" : false,
+      "week_event": true,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Ça se voit que tu es de bonne humeur, tu rayonnes de positivité ",
+          "choices": [
+            {"description": "Go", "energy":0, "moral": 5, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+
     "5A": {
       "name":"Matin Tôt",
       "description": "Tu peux faire une action",
