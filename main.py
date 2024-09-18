@@ -18,7 +18,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.running = True
         self.month = Month()
-        self.seed = self.month.return_month
+        self.seed = self.month.return_month()
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
 
         self.state = "inventory"
