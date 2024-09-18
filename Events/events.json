@@ -21,7 +21,7 @@
     "1B": {
       "name":"Evénement BDE",
       "description": "Un événement organisé par le BDE se déroule aujourd’hui",
-      "time_slots": ["Morning", "Evening"],
+      "time_slots": ["Morning", "Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -40,7 +40,7 @@
     "1C": {
       "name": "Tuto Indien",
       "description": "Tu trouves un tuto Indien",
-      "time_slots": ["Morning", "Evening"],
+      "time_slots": ["Morning", "Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -58,7 +58,7 @@
     "1D": {
       "name":"Pause Bar",
       "description": "Petite pause au bar",
-      "time_slots": ["Evening"],
+      "time_slots": ["Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -76,7 +76,7 @@
     "1E": {
       "name":"Probleme RATP",
       "description": "Il y a une personne qui a fait un malaise dans le train",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -475,7 +475,7 @@
     "2Q": {
       "name":"Conseil de professeur",
       "description": "Tu recois une piste pour ton projet de la par de ton prof",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -492,7 +492,7 @@
     "2R": {
       "name":"Sortie scolaire",
       "description": "Ton école organise une sortie scolaire",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -509,7 +509,7 @@
     "2S": {
       "name":"Panne de transport",
       "description": "Tu es coincé dans les transports",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -526,7 +526,7 @@
     "3A": {
       "name":"Repas de famille",
       "description": "Ta famille t'invite a manger",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : true,
       "week_event": false,
       "is_choice": false,
@@ -543,7 +543,7 @@
     "3B": {
       "name":"Fuite d'eau",
       "description": "T'observe que il y a une petite plaque d'eau chez toi",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : true,
       "week_event": false,
       "is_choice": false,
@@ -560,7 +560,7 @@
     "3C": {
       "name":"Tache administrative",
       "description": "Tu recois une lettre de administrative ",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : true,
       "week_event": false,
       "is_choice": false,
@@ -646,7 +646,7 @@
     "3Z": {
       "name":"Festival",
       "description": "Il y a un festival qui va s'organiser dans ta ville",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : true,
       "week_event": false,
       "is_choice": false,
@@ -718,7 +718,7 @@
     "3U":{
       "name": "Anniversaire du petit cousin",
       "description": "C'est l'anniversaire de ton petit cousin et une petite fête est organisée chez ta famille",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end": true,
       "week_event": false,
       "is_choice": false,
@@ -736,7 +736,7 @@
     "4A": {
       "name":"Semaine de rush",
       "description": "Tu te retrouve a avoir 2 projets pour cette semaine",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": true,
       "is_choice": false,
@@ -810,7 +810,7 @@
     "5C": {
       "name":"Midi",
       "description": "Tu peux faire une action",
-      "time_slots": ["Afternoon"],
+      "time_slots": ["Lunch"],
       "week_end" : false,
       "week_event": false,
       "is_choice": true,
@@ -827,7 +827,30 @@
         }
       ]
     },
-    "5D": {
+  "5D":{
+    "name": "Aprem midi",
+    "description": "Tu peux faire une action",
+    "time_slots": ["Afternoon"],
+    "week_end": false,
+    "week_event": false,
+    "is_choice": true,
+    "phases": [
+      {
+        "sprite_path": "../Events/Sprites/e3_p1.png",
+        "description": "Que veux-tu faire ?",
+        "choices": [
+          {"description": "Manger", "energy": 1, "moral": 0, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"},
+          {"description": "Manger dehors", "energy": 2, "moral": 2, "money": -2, "progression_projet": 0, "effect": "id_effet", "items": "id_item"},
+          {"description": "Sieste", "energy": 5, "moral": 0, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"},
+          {"description": "Travailler", "energy": -2, "moral": 0, "money": 0, "progression_projet": 2, "effect": "id_effet", "items": "id_item"},
+          {"description": "Faire une activité physique légère", "energy": -1, "moral": 3, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"},
+          {"description": "Participer à un atelier en ligne", "energy": -1, "moral": 2, "money": 0, "progression_projet": 1, "effect": "id_effet", "items": "id_item"},
+          {"description": "Rendre visite à un ami", "energy": 1, "moral": 3, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
+        ]
+      }
+    ]
+  },
+    "5F": {
       "name":"Soir",
       "description": "Tu peux faire une action",
       "time_slots": ["Evening"],
