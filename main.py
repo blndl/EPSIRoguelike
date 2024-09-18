@@ -25,7 +25,7 @@ class Game:
         self.player = Player("Gin")
 
         self.in_game = InGame(self.screen, self.player, self.seed, self)
-        self.menu = Menu(self.screen, self.in_game)
+        self.menu = Menu(self.screen)
         self.pause_menu = PauseMenu(self.screen)
         self.inventory = Inventory(self, self.screen, self.player)
         self.calendar = Calendar(self.screen)
@@ -50,7 +50,6 @@ class Game:
                 pass
             if self.state == "inventory":
                 self.inventory.handle_events(event)
-                pass
 
 
     def draw(self):
