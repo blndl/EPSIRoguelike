@@ -18,6 +18,11 @@ class Day:
         """ Adds an event ID to the time slot """
         if self.events[time_slot] == 0:
             self.events[time_slot] = event_id
+        itemlist = []
+        for item_id, item_data in idata['items'].items():
+            if item_data["itemshop"] == False:
+                itemlist.append(item_id)
+        self.items[time_slot] = random.choice(itemlist)
 
 
         
@@ -27,8 +32,6 @@ class Day:
         """ Randomly generates a day's schedule with events assigned to available time slots """
         available_time_slots = self.WEEKTIME
         random.shuffle(available_time_slots)
-
-
         for i in available_time_slots:
             list = []
             for event_id, event_data in edata['events'].items():
@@ -48,7 +51,12 @@ class Day:
 
     def get_event_ids(self):
         """ Returns a list of event IDs for the day, where 0 represents no event """
-        return [self.events[time] for time in self.WEEKTIME]
+        list = []
+        for i in self.WEEKTIME:
+            list.append(self.events[i])
+            if self.events[i] != 0:
+                list.append(self.items[i])
+        return [list]
 
     def display_schedule(self):
         print("Day's Schedule (Event IDs):", self.get_event_ids())
@@ -68,7 +76,13 @@ class Week:
             "Sunday": Day()
         }
         self.event = "00"
-
+        itemlist = []
+        for item_id, item_data in idata['items'].items():
+            if item_data["itemshop"]:
+                itemlist.append(item_id)
+        self.item1 = random.choice(itemlist)
+        self.item2 = random.choice(itemlist)
+            
     def generate_week(self):
         list = []
         self.generate_weekend()
@@ -95,11 +109,11 @@ class Week:
     def display_week_schedule(self, list):
         for day_name, day in self.days.items():
             for i in day.get_event_ids():
-                if i != 0:
-                    list.append(i)
-                else:
-                    list.append("00")
-            
+                for j in i:
+                    if j != 0:
+                        list.append(j)
+                    else:
+                        list.append("00")            
         return(list)
 
 
@@ -119,6 +133,8 @@ class Month:
     def return_month(self):
         for id, week in self.weeks.items():
             self.list.append(week.event)
+            self.list.append(week.item1)
+            self.list.append(week.item2)
             self.list = week.display_week_schedule(self.list)
         return self.list
         
