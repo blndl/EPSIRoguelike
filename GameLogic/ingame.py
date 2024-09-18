@@ -5,20 +5,22 @@ from generator import Month
 
 # InGame class is used to manage the game loop, the events, the player and the month.
 class InGame:
-    def __init__(self, screen, player, month_data, game,  shop=None, day=0, week=0, month=0, time=0):
+    def __init__(self, screen, player, month_data, game,  shop=None, day=0, week=0, month=0, time=0, index = 0, phase = 0):
         self.game = game
         self.screen = screen
         self.player = player
         self.week_event = None
         self.events = Event.load_events("Events/events.json")
         self.items = Item.load_items("Items/items.json")
-        self.month = Month()
+        self.month = self.game.month
         self.month_data = month_data
         self.shop = shop
         self.day = day
         self.week = week
         self.month_int = month
         self.time = time
+        self.index = index
+        self.phase = phase
 
         self.bar_width = 200
         self.bar_height = 20
@@ -33,13 +35,19 @@ class InGame:
                 self.game.state = "Pause_menu"
 
         if game_event.type == pygame.MOUSEBUTTONDOWN:
-            self.update()
+            print(self.phase)
+            event = self.events[self.month_data[self.index]]
+            path = event.phases_data()[self.phase]['sprite_path']
+            path_to_show = pygame.image.load(path)
+            self.screen.blit(path_to_show, (0, 0))
 
-
+            print(path)
 
     # draw the screen
     def draw(self):
         self.draw_bars()
+        #img = pygame.image.load(self.get_event_or_item(self.month_data[self.index][0].phases[self.phase]['sprite_path']))
+        #self.screen.blit(img, (0, 0))
 
     def draw_bars(self):
         """Draw the energy and morale bars based on player stats"""
@@ -64,7 +72,6 @@ class InGame:
 
     # update the game
     def update(self):
-        pass
         self.initialize_month_data()
         self.process_month_data()
 
@@ -84,18 +91,20 @@ class InGame:
             print("Month data already initialized")
             print(self.month_data)
             return
+
+
     # process the month data also the main loop of the game
     def process_month_data(self):
-        index = 0
-        while index < len(self.month_data):
-            index = self.process_week_start(index)
-            print("\nindex : ", index)
+        self.index = 0
+        while self.index < len(self.month_data):
+            self.process_week_start()
+            print("\nindex : ", self.index)
             print("time : ", self.time)
             if self.time == 0 or self.time == 2 or self.time == 4:
                 self.choices(self.time)
             else:
-                index += 1
-                event, item = self.get_event_or_item(self.month_data[index])
+                self.index += 1
+                event, item = self.get_event_or_item(self.month_data[self.index])
                 if item and len(self.player.bag) <= 32:
                     self.player.bag.append(item.item_id)
                     print("\nItem added to the bag : ", item.item_id)
@@ -106,14 +115,14 @@ class InGame:
             self.update_time_day_week_month()
             self.time += 1
 
-    def process_week_start(self, index):
+    def process_week_start(self, ):
         if self.day == 0 and self.time == 0:  # start of a new week
-            self.week_event = self.month_data[index]
-            self.shop = [self.month_data[index + 1], self.month_data[index + 2]]
-            index += 3
+            self.week_event = self.month_data[self.index]
+            self.shop = [self.month_data[self.index + 1], self.month_data[self.index + 2]]
+            self.index += 3
             print("\nWeek Event: ", self.week_event)
             print("Shop: ", self.shop)
-        return index
+        return
 
     def process_data_entry(self, event):
         print("Event: ", event)
@@ -179,6 +188,7 @@ class InGame:
         print("event_phase is running")
         print("Event: ", event)
         for phase in event.phases_data():
+            self.phase = phase
             print("Phase: ", phase)
             # the choices inside an event phase are searched here
             switch = {i: choice for i, choice in enumerate(phase['choices'])}

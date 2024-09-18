@@ -27,6 +27,7 @@ class Game:
 
         self.in_game = InGame(self.screen, self.player, self.seed, self)
         self.menu = Menu(self.screen)
+        self.in_game = InGame(self.screen, self.player, self.seed, self)
         self.pause_menu = PauseMenu(self.screen)
         self.inventory = Inventory(self, self.screen, self.player)
         self.calendar = Calendar(self.screen)
@@ -41,6 +42,8 @@ class Game:
                 self.running = False
             if self.state == "menu":
                 self.menu.handle_events(event)
+                if self.menu.start_game:
+                    self.state = "in_game"
             if self.state == "in_game":
                 self.in_game.handle_events(event)
             if self.state == "Pause_menu":
