@@ -200,7 +200,23 @@
           "description": "Veux-tu en acheter",
           "choices": [
             {"description": "J'ai faim", "energy": 0, "moral": 1, "money": -5, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"},
-            {"description": "Je suis un bon citoyen je vais le rendre", "energy": 0, "moral": 0, "money": "0", "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"}
+            {"description": "Non je suis au régime", "energy": 0, "moral": 0, "money": "0", "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"}
+          ]
+        },
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Veux-tu en acheter (2)",
+          "choices": [
+            {"description": "J'ai faim", "energy": 0, "moral": 1, "money": -5, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Toujours pas", "energy": 0, "moral": 0, "money": "0", "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"}
+          ]
+        },
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Veux-tu en acheter (3)",
+          "choices": [
+            {"description": "J'ai faim", "energy": 0, "moral": 1, "money": -5, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Ca fait beaucoup la non ?", "energy": 0, "moral": 0, "money": "0", "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
