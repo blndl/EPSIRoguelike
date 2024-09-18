@@ -94,7 +94,7 @@
     "1F": {
       "name":"Probleme de réveil",
       "description": "Tu ne t'es pas réveillé terrible",
-      "time_slots": ["Evening"],
+      "time_slots": ["Morning"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -112,7 +112,7 @@
     "1G": {
       "name":"Portefeuille trouvé",
       "description": "Tu trouves un portefeuille sur le sol",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon\""],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -131,7 +131,7 @@
     "1H": {
       "name":"Crêpes BDE",
       "description": "Jour des crêpes organisé par le BDE",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -149,7 +149,7 @@
     "1I": {
       "name":"Module HEP",
       "description": "Aujourd'hui c'est le module HEP",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -167,7 +167,7 @@
     "1J": {
       "name":"Compétition de jeu vidéo",
       "description": "Le BDE organise une compétition de jeu vidéo",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -185,7 +185,7 @@
     "1K": {
       "name":"Loterie étudiante",
       "description": "Surprise, une loterie étudiante est organisée",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -203,7 +203,7 @@
     "2A": {
       "name":"Energie à zero",
       "description": "Tu as trop travaillé ces derniers jours",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_event": false,
       "week_end" : false,
       "is_choice": false,
@@ -254,7 +254,7 @@
     "2D": {
       "name":"Faim",
       "description": "Tu commences a avoir faim",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -271,7 +271,7 @@
     "2E": {
       "name":"Cours qui se termine tard",
       "description": "L'intervenant décide de prolonger son cours",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -288,7 +288,7 @@
     "2F": {
       "name":"Tout va bien",
       "description": "Bizarrement rien ne se passe",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -305,7 +305,7 @@
     "2G": {
       "name":"Prof absent",
       "description": "L'intervenant n'ai pas présent",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -322,7 +322,7 @@
     "2H": {
       "name":"Cours ennuyeux",
       "description": "Tu sens que tu t'ennuies pendant ce cours",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -339,7 +339,7 @@
     "2I": {
       "name":"Cours Dubert",
       "description": "C'est fini, tu tombes sur le pire prof que tu n'aies jamais vu, on se dirait à l'armée",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -356,7 +356,7 @@
     "2J": {
       "name":"Cours Toulma",
       "description": "Le cours est fluide,tout se passe super bien",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -373,7 +373,7 @@
     "2K": {
       "name":"Bien manger",
       "description": "Tu as bien mangé cet midi",
-      "time_slots": ["Evening"],
+      "time_slots": ["Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -390,7 +390,7 @@
     "2L": {
       "name":"Cours en distanciel",
       "description": "On a un cours en distanciel",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
@@ -424,7 +424,7 @@
     "2N":{
       "name":"Conférence",
       "description": "Ton école organise une conférences aujourd'hui",
-      "time_slots": ["Morning","Evening"],
+      "time_slots": ["Morning","Afternoon"],
       "week_end" : false,
       "week_event": false,
       "is_choice": false,
