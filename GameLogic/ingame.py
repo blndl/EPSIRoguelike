@@ -7,6 +7,7 @@ from generator import Month
 class InGame:
     def __init__(self, screen, player, month_data, game,  shop=None, day=0, week=0, month=0, time=0):
         self.game = game
+        self.screen = screen
         self.player = player
         self.week_event = None
         self.events = Event.load_events("Events/events.json")
@@ -18,6 +19,12 @@ class InGame:
         self.week = week
         self.month_int = month
         self.time = time
+
+        self.bar_width = 200
+        self.bar_height = 20
+        self.energy_color = (0, 255, 0)  # Green for energy
+        self.morale_color = (0, 0, 255)  # Blue for morale
+        self.background_color = (100, 100, 100)
 
     # events for pygames
     def handle_events(self, game_event): # like clicks DO NOT FORGET
@@ -32,7 +39,28 @@ class InGame:
 
     # draw the screen
     def draw(self):
-        pass
+        self.draw_bars()
+
+    def draw_bars(self):
+        """Draw the energy and morale bars based on player stats"""
+        # Energy bar
+        energy_percentage = self.player.energy / self.player.max_energy
+        energy_bar_width = int(self.bar_width * energy_percentage)
+        energy_bar_rect = pygame.Rect(50, 50, energy_bar_width, self.bar_height)
+        energy_background_rect = pygame.Rect(50, 50, self.bar_width, self.bar_height)
+
+        # Morale bar
+        morale_percentage = self.player.moral / self.player.max_moral
+        morale_bar_width = int(self.bar_width * morale_percentage)
+        morale_bar_rect = pygame.Rect(50, 100, morale_bar_width, self.bar_height)
+        morale_background_rect = pygame.Rect(50, 100, self.bar_width, self.bar_height)
+
+        # Draw the bars
+        pygame.draw.rect(self.screen, self.background_color, energy_background_rect)  # Energy background
+        pygame.draw.rect(self.screen, self.energy_color, energy_bar_rect)  # Energy bar
+        pygame.draw.rect(self.screen, self.background_color, morale_background_rect)  # Morale background
+        pygame.draw.rect(self.screen, self.morale_color, morale_bar_rect)  # Morale bar
+
 
     # update the game
     def update(self):
