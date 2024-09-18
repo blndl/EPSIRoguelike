@@ -6,6 +6,7 @@
       "time_slots": ["Morning", "Afternoon"],
       "week_end" : false,
       "week_event" : false,
+      "is_choice": false,
       "phases": [
         {
           "description": "Voulez-vous aller en cours",
@@ -23,6 +24,7 @@
       "time_slots": ["Morning", "Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e2_p1.png",
@@ -41,6 +43,7 @@
       "time_slots": ["Morning", "Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -58,6 +61,7 @@
       "time_slots": ["Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -75,6 +79,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -92,6 +97,7 @@
       "time_slots": ["Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -109,6 +115,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -127,6 +134,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -144,6 +152,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -161,6 +170,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -178,6 +188,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -195,6 +206,7 @@
       "time_slots": ["Morning","Evening"],
       "week_event": false,
       "week_end" : false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -211,6 +223,7 @@
       "time_slots": ["Morning"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -227,6 +240,7 @@
       "time_slots": ["Morning"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -243,6 +257,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -259,6 +274,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -275,6 +291,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -291,6 +308,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -307,6 +325,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -323,6 +342,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -339,6 +359,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -355,6 +376,7 @@
       "time_slots": ["Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -371,6 +393,7 @@
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -381,12 +404,132 @@
         }
       ]
     },
+    "2M": {
+      "name":"Jour férié",
+      "description": "Jour de fête aujourd'hui",
+      "time_slots": ["Morning"],
+      "week_end" : false,
+      "week_event": false,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu peux faire ce que tu veux",
+          "choices": [
+            {"description": "Je vais voir ce que je dois faire aujourd'hui", "energy":0, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2N":{
+      "name":"Conférence",
+      "description": "Ton école organise une conférences aujourd'hui",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Il y a un professionel qui arrive",
+          "choices": [
+            {"description": "Je vais apprendre plein de chose", "energy":-1, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2O": {
+      "name":"Travaux sur le campus",
+      "description": "Le campus commences des travaux de modernisation",
+      "time_slots": ["Morning"],
+      "week_end" : false,
+      "week_event": false,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu as du mal a te concentrer aujourd'hui tu finira par d'habituer demain ",
+          "choices": [
+            {"description": "Le bruit me pertube", "energy":0, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2P": {
+      "name":"Oubli de matériel",
+      "description": "Tu as oublié ton materiel chez toi",
+      "time_slots": ["Morning"],
+      "week_end" : false,
+      "week_event": false,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Quel étourdi tu fais",
+          "choices": [
+            {"description": "Je vais faire sans", "energy":0, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2Q": {
+      "name":"Conseil de professeur",
+      "description": "Tu recois une piste pour ton projet de la par de ton prof",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu vas pouvoir progresser plus vite",
+          "choices": [
+            {"description": "J'en apprend plus", "energy":0, "moral": 1, "money": 0, "progression_projet": 3, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2R": {
+      "name":"Sortie scolaire",
+      "description": "Ton école organise une sortie scolaire",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Un bon moyen de sortir de la salle de classe",
+          "choices": [
+            {"description": "Ca me dérange pas c'est pas un idée qui me plait ", "energy":-1, "moral": 2, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2S": {
+      "name":"Panne de transport",
+      "description": "Tu es coincé dans les transports",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu attends c'est long",
+          "choices": [
+            {"description": "one eternity later", "energy":-1, "moral": -1, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
     "3A": {
       "name":"Repas de famille",
       "description": "Ta famille t'invite a manger",
       "time_slots": ["Morning","Evening"],
       "week_end" : true,
       "week_event": false,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
@@ -397,18 +540,148 @@
         }
       ]
     },
+    "3B": {
+      "name":"Fuite d'eau",
+      "description": "T'observe que il y a une petite plaque d'eau chez toi",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : true,
+      "week_event": false,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "C'est une fuite d'eau ",
+          "choices": [
+            {"description": "Il faut réparer ca", "energy": -2, "moral": -3, "money": -3, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "3C": {
+      "name":"Festival",
+      "description": "Il y a un festival qui va s'organiser dans ta ville",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : true,
+      "week_event": false,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Veux-tu y aller ",
+          "choices": [
+            {"description": "Oui ca à l'air sympas", "energy": -2, "moral": 3, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je reste chez moi réviser", "energy": -2, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "3Z": {
+      "name":"Festival",
+      "description": "Il y a un festival qui va s'organiser dans ta ville",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : true,
+      "week_event": false,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Veux-tu y aller ",
+          "choices": [
+            {"description": "Oui ca à l'air sympas", "energy": -2, "moral": 3, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je reste chez moi réviser", "energy": -2, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
     "4A": {
       "name":"Semaine de rush",
       "description": "Tu te retrouve a avoir 2 projets pour cette semaine",
       "time_slots": ["Morning","Evening"],
       "week_end" : false,
       "week_event": true,
+      "is_choice": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "C'est l'heure de travailler et de pleurer",
           "choices": [
             {"description": "Pleurer", "energy": 0, "moral": -1, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "4B": {
+      "name":"Abandon de projet",
+      "description": "Un camarade abandonne le projet",
+      "time_slots": ["Morning"],
+      "week_end" : true,
+      "week_event": false,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu dois prendre en charge une plus grande partie du travail.",
+          "choices": [
+            {"description": "RIP c'est parti", "energy":0, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "5A": {
+      "name":"Matin",
+      "description": "Tu peux faire une action",
+      "time_slots": ["Morning"],
+      "week_end" : false,
+      "week_event": false,
+      "is_choice": true,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Que veux tu faire",
+          "choices": [
+            {"description": "Dormir plus", "energy":2, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Travailler", "energy":-2, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Dormir plus", "energy":2, "moral":2, "money": -2, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "5B": {
+      "name":"Midi",
+      "description": "Tu peux faire une action",
+      "time_slots": ["Afternoon"],
+      "week_end" : false,
+      "week_event": false,
+      "is_choice": true,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Que veux tu faire",
+          "choices": [
+            {"description": "Manger", "energy":1, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Manger dehors", "energy":2, "moral": 2, "money": -2, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Sieste", "energy":5, "moral":0, "money":0 , "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Travailler", "energy":-2, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "5C": {
+      "name":"Soir",
+      "description": "Tu peux faire une action",
+      "time_slots": ["Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "is_choice": true,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Que veux tu faire",
+          "choices": [
+            {"description": "All night", "energy":-5, "moral": -2, "money": 0, "progression_projet": 3, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "dormir", "energy":2, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Detente", "energy":1, "moral":1, "money":0 , "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Travailler", "energy":-2, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
