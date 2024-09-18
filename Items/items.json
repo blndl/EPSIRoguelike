@@ -7,7 +7,7 @@
       "price": 5,
       "consommable": true,
       "description": "A manger.",
-      "image": "/images/manger.png",
+      "image": "Items/Sprites/manger.png",
       "itemshop": true
     },
     "A2": {
@@ -16,8 +16,8 @@
       "moral": 0,
       "price": 5,
       "consommable": true,
-      "description": "Boisson qui donne de l'energy.",
-      "image": "/images/cafe.png",
+      "description": "Redonne un petit peu d'énergie !",
+      "image": "Items/Sprites/cafe.png",
       "itemshop": true
     },
     "A3": {
@@ -26,8 +26,8 @@
       "moral": 2,
       "price": 5,
       "consommable": true,
-      "description": "Bonbon sucre au sucre",
-      "image": "/images/haribo.png",
+      "description": "Bonbon sucré avec une surchouche de sucre. Parfait pour les coups de mou.",
+      "image": "Items/Sprites/haribo.png",
       "itemshop": true
     },
     "A4": {
@@ -37,7 +37,8 @@
       "price": 7,
       "consommable": true,
       "description": "Redbull donne des ailes.",
-      "image": "/images/redbull.png",
+      "image": "Items/Sprites/redbull.png",
+      "sound": "Items/Sound/redbull.mp3",
       "itemshop": true
     },
     "A5": {
@@ -46,18 +47,18 @@
       "moral": 1,
       "price": 5,
       "consommable": true,
-      "description": "Boisson chaude",
-      "image": "/images/the.png",
+      "description": "Boisson chaude donnant un peu de moral et d'énergie",
+      "image": "Items/Sprites/the.png",
       "itemshop": true
     },
     "A6": {
       "name": "Sandwich",
-      "energy": 2,
+      "energy": 3,
       "moral": 2,
       "price": 7,
       "consommable": true,
-      "description": "sandwich de fou",
-      "image": "/images/sandwich.png",
+      "description": "Sandwich de fou",
+      "image": "Items/Sprites/sandwich.png",
       "itemshop": true
     },
     "A7": {
@@ -67,7 +68,7 @@
       "price": 2,
       "consommable": true,
       "description": "Boîte de vitamin",
-      "image": "/images/boitedevitamin.png",
+      "image": "Items/Sprites/boitedevitamin.png",
       "itemshop": true
     },
     "A8": {
@@ -77,7 +78,7 @@
       "price": 10,
       "consommable": true,
       "description": "Skip le prochain evenement.",
-      "image": "/images/de2020.png",
+      "image": "Items/Sprites/de2020.png",
       "itemshop": true
     },
     "A9": {
@@ -97,7 +98,7 @@
       "price": 30,
       "consommable": false,
       "description": "Permet d’ajouter +1 point par action de travail mais enleve 25%, Sur chaque projet utilise.",
-      "image": "/images/chatgpt.png",
+      "image": "Items/Sprites/chatgpt.png",
       "itemshop": true
     },
     "B2": {
@@ -107,7 +108,7 @@
       "price": 20,
       "consommable": false,
       "description": "Remonte le moral chaque jour",
-      "image": "/images/casqueaudio.png",
+      "image": "Items/Sprites/casqueaudio.png",
       "itemshop": true
     },
     "B3": {
@@ -117,7 +118,7 @@
       "price": 20,
       "consommable": false,
       "description": "Objet qui permet d'utiliser moins d'energy lors du travail",
-      "image": "/images/lunetteantilumierebleu.png",
+      "image": "Items/Sprites/lunetteantilumierebleu.png",
       "itemshop": true
     },
     "B4": {
@@ -127,7 +128,7 @@
       "price": 15,
       "consommable": false,
       "description": "Objet qui permet de brancher plusieurs appareils en meme temps",
-      "image": "/images/multiprise.png",
+      "image": "Items/Sprites/multiprise.png",
       "itemshop": true
     },
     "B5": {
@@ -137,7 +138,7 @@
       "price": 30,
       "consommable": false,
       "description": "+1 point au debut du projet",
-      "image": "/images/ordinateur.png",
+      "image": "Items/Sprites/ordinateur.png",
       "itemshop": true
     },
     "B6": {
@@ -147,7 +148,7 @@
       "price": 15,
       "consommable": false,
       "description": "+1 moral par jour si le personnage a moins de 5 de moral",
-      "image": "/images/bouleantistresse.png",
+      "image": "Items/Sprites/bouleantistresse.png",
       "itemshop": true
     },
      "B7": {
@@ -167,7 +168,7 @@
       "price": 0,
       "consommable": true,
       "description": "Skip L'evenement du matin.",
-      "image": "/images/billetderetardratp.png",
+      "image": "Items/Sprites/billetderetardratp.png",
       "itemshop": false
     },
     "C2": {
@@ -177,7 +178,7 @@
       "price": 0,
       "consommable": true,
       "description": "10% de reduction dans le shop lors de son utilisation",
-      "image": "/images/coupondereduction.png",
+      "image": "Items/Sprites/coupondereduction.png",
       "itemshop": false
     }
   }

@@ -1,5 +1,6 @@
 import pygame
 import sys
+import os
 from GameLogic.menu import Menu
 from GameLogic.ingame import InGame
 from GameLogic.Inventory import Inventory
@@ -16,16 +17,21 @@ class Game:
         pygame.display.set_caption("EPSI Rogue-Like")
         self.clock = pygame.time.Clock()
         self.running = True
+        self.seed = []
+        self.base_dir = os.path.dirname(os.path.abspath(__file__))
 
         self.state = "inventory"
 
         self.player = Player("Gin")
 
         self.menu = Menu(self.screen)
-        self.in_game= InGame(self.screen, self.player)
+        self.in_game = InGame(self.screen, self.player, self.seed)
         self.pause_menu = PauseMenu(self.screen)
-        self.inventory = Inventory(self.screen, self.player)
+        self.inventory = Inventory(self, self.screen, self.player)
         self.calendar = Calendar(self.screen)
+
+        pygame.mixer.set_num_channels(1)
+
 
 
     def handle_events(self):
@@ -46,7 +52,7 @@ class Game:
                 # self.calendar.handle_events(event)
                 pass
             if self.state == "inventory":
-                # self.inventory.handle_events(event)
+                self.inventory.handle_events(event)
                 pass
 
 
@@ -56,6 +62,8 @@ class Game:
             self.menu.draw()
         elif self.state == "in_game":
             self.in_game.draw()
+        elif self.state == "inventory":
+            self.inventory.draw_inventory()
 
         pygame.display.flip()
 
