@@ -7,7 +7,7 @@ with open('Items/items.json') as t:
     idata = json.load(t)
 
 class Day:
-    WEEKTIME = ["Early-Morning", "Morning", "Lunch", "Afternoon", "Evening"]
+    WEEKTIME = [ "Morning", "Afternoon", "Evening"]
 
     def __init__(self, max_event=5):
         self.max_event = max_event
@@ -25,16 +25,26 @@ class Day:
 
     def generate_day(self):
         """ Randomly generates a day's schedule with events assigned to available time slots """
-        available_time_slots = self.WEEKTIME[:]
+        available_time_slots = self.WEEKTIME
         random.shuffle(available_time_slots)
 
-        for event_id, event_data in edata['events'].items():
-            possible_times = event_data["time_slots"]
-            for time_slot in available_time_slots:
-                if time_slot in possible_times and list(self.events.values()).count(0) > (5 - self.max_event):
-                    self.add_event(event_id, time_slot)
-                    available_time_slots.remove(time_slot)
-                    break
+
+        for i in available_time_slots:
+            list = []
+            for event_id, event_data in edata['events'].items():
+                if i in event_data["time_slots"]:
+                    list.append(event_id)
+            if random.choice([True, False]):
+                self.add_event(random.choice(list), i)
+            
+        #for event_id, event_data in edata['events'].items():
+        #    possible_times = event_data["time_slots"]
+         #  for time_slot in available_time_slots:
+          #      if time_slot in possible_times and list(self.events.values()).count(0) > (5 - self.max_event):
+           #         self.add_event(event_id, time_slot)
+            #        available_time_slots.remove(time_slot)
+             #       break
+                    
 
     def get_event_ids(self):
         """ Returns a list of event IDs for the day, where 0 represents no event """
@@ -60,20 +70,26 @@ class Week:
         self.event = "00"
 
     def generate_week(self):
+        list = []
         self.generate_weekend()
         if random.choice([True, False]):
-            self.event = "6B"
+            for event_id, event_data in edata['events'].items():
+                if event_data["week_event"]:
+                    list.append(event_id) 
+            self.event = random.choice(list)
         for day_name in self.days:
             self.days[day_name].generate_day()
         
 
 
     def generate_weekend(self):
+        list = []
         if random.choice([True, False]):
             for event_id, event_data in edata['events'].items():
-                if "Weekend" in event_data["time_slots"]:
-                    self.days["Saturday"].add_event(event_id, "Morning")
-                    self.days["Sunday"].add_event(event_id, "Morning")
+                if event_data["week_end"]:
+                    list.append(event_id) 
+            self.days["Saturday"].add_event(random.choice(list), "Morning")
+            self.days["Sunday"].add_event(random.choice(list), "Morning")
                 
 
     def display_week_schedule(self, list):
