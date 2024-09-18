@@ -66,7 +66,8 @@ class InGame:
             if self.time == 0 or self.time == 2 or self.time == 4:
                 self.choices(self.time)
             else:
-                event, item, index = self.get_event_or_item(self.month_data[index], index)
+                index += 1
+                event, item = self.get_event_or_item(self.month_data[index])
                 if item and len(self.player.bag) <= 32:
                     self.player.bag.append(item.item_id)
                     print("\nItem added to the bag : ", item.item_id)
@@ -108,7 +109,7 @@ class InGame:
 
 
     # get the event or item id
-    def get_event_or_item(self, data, index):
+    def get_event_or_item(self, data):
         print("Data: ", data)
         print("Events: ", self.events.keys())
         print("Items: ", self.items.keys())
@@ -120,10 +121,9 @@ class InGame:
             item = self.items[data]
         else :
             print("No event or item found")
-            return False, False, index
-        index += 1
+            return False, False
         print("Event in get_event_or_item: ", event)
-        return event, item, index
+        return event, item
 
 
     # update the time, day, week and month of the game
@@ -166,12 +166,12 @@ class InGame:
         print("Choices: ", choices)
 
         #if there is only one choice, the player will have no choice
-        if len(choices) == 1:
-            player_choice = choices.get(0)
-            print("player not choice : ", player_choice)
+        #if len(choices) == 1:
+        #    player_choice = choices.get(0)
+        #    print("player not choice : ", player_choice)
 
         # if there are choices, the player will have to choose
-        elif choices != {}:
+        if choices != {}:
             while player_choice not in choices:
                 player_choice = int(input("Select a choice: "))
                 # if the choice is not in the choices, the player will have to choose again
