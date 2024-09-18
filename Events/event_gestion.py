@@ -1,7 +1,7 @@
 from Json.json import BaseEntity
 
 class Event(BaseEntity):
-    def __init__(self, event_id, description, time_slots, phases, week_event, week_end, is_choice):
+    def __init__(self, event_id, description, time_slots, phases, week_event, week_end, is_choice, name):
         self.event_id = event_id
         self.description = description
         self.time_slots = time_slots
@@ -9,12 +9,13 @@ class Event(BaseEntity):
         self.week_event = week_event
         self.week_end = week_end
         self.is_choice = is_choice
+        self.name = name
 
     # This method is used to create a list of instances of the class Event with the data from events
     @classmethod
     def load_events(cls, file_path):
         data = cls.load_entity(file_path)
-        return {event_id: cls(event_id, event_data['description'], event_data['time_slots'], event_data['phases'], event_data['week_event'], event_data['week_end'], event_data['is_choice'])
+        return {event_id: cls(event_id, event_data['description'], event_data['time_slots'], event_data['phases'], event_data['week_event'], event_data['week_end'], event_data['is_choice'], event_data['name'])
                 for event_id, event_data in data['events'].items()}
         # the instances are the values of the dictionary, the keys are the event_id
         # example :
@@ -24,10 +25,9 @@ class Event(BaseEntity):
         # }
         # events['event_id']  returns -> Event('event_id', 'description', 'time_slots', 'phases')
 
-        # Used to return the date of an event
-
+        # Used to return the data of an eventz
     def get_event_data(self):
-        return self.return_entity_data(self, ['event_id', 'description', 'time_slots', 'phases', 'week_event', 'week_end', 'is_choice'])
+        return self.return_entity_data(self, ['event_id', 'description', 'time_slots', 'phases', 'week_event', 'week_end', 'is_choice', 'name'])
 
     # Used to return the data of the phases of an event
     def phases_data(self):
@@ -79,4 +79,5 @@ class Event(BaseEntity):
 
     @staticmethod
     def get_event_by_is_choice_and_time(is_choice, events, time):
-        return {event_id : event for event_id, event in events.items() if is_choice == event.is_choice and time in event.time_slots}
+        return [event for event in events.values() if is_choice == event.is_choice and time in event.time_slots][0]
+

@@ -1,249 +1,359 @@
 import pygame
 from Events.event_gestion import Event
 from Items.item_gestion import Item
-from generator import Month
+pygame.font.init()
 
-# InGame class is used to manage the game loop, the events, the player and the month.
+# made in game states to have an easier time managing the game
+class InGameState:
+    EVENT_PROGRESS = 0
+    PHASE_PROGRESS = 1
+    CHOICE_MAKING = 2
+    INVENTORY_VIEW = 3
+    PAUSED = 4
+
+# made a class to draw the text and buttons, but I don't know if it's useful
+class ToDraw:
+    FONT = pygame.font.Font(None, 36)
+
+# button class again idk if it's useful
+class Button:
+    def __init__(self, x, y, width, height, text, font):
+        self.rect = pygame.Rect(x, y, width, height)
+        self.text = text
+        self.font = font
+        self.color = (50, 200, 50)
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, self.color, self.rect)
+        label = self.font.render(self.text, True, (0, 0, 0))
+        text_rect = label.get_rect(center=self.rect.center)
+        screen.blit(label, text_rect)
+
+    def is_clicked(self, pos):
+        return self.rect.collidepoint(pos)
+
+# main class of the file
 class InGame:
-    def __init__(self, screen, player, month_data, game,  shop=None, day=0, week=0, month=0, time=0, index = 0, phase = 0):
-        self.game = game
+    def __init__(self, screen, player, seed, game):
+        # data from the main game class
         self.screen = screen
         self.player = player
+        self.seed = seed
+        self.game = game  # Reference to the main Game class
+
+        # In-game state data and variables
+        self.ingame_state = InGameState.EVENT_PROGRESS # state of the game
+        self.current_event = None
+        self.current_advancement = 0
+        self.events = Event.load_events("Events/events.json") # load the events
+        self.items = Item.load_items("Items/items.json") # load the items
+        self.shop = []
         self.week_event = None
-        self.events = Event.load_events("Events/events.json")
-        self.items = Item.load_items("Items/items.json")
-        self.month = self.game.month
-        self.month_data = month_data
-        self.shop = shop
-        self.day = day
-        self.week = week
-        self.month_int = month
-        self.time = time
-        self.index = index
-        self.phase = phase
-
-        self.bar_width = 200
-        self.bar_height = 20
-        self.energy_color = (0, 255, 0)  # Green for energy
-        self.morale_color = (0, 0, 255)  # Blue for morale
-        self.background_color = (100, 100, 100)
-
-    # events for pygames
-    def handle_events(self, game_event): # like clicks DO NOT FORGET
-        if game_event.type == pygame.KEYDOWN:
-            if game_event.key == pygame.K_ESCAPE:
-                self.game.state = "Pause_menu"
-
-        if game_event.type == pygame.MOUSEBUTTONDOWN:
-            print(self.phase)
-            event = self.events[self.month_data[self.index]]
-            path = event.phases_data()[self.phase]['sprite_path']
-            path_to_show = pygame.image.load(path)
-            self.screen.blit(path_to_show, (0, 0))
-
-            print(path)
-
-    # draw the screen
-    def draw(self):
-        self.draw_bars()
-        #img = pygame.image.load(self.get_event_or_item(self.month_data[self.index][0].phases[self.phase]['sprite_path']))
-        #self.screen.blit(img, (0, 0))
-
-    def draw_bars(self):
-        """Draw the energy and morale bars based on player stats"""
-        # Energy bar
-        energy_percentage = self.player.energy / self.player.max_energy
-        energy_bar_width = int(self.bar_width * energy_percentage)
-        energy_bar_rect = pygame.Rect(50, 50, energy_bar_width, self.bar_height)
-        energy_background_rect = pygame.Rect(50, 50, self.bar_width, self.bar_height)
-
-        # Morale bar
-        morale_percentage = self.player.moral / self.player.max_moral
-        morale_bar_width = int(self.bar_width * morale_percentage)
-        morale_bar_rect = pygame.Rect(50, 100, morale_bar_width, self.bar_height)
-        morale_background_rect = pygame.Rect(50, 100, self.bar_width, self.bar_height)
-
-        # Draw the bars
-        pygame.draw.rect(self.screen, self.background_color, energy_background_rect)  # Energy background
-        pygame.draw.rect(self.screen, self.energy_color, energy_bar_rect)  # Energy bar
-        pygame.draw.rect(self.screen, self.background_color, morale_background_rect)  # Morale background
-        pygame.draw.rect(self.screen, self.morale_color, morale_bar_rect)  # Morale bar
-
-
-    # update the game
-    def update(self):
-        self.initialize_month_data()
-        self.process_month_data()
-
-
-    # run some functions
-    def run(self):
-        pass
-
-
-    # initialize the month data
-    def initialize_month_data(self):
-        if not self.month_data:
-            self.month.generateMonth()
-            self.month_data = self.month.return_month()
-            print(self.month_data)
-        else:
-            print("Month data already initialized")
-            print(self.month_data)
-            return
-
-
-    # process the month data also the main loop of the game
-    def process_month_data(self):
         self.index = 0
-        while self.index < len(self.month_data):
-            self.process_week_start()
-            print("\nindex : ", self.index)
-            print("time : ", self.time)
-            if self.time == 0 or self.time == 2 or self.time == 4:
-                self.choices(self.time)
-            else:
-                self.index += 1
-                event, item = self.get_event_or_item(self.month_data[self.index])
-                if item and len(self.player.bag) <= 32:
-                    self.player.bag.append(item.item_id)
-                    print("\nItem added to the bag : ", item.item_id)
-                    print("Bag: ", self.player.bag, "\n")
-                else:
-                    self.process_data_entry(event)
+        self.buttons = []
 
-            self.update_time_day_week_month()
-            self.time += 1
+        # Time data
+        self.time = 0
+        self.day = 0
+        self.week = 0
+        self.month = 0
+        self.time_periods = {
+            0: "Early-Morning",
+            1: "Morning",
+            2: "Lunch",
+            3: "Afternoon",
+            4: "Evening"
+        }
+        # debugging only
+        print("Seed: ", self.seed)
 
-    def process_week_start(self, ):
-        if self.day == 0 and self.time == 0:  # start of a new week
-            self.week_event = self.month_data[self.index]
-            self.shop = [self.month_data[self.index + 1], self.month_data[self.index + 2]]
-            self.index += 3
-            print("\nWeek Event: ", self.week_event)
-            print("Shop: ", self.shop)
-        return
-
-    def process_data_entry(self, event):
-        print("Event: ", event)
-        switch = [0, 2, 4]
-        if self.time in switch or event == False:
-            if self.time in switch:
-                print("it is choice Time: ", self.time)
-            else:
-                print("No event")
-            self.choices(self.time)
-            return
-
-        elif event:
-            print("Event: ", event)
-            self.event_phase(event)
-            return
-        else:
-            print("Something went wrong... in process_data_entry")
-            print("Event: ", event)
-            return
-
-
-    # get the event or item id
-    def get_event_or_item(self, data):
-        print("Data: ", data)
-        print("Events: ", self.events.keys())
-        print("Items: ", self.items.keys())
-        event = None
-        item = None
-        if data in self.events and data != "00":
-            event = self.events[data]
-        elif data in self.items and data != "00":
-            item = self.items[data]
-        else :
-            print("No event or item found")
-            return False, False
-        print("Event in get_event_or_item: ", event)
-        return event, item
-
-
-    # update the time, day, week and month of the game
-    def update_time_day_week_month(self):
-        # the time of a day
+    # method to handle the time
+    def handle_time(self):
         if self.time >= 4:
             self.time = 0
             self.day += 1
-        # the number of days in a week
-        if self.day >= 7:
-            self.day = 0
-            self.week += 1
-        #the number of weeks in a month
-        if self.week >= 4:
-            self.week = 0
-            self.day = 0
-            self.time = 0
-            self.month_int += 1
-            # recreate a seed for the month
-            self.initialize_month_data() # creates a new seed for the month
-        return
-
-    # the differents phases of an event are treated here
-    def event_phase(self, event):
-        print("event_phase is running")
-        print("Event: ", event)
-        for phase in event.phases_data():
-            self.phase = phase
-            print("Phase: ", phase)
-            # the choices inside an event phase are searched here
-            switch = {i: choice for i, choice in enumerate(phase['choices'])}
-            print(switch)
-            print({key: switch[key]['description'] for key in switch})
-            player_choice = self.player_choose(switch)
-            self.player = self.player.update_player(player_choice)
-            print("player updated")
-
-    def player_choose(self, choices, event = None):
-        print("player_choose is running")
-        player_choice = None
-        print("Choices: ", choices)
-
-        #if there is only one choice, the player will have no choice
-        #if len(choices) == 1:
-        #    player_choice = choices.get(0)
-        #    print("player not choice : ", player_choice)
-
-        # if there are choices, the player will have to choose
-        if choices != {}:
-            while player_choice not in choices:
-                player_choice = int(input("Select a choice: "))
-                # if the choice is not in the choices, the player will have to choose again
-                if player_choice not in choices:
-                    print("Invalid choice")
-            player_choice = choices.get(player_choice)
-            print("player_choice: ", player_choice)
-
-
-        elif len(choices) == 0:
-            print("No choices found")
-            return None
-        # something went wrong...
+            if self.day >= 7:
+                self.day = 0
+                self.week += 1
+                if self.week >= 4:
+                    self.week = 0
+                    self.month += 1
         else:
-            print("Something went wrong... in player_choose")
-            return False
+            self.time += 1
 
-        return player_choice
+        # line to print the time
+        print(f"Time: {self.time}, Day: {self.day}, Week: {self.week}, Month: {self.month}")
+        print(f"Current time period: {self.time_periods[self.time]}")
+
+    # method to handle the in game states
+    def handle_events(self, event):
+        if self.ingame_state == InGameState.EVENT_PROGRESS:
+            self.handle_event_progress(event) # handle the event progress
+        elif self.ingame_state == InGameState.PHASE_PROGRESS:
+            self.handle_phase_progress(event) # handle the phase progress
+        elif self.ingame_state == InGameState.INVENTORY_VIEW:
+            self.handle_inventory_view(event) # not sure about this one
+        elif self.ingame_state == InGameState.PAUSED:
+            self.handle_paused(event) # this one either
+
+    # method to handle the event progress
+    def handle_event_progress(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN: # debugging for now, i mean event then shouldn't change much
+            self.advance_event()
+
+    # method to advance the event
+    def advance_event(self):
+        # debugging only info
+        print("index : ", self.index)
+        print("Items : ", self.items.keys())
+        print("Events : ", self.events.keys())
+        # assign week event and shop
+        self.week_start()
+        # get the event
+        self.get_event()
+        # adjust the time
+        self.handle_time()
+        self.ingame_state = InGameState.PHASE_PROGRESS # change the state to phase progress
+
+    def week_start(self):
+        if self.time == 0 and self.week == 0 and self.day == 0:
+            self.week_event = None
+            self.shop = []
+            if self.seed[self.index] != "00":  # if the seed is not 00
+                self.week_event = self.events[self.seed[self.index]]
+                print("Week event changed !")
+            for i in range (1, 3):
+                if self.seed[self.index + i] != "00":
+                    self.shop.append(self.items[self.seed[self.index + i]])
+
+            self.index += 3  # increment index for the 3 values used
+
+            # debugging only
+            print("Week event : ", self.week_event)
+            print("Shop : ", self.shop)
+            print("New week !")
+            print("increment index : ", self.index)
+
+    def get_event(self, error=0):
+        random_event = self.should_trigger_random_event()
+        if random_event:
+            if self.seed[self.index] == "00":
+                print("No random event")
+                self.current_event = Event.get_event_by_is_choice_and_time(True, self.events, self.time_periods[self.time])
+                print("From based event : ", self.current_event)
+
+            else:
+                if self.seed[self.index] != "00" and self.seed[self.index][1].isdigit():
+                    self.current_event = Event.get_event_by_is_choice_and_time(True, self.events,
+                                                                               self.time_periods[self.time])
+                    self.current_event = Event.get_event_by_is_choice_and_time(True, self.events,
+                                                                               self.time_periods[self.time])
+                    print("From based event : ", self.current_event, "00 seed")
+                else:
+                    if self.seed[self.index][1].isdigit():
+                        self.current_event = self.events[self.seed[self.index]]
+                        print("Random event : ", self.current_event)
+                        if self.seed[self.index][0].isdigit():
+                            item = self.items[self.seed[self.index]]
+                            self.index += 1  # increment index because the item had a seed
+                            self.inventory_adder(item)  # manages the inventory of the player
+                        else:
+                            print("SEED ERROR for item : ", self.seed[self.index])
+                    else:
+                        print("SEED ERROR for event: ", self.seed[self.index])
+                        error += 1
+                        if error < 3:
+                            print("Error count : ", error)
+                            raise SystemExit("Shutting down the program due to SEED ERROR") # avoid infinity loop
+                        self.get_event(error) # calls itself back to try to get a new event
+
+            # adds index because the event had a seed
+            self.index += 1
+            print("Incremented index : ", self.index)
+
+        else:
+            self.current_event = Event.get_event_by_is_choice_and_time(True, self.events, self.time_periods[self.time])
+            print("From based event : ", self.current_event)
+
+    def should_trigger_random_event(self):
+        return self.time not in [0, 2, 4]
+
+    def inventory_adder(self, item):
+        if item.consommable:
+            if len(self.player.bag) < 32:
+                self.player.bag.append(item.item_id)
+                print("Item added to the bag : ", item.item_id, " ", item.name)
+                print("Bag: ", self.player.bag)
+            else:
+                print("Bag full")
+                print("Item not added to the bag : ", item.item_id, " ", item.name)
+        else:
+            if self.player.inventory_slot_1 is None:
+                self.player.inventory_slot_1 = item.item_id
+                print("Item added to the inventory slot 1 : ", item.item_id, " ", item.name)
+            elif self.player.inventory_slot_2 is None:
+                self.player.inventory_slot_2 = item.item_id
+                print("Item added to the inventory slot 2 : ", item.item_id, " ", item.name)
+            elif self.player.inventory_slot_3 is None:
+                self.player.inventory_slot_3 = item.item_id
+                print("Item added to the inventory slot 3 : ", item.item_id, " ", item.name)
+            elif self.player.inventory_slot_4 is None:
+                self.player.inventory_slot_4 = item.item_id
+                print("Item added to the inventory slot 4 : ", item.item_id, " ", item.name)
+            else:
+                print("Inventory full")
+                print("Item not added to the inventory : ", item.item_id, "", item.name)
+
+    # method to handle the phase progress
+    def handle_phase_progress(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN: # debugging for now
+            self.advance_phases()
+            self.create_choice_buttons(self.current_event.phases_choices_data(self.current_advancement)) # to make the buttons based on the choices get the choices values
+
+    # method to advance the phases
+    def advance_phases(self):
+        # verify if there are more phases
+        print("Curent game state : ", self.ingame_state)
+        if self.current_advancement < len(self.current_event.phases):
+            self.get_choices() # get the choices
+
+            if self.current_advancement +1 < len(self.current_event.phases):
+                self.current_advancement += 1 # increment the advancement
+            else:
+                self.ingame_state = InGameState.EVENT_PROGRESS  # commes back to event progress
+
+    # method to get the choices used to debug
+    def get_choices(self):
+        choices = self.current_event.phases_choices_data(self.current_advancement) # get the choices
+        for choice in choices: # loop through the choices
+            # debugging only
+            print("\nChoice: ", choice)
+            print("Description: ", choice['description'])
+            print("Effect: ", choice['effect'])
+            print("Energy: ", choice['energy'])
+            print("Money: ", choice['money'])
+            print("Moral: ", choice['moral'])
+            print("Project: ", choice['project'])
+
+    def select_choice(self, choice_number):
+        choices = self.current_event.phases_choices_data(self.current_advancement)
+        choice = choices[choice_number]
+        self.player.update_player(choice)
+
+    # to create the buttons by using a class
+    def create_choice_buttons(self, choices):
+        self.buttons = []
+        for i, choice in enumerate(choices):
+            button = Button(50, 200 + i * 60, 200, 50, choice, ToDraw.FONT)
+            self.buttons.append(button)
+
+    # not yet
+    def handle_choice_making(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            for i, button in enumerate(self.buttons):
+                if button.is_clicked(event.pos):
+                    self.select_choice(i)
+                    self.buttons = []  # Clear buttons after choice
+                    if len(self.current_event.phases) > self.current_advancement :
+                        print(f"Event {self.current_event.event_id} complete.")
+                        self.current_event = None
+                        self.ingame_state = InGameState.EVENT_PROGRESS
+                    else:
+                        self.ingame_state = InGameState.EVENT_PROGRESS
+                    break
+
+    # could be used to show the inventory
+    @staticmethod
+    def handle_inventory_view(event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_i:
+                pass
+                # i don't know if values are kept betwen the differnt states so i'll just leave it like this for now
+
+    # could be used to pause the game
+    @staticmethod
+    def handle_paused(event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_p:
+                pass
+                # same thing
+
+    # method to draw the game with the same states as the handle events
+    def draw(self):
+        if self.ingame_state == InGameState.EVENT_PROGRESS:
+            self.draw_current_event()
+        elif self.ingame_state == InGameState.PHASE_PROGRESS:
+            self.draw_current_phase()
+        elif self.ingame_state == InGameState.INVENTORY_VIEW:
+            self.game.inventory.draw_inventory()
+        elif self.ingame_state == InGameState.PAUSED:
+            self.game.pause_menu.draw()
+        # Add more drawing logic as needed
+
+    # draws on the screen the name and description of the current event
+    def draw_current_event(self):
+        if self.current_event:
+            event_name = self.current_event.name
+            event_description = self.current_event.description
+
+            # Set up font and colors
+            font = pygame.font.Font(None, 36)
+            text_color = (255, 255, 255)  # White
+            background_color = (0, 0, 0)  # Black
+
+            # Render the text
+            name_surface = font.render(f"Event name: {event_name}", True, text_color)
+            description_surface = font.render(f"Event description: {event_description}", True, text_color)
+
+            # Fill the screen with the background color
+            self.screen.fill(background_color)
+
+            # Blit the text surfaces onto the screen
+            self.screen.blit(name_surface, (50, 50))
+            self.screen.blit(description_surface, (50, 100))
+
+            # Update the display
+            pygame.display.flip()
+
+    def draw_current_phase(self):
+        if self.current_event:
+            if not self.current_advancement >= len(self.current_event.phases):
+                phase_data = self.current_event.phases_data()[self.current_advancement]
+                phase_description = phase_data['description']
+                phase_choices = phase_data['choices']
+                phase_sprite_path = phase_data['sprite_path']
+
+                # Set up font and colors
+                font = pygame.font.Font(None, 36)
+                text_color = (255, 255, 255)
+
+                # Render the text
+                description_surface = font.render(f"Phase description: {phase_description}", True, text_color)
+                choices_surface = font.render(f"Choices: {phase_choices}", True, text_color)
+                # Load the sprite image
+                sprite_image = pygame.image.load(phase_sprite_path)
+
+                # show the sprite image
+                self.screen.blit(sprite_image, (0, 0))
+
+                # Blit the text surfaces onto the screen
+                self.screen.blit(description_surface, (50, 100))
+                self.screen.blit(choices_surface, (50, 50))
+
+                # Update the display
+                pygame.display.flip()
 
 
-    # the choices when no event is happening
-    def choices(self, time):
-        # needed to get the choices at a specific time
-        print("choices is running")
-        switch = {
-            0 : "Early-Morning",
-            1 : "Morning",
-            2 : "Lunch",
-            3 : "Afternoon",
-            4 : "Evening",
-        }
-        # get the choices in dict format {0: choice, 1: choice, ...}
-        choices = {i: choice for i, (key, choice) in
-                   enumerate(Event.get_event_by_is_choice_and_time(True, self.events, switch.get(time)).items())
-                    }
-        # if no choices found, print a message
-        self.event_phase(choices.get(0))
+    def draw_choice_buttons(self):
+        for button in self.buttons:
+            button.draw(self.screen)
+
+    # don't know if i'll use it
+    def update(self):
+        # Update game logic, such as event progression, animations, etc.
+        pass  # Add any necessary update logic here
+
+    # method to change the phase to the inventory view don't know if it's useful but it's here
+    def interrupt_to_inventory(self):
+        # Method to switch to inventory view
+        self.ingame_state = InGameState.INVENTORY_VIEW
