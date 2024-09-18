@@ -121,6 +121,14 @@
             {"description": "J'ai soif de fou go", "energy": -1, "moral": 2, "money": -2, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
             {"description": "Le projet avant tout", "energy": -2, "moral": -1, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
           ]
+        },
+        {
+          "description": "Il te repropose pour venir avec eux",
+          "sprite_path": "../Events/Sprites/e1_p1.png",
+          "choices": [
+          {"description": "Je veux boire", "energy": -1, "moral": 2, "money": -2, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+          {"description": "Non je travail", "energy": -2, "moral": -1, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
+          ]
         }
       ]
     },
@@ -501,7 +509,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Tu as du mal a te concentrer aujourd'hui tu finira par d'habituer demain ",
           "choices": [
-            {"description": "Le bruit me pertube", "energy":0, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "Le bruit me pertube", "energy":0, "moral": -1, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -518,7 +526,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Quel étourdi tu fais",
           "choices": [
-            {"description": "Je vais faire sans", "energy":0, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "Je vais faire sans", "energy":0, "moral": -1, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -836,6 +844,23 @@
       ]
     },
     "4D": {
+      "name":"Perte d'energie",
+      "description": "Tu ne te sens pas en forme ce debut de semaine",
+      "time_slots": ["Morning"],
+      "week_end" : false,
+      "week_event": true,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu n'as pas d'energie",
+          "choices": [
+            {"description": "~o~", "energy":-2, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "4E": {
       "name":"Boost de moral",
       "description": "Tu as l'air d'excellente humeur",
       "time_slots": ["Morning"],
@@ -852,7 +877,57 @@
         }
       ]
     },
-
+    "4F": {
+      "name":"Perte de moral",
+      "description": "Tu as l'air de mauvaise humeur",
+      "time_slots": ["Morning"],
+      "week_end" : false,
+      "week_event": true,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Rien a foutre de ta dépression",
+          "choices": [
+            {"description": "OcO", "energy":0, "moral": -2, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "4G": {
+      "name":"Bonus de Lundi",
+      "description": "Tu as eu un peu d'argent pour toi",
+      "time_slots": ["Morning"],
+      "week_end" : false,
+      "week_event": true,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Bien joué tu as gagné de l'argent",
+          "choices": [
+            {"description": "^v^", "energy":0, "moral": 0, "money": 5, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "4H": {
+      "name":"Amande",
+      "description": "Tu as recus une amande",
+      "time_slots": ["Morning"],
+      "week_end" : false,
+      "week_event": true,
+      "is_choice": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Paye",
+          "choices": [
+            {"description": "UmU", "energy":0, "moral": 0, "money": -4, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
     "5A": {
       "name":"Matin Tôt",
       "description": "Tu peux faire une action",
