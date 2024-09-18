@@ -126,6 +126,8 @@ class Month:
             "3": Week(),
         }
         self.list = []
+        self.generateMonth()
+
     def generateMonth(self):
         for week in self.weeks:
             self.weeks[week].generate_week()
@@ -142,8 +144,8 @@ class Month:
 
     
 # Example usage
-month = Month()
-month.generateMonth()
-list = month.return_month()
-str = "".join(list)
-print(str,' ', len(str))
+#month = Month()
+#month.generateMonth()
+#list = month.return_month()
+#str = "".join(list)
+#print(str,' ', len(str))

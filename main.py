@@ -7,7 +7,7 @@ from GameLogic.Inventory import Inventory
 from GameLogic.PauseMenu import PauseMenu
 from GameLogic.calendar import Calendar
 from GameLogic.player import Player
-
+from generator import Month
 
 
 class Game:
@@ -17,7 +17,8 @@ class Game:
         pygame.display.set_caption("EPSI Rogue-Like")
         self.clock = pygame.time.Clock()
         self.running = True
-        self.seed = []
+        self.month = Month()
+        self.seed = self.month.return_month
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
 
         self.state = "inventory"
