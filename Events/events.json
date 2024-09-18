@@ -63,8 +63,8 @@
           "description": "Voulez-vous aller en cours",
           "sprite_path": "../Events/Sprites/e1_p1.png",
           "choices": [
-            {"description": "Aller en cours", "energy": -5, "moral": -5, "money": 0, "progression_projet": 1 ,"effect":  "id_effet", "items" : "id_item"},
-            {"description": "Je rentre à ma maison", "energy": 2, "moral": 1, "money": 0, "progression_projet": 0 ,"effect":  "id_effet", "items" : "id_item"}
+            {"description": "Aller en cours", "energy": -4, "moral": -4, "money": 0, "progression_projet": 1 ,"effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je rentre à ma maison", "energy": 1, "moral": 2, "money": 0, "progression_projet": 0 ,"effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -81,9 +81,9 @@
           "sprite_path": "../Events/Sprites/e2_p1.png",
           "description": "Voulez-vous participer à cet événement",
           "choices": [
-            {"description": "Oui je participe", "energy": -5, "moral": 5, "money": 0, "progression_projet": 0, "effect": "id_effet", "items" : "id_item"},
-            {"description": "Non je go travailler", "energy": -2, "moral": -1, "money": 0, "progression_projet": 2, "effect": "id_effet", "items" : "id_item"},
-            {"description": "Je teste juste pour voir", "energy": -1, "moral": 2, "money": 0, "progression_projet": 1, "effect": "id_effet", "items" : "id_item"}
+            {"description": "Oui je participe", "energy": -4, "moral": 4, "money": 0, "progression_projet": 0, "effect": "id_effet", "items" : "id_item"},
+            {"description": "Non je go travailler", "energy": -2, "moral": 0, "money": 0, "progression_projet": 2, "effect": "id_effet", "items" : "id_item"},
+            {"description": "Je teste juste pour voir", "energy": -1, "moral": 1, "money": 0, "progression_projet": 1, "effect": "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -100,7 +100,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Il te permet de terminer ton projet tout-de-suite",
           "choices": [
-            {"description": "Go le finir maintenant", "energy": -1, "moral": -1, "money": 0, "progression_projet": 20, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Go le finir maintenant", "energy": -2, "moral": -2, "money": 0, "progression_projet": 15, "effect":  "id_effet", "items" : "id_item"},
             {"description": "Je n'ai besoin de personne", "energy": 0, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
@@ -118,7 +118,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Tes amis te proposent d'y aller",
           "choices": [
-            {"description": "J'ai soif de fou go", "energy": -1, "moral": 2, "money": -2, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "J'ai soif de fou go", "energy": -2, "moral": 2, "money": -2, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
             {"description": "Le projet avant tout", "energy": -2, "moral": -1, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
           ]
         },
@@ -126,7 +126,7 @@
           "description": "Il te repropose pour venir avec eux",
           "sprite_path": "../Events/Sprites/e1_p1.png",
           "choices": [
-          {"description": "Je veux boire", "energy": -1, "moral": 2, "money": -2, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+          {"description": "Je veux boire", "energy": -2, "moral": 2, "money": -2, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
           {"description": "Non je travail", "energy": -2, "moral": -1, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
@@ -144,7 +144,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Tu risques de rater les cours du matin que fais-tu ?",
           "choices": [
-            {"description": "Je suis Flash je cours vite", "energy": -4, "moral": 0, "money": -2, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je suis Flash je cours vite", "energy": -3, "moral": 0, "money": -2, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"},
             {"description": "Je vais attendre ca va durée 5 min", "energy": -2, "moral": -1, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
@@ -180,9 +180,8 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Que fais-tu",
           "choices": [
-            {"description": "C'est mon argent maintenant", "energy": 0, "moral": 0, "money": 5, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"},
-            {"description": "Je suis un bon citoyen je vais le rendre", "energy": 0, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"},
-            {"description": "Je suis fatigué je vais dormir", "energy": 2, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "C'est mon argent maintenant", "energy": 0, "moral": 1, "money": 5, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je suis un bon citoyen je vais le rendre", "energy": 0, "moral": 1, "money": 0, "progression_projet": 1, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -199,24 +198,24 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Veux-tu en acheter",
           "choices": [
-            {"description": "J'ai faim", "energy": 0, "moral": 1, "money": -5, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"},
-            {"description": "Non je suis au régime", "energy": 0, "moral": 0, "money": "0", "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"}
+            {"description": "J'ai faim", "energy": 0, "moral": 1, "money": -5, "progression_projet": 1, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Non je suis au régime", "energy": 0, "moral": 0, "money": 0, "progression_projet": 1, "effect":  "id_effet", "items" : "id_item"}
           ]
         },
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Veux-tu en acheter (2)",
           "choices": [
-            {"description": "J'ai faim", "energy": 0, "moral": 1, "money": -5, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"},
-            {"description": "Toujours pas", "energy": 0, "moral": 0, "money": "0", "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"}
+            {"description": "J'ai faim", "energy": 0, "moral": 1, "money": -5, "progression_projet": 1, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Toujours pas", "energy": 0, "moral": 0, "money": 0, "progression_projet": 1, "effect":  "id_effet", "items" : "id_item"}
           ]
         },
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Veux-tu en acheter (3)",
           "choices": [
-            {"description": "J'ai faim", "energy": 0, "moral": 1, "money": -5, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"},
-            {"description": "Ca fait beaucoup la non ?", "energy": 0, "moral": 0, "money": "0", "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"}
+            {"description": "J'ai faim", "energy": 0, "moral": 1, "money": -5, "progression_projet": 1, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Ca fait beaucoup la non ?", "energy": 0, "moral": 0, "money": 0, "progression_projet": 1, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -233,7 +232,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Veux-tu y aller",
           "choices": [
-            {"description": "J'y vais", "energy": -1, "moral": 1, "money": 0, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"},
+            {"description": "J'y vais", "energy": -1, "moral": 1, "money": 0, "progression_projet": 1, "effect":  "id_effet", "items" : "id_item"},
             {"description": "Je rentre chez moi pour progresser sur le projet", "energy": -2, "moral": -1, "money": 0, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"}
           ]
         }
@@ -251,8 +250,8 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Veux-tu y participer",
           "choices": [
-            {"description": "Je suis trop chaud je participe", "energy": -1, "moral": 2, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
-            {"description": "Je rentre chez moi pour progresser sur le projet", "energy": -2, "moral": -1, "money": 0, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"}
+            {"description": "Je suis trop chaud je participe", "energy": -1, "moral": 1, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je rentre chez moi pour progresser sur le projet", "energy": -2, "moral": -1, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -269,7 +268,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Tentes-tu ta chance ",
           "choices": [
-            {"description": "Je crois à ma chance", "energy": -1, "moral": 2, "money": -5, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je crois à ma chance", "energy": -1, "moral": 1, "money": -5, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
             {"description": "Mouais en vrai non j'ai 0 luck","energy": 0, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
@@ -287,7 +286,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Tu dois te reposer",
           "choices": [
-            {"description": "Go dormir (skip la journée)", "energy": 5, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "Go dormir (skip la journée)", "energy": 3, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -304,7 +303,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Tu te prépare a aller en cours",
           "choices": [
-            {"description": "C'est parti", "energy": 1, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "C'est parti", "energy": 2, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -338,7 +337,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Tu as du mal a te concentrer",
           "choices": [
-            {"description": "J'ai faiiiiiiiiiim", "energy": 0, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "J'ai faiiiiiiiiiim", "energy": 0, "moral": -1, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -355,7 +354,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Cela te permet de progresser plus sur ton projet",
           "choices": [
-            {"description": "Progresser plus sur le projet", "energy": -1, "moral": -1, "money": 0, "progression_projet": 3, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "Progresser plus sur le projet", "energy": -2, "moral": -2, "money": 0, "progression_projet": 3, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -423,7 +422,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Tu sens que ces 4 heures vont être tres longues",
           "choices": [
-            {"description": "J'en peux plus laisser-moi partir", "energy": -2, "moral": -5, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "J'en peux plus laisser-moi partir", "energy": -3, "moral": -5, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -457,7 +456,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Tu te sens bien",
           "choices": [
-            {"description": "J'suis Bieng", "energy": 0, "moral": 2, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "J'suis Bieng", "energy": 2, "moral": 2, "money": 0, "progression_projet": 1, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -525,7 +524,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Tu as du mal a te concentrer aujourd'hui tu finira par d'habituer demain ",
           "choices": [
-            {"description": "Le bruit me pertube", "energy":0, "moral": -1, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "Le bruit me pertube", "energy":-1, "moral": -2, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -576,7 +575,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Un bon moyen de sortir de la salle de classe",
           "choices": [
-            {"description": "Ca me dérange pas c'est pas un idée qui me plait ", "energy":-1, "moral": 2, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "Ca me dérange pas c'est pas un idée qui me plait ", "energy":-1, "moral": 1, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -610,7 +609,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Tu es obligé d'y aller ca fait longtemp quand même",
           "choices": [
-            {"description": "C'est l'occasion de revoir la famille", "energy": -1, "moral": 3, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "C'est l'occasion de revoir la famille", "energy": -1, "moral": 2, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -627,7 +626,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "C'est une fuite d'eau ",
           "choices": [
-            {"description": "Il faut réparer ca", "energy": -2, "moral": -3, "money": -3, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "Il faut réparer ca", "energy": -3, "moral": -3, "money": -3, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -644,7 +643,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Tu dois l'accomplir afin de pouvoir continuer ton anné",
           "choices": [
-            {"description": "Je m'en occupe maintenant", "energy": -3, "moral": -1, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
+            {"description": "Je m'en occupe maintenant", "energy": -3, "moral": -2, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
           ]
         }
       ]
@@ -661,7 +660,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Une bonne séance de sport peut être revigorante",
           "choices": [
-            {"description": "Je participe à la séance de sport", "energy": 3, "moral": 2, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
+            {"description": "Je participe à la séance de sport", "energy": 2, "moral": 2, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
           ]
         }
       ]
@@ -678,7 +677,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Rien de spécial se passe pour le moment",
           "choices": [
-            {"description": "Je profite de mon week-end", "energy": 3, "moral": 2, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
+            {"description": "Je profite de mon week-end", "energy": 2, "moral": 2, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
           ]
         }
       ]
@@ -695,7 +694,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Il y a du soleil il fait ni trop chaud ni trop froit",
           "choices": [
-            {"description": "C'est le moment de profiter petite sortie dehors", "energy": 2, "moral": 4, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
+            {"description": "C'est le moment de profiter petite sortie dehors", "energy": 2, "moral": 3, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
           ]
         }
       ]
@@ -712,7 +711,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Gérer un problème de logement peut être stressant et épuisant.",
           "choices": [
-            {"description": "Je résous le problème de logement", "energy": -4, "moral": -3, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
+            {"description": "Je résous le problème de logement", "energy": -4, "moral": -4, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
           ]
         }
       ]
@@ -730,8 +729,8 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Veux-tu y aller ",
           "choices": [
-            {"description": "Oui ca à l'air sympas", "energy": -2, "moral": 3, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
-            {"description": "Je reste chez moi réviser", "energy": -2, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "Oui ca à l'air sympas", "energy": -2, "moral": 2, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je reste chez moi réviser", "energy": -2, "moral": 1, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
@@ -748,7 +747,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Participer à l'atelier pourrait t'inspirer pour ton projet. Veux-tu y aller ?",
           "choices": [
-            {"description": "Oui, ça peut être inspirant", "energy": -1, "moral": 2, "money": -10, "progression_projet": 3, "effect": "id_effet", "items": "id_item"},
+            {"description": "Oui, ça peut être inspirant", "energy": -1, "moral": 1, "money": -10, "progression_projet": 3, "effect": "id_effet", "items": "id_item"},
             {"description": "Non, je préfère me concentrer sur mon projet", "energy": -2, "moral": 0, "money": 0, "progression_projet": 2, "effect": "id_effet", "items": "id_item"}
           ]
         }
@@ -766,7 +765,7 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Participer à cette journée pourrait t'aider à progresser dans ton projet. Veux-tu y aller ?",
           "choices": [
-            {"description": "Oui, c'est une bonne opportunité d'avancer", "energy": -3, "moral": 1, "money": 0, "progression_projet": 4, "effect": "id_effet", "items": "id_item"},
+            {"description": "Oui, c'est une bonne opportunité d'avancer", "energy": -3, "moral": 1, "money": 0, "progression_projet": 3, "effect": "id_effet", "items": "id_item"},
             {"description": "Non, je préfère me reposer et réfléchir seul", "energy": 0, "moral": 2, "money": 0, "progression_projet": 1, "effect": "id_effet", "items": "id_item"}
           ]
         }
@@ -784,8 +783,8 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Bien évidemant il y a une récompense a la fin",
           "choices": [
-            {"description": "C'est mon ami je vais l'aider c'est normal", "energy": -3, "moral": 2, "money": 2, "progression_projet": 0, "effect": "id_effet", "items": "id_item"},
-            {"description": "Qui a dit qu'on était ami ?", "energy": 2, "moral": -1, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
+            {"description": "C'est mon ami je vais l'aider c'est normal", "energy": -3, "moral": 2, "money": 1, "progression_projet": 0, "effect": "id_effet", "items": "id_item"},
+            {"description": "Qui a dit qu'on était ami ?", "energy": 1, "moral": -1, "money": 0, "progression_projet": 0, "effect": "id_effet", "items": "id_item"}
           ]
         }
       ]
@@ -802,8 +801,8 @@
           "sprite_path": "../Events/Sprites/e3_p1.png",
           "description": "Participer à la fête peut être amusant, mais tu as aussi des tâches à terminer. Que fais-tu ?",
           "choices": [
-            {"description": "Je vais à la fête d'anniversaire", "energy": 1, "moral": 4, "money": -5, "progression_projet": 0, "effect": "id_effet", "items": "id_item"},
-            {"description": "Je reste chez moi pour finir mes tâches", "energy": -1, "moral": 1, "money": 0, "progression_projet": 2, "effect": "id_effet", "items": "id_item"}
+            {"description": "Je vais à la fête d'anniversaire", "energy": 1, "moral": 3, "money": -5, "progression_projet": 0, "effect": "id_effet", "items": "id_item"},
+            {"description": "Je reste chez moi pour finir mes tâches", "energy": -2, "moral": 1, "money": 0, "progression_projet": 2, "effect": "id_effet", "items": "id_item"}
           ]
         }
       ]
@@ -957,7 +956,7 @@
           "description": "Que veux tu faire",
           "choices": [
             {"description": "Dormir plus", "energy":2, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
-            {"description": "Travailler", "energy":-2, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Travailler", "energy":-2, "moral": 0, "money": 0, "progression_projet": 3, "effect":  "id_effet", "items" : "id_item"},
             {"description": "Manger un petit déjeuner", "energy":2, "moral":2, "money": -2, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
             {"description": "Étudier un peu", "energy": -1, "moral": 1, "money": 0, "progression_projet": 1, "effect": "id_effet", "items": "id_item"}
           ]
@@ -1042,7 +1041,7 @@
             {"description": "All night", "energy":-5, "moral": -2, "money": 0, "progression_projet": 3, "effect":  "id_effet", "items" : "id_item"},
             {"description": "dormir", "energy":2, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"},
             {"description": "Detente", "energy":1, "moral":1, "money":0 , "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
-            {"description": "Travailler", "energy":-2, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
+            {"description": "Travailler", "energy":-2, "moral": 0, "money": 0, "progression_projet": 3, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]

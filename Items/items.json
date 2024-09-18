@@ -1,13 +1,14 @@
 {
   "items": {
     "A1": {
-      "name": "Manger",
+      "name": "Dortis",
       "energy": 1,
       "moral": 2,
       "price": 5,
       "consommable": true,
       "description": "A manger.",
-      "image": "Items/Sprites/manger.png",
+      "image": "Items/Sprites/doritos.png",
+      "sound": "Items/Sound/doritos.mp3",
       "itemshop": true
     },
     "A2": {
@@ -18,6 +19,7 @@
       "consommable": true,
       "description": "Redonne un petit peu d'énergie !",
       "image": "Items/Sprites/cafe.png",
+      "sound": "Items/Sound/drinking.mp3",
       "itemshop": true
     },
     "A3": {
@@ -28,6 +30,7 @@
       "consommable": true,
       "description": "Bonbon sucré avec une surchouche de sucre. Parfait pour les coups de mou.",
       "image": "Items/Sprites/haribo.png",
+      "sound": "Items/Sound/haribo.mp3",
       "itemshop": true
     },
     "A4": {
@@ -49,6 +52,7 @@
       "consommable": true,
       "description": "Boisson chaude donnant un peu de moral et d'énergie",
       "image": "Items/Sprites/the.png",
+      "sound": "Items/Sound/drinking.mp3",
       "itemshop": true
     },
     "A6": {
@@ -59,6 +63,7 @@
       "consommable": true,
       "description": "Sandwich de fou",
       "image": "Items/Sprites/sandwich.png",
+      "sound": "Items/Sound/sandwich.mp3",
       "itemshop": true
     },
     "A7": {
@@ -69,6 +74,7 @@
       "consommable": true,
       "description": "Boîte de vitamin",
       "image": "Items/Sprites/boitedevitamin.png",
+      "sound": "Items/Sound/pills.mp3",
       "itemshop": true
     },
     "A8": {
@@ -79,6 +85,7 @@
       "consommable": true,
       "description": "Skip le prochain evenement.",
       "image": "Items/Sprites/de2020.png",
+      "sound": "Items/Sound/dice.mp3",
       "itemshop": true
     },
     "A9": {
@@ -89,6 +96,7 @@
       "consommable": true,
       "description": "Fumer nuit gravement à votre santé et à celle de votre entourage",
       "image": "Items/Sprites/tabac.png",
+      "sound": "Items/Sound/cig.mp3",
       "itemshop": true
     },
     "B1": {
@@ -169,6 +177,7 @@
       "consommable": true,
       "description": "Skip L'evenement du matin.",
       "image": "Items/Sprites/billetderetardratp.png",
+      "sound": "Items/Sound/ratp.mp3",
       "itemshop": false
     },
     "C2": {
@@ -179,6 +188,7 @@
       "consommable": true,
       "description": "10% de reduction dans le shop lors de son utilisation",
       "image": "Items/Sprites/coupondereduction.png",
+      "sound": "Items/Sound/stonks.mp3",
       "itemshop": false
     }
   }
