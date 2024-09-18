@@ -1,46 +1,414 @@
 {
   "events": {
     "1A": {
-      "description": "This is the event description",
+      "name": "Moral 0",
+      "description": "Votre moral est à plat",
       "time_slots": ["Morning", "Afternoon"],
+      "week_end" : false,
+      "week_event" : false,
       "phases": [
         {
-          "description": "This is the first phase description",
+          "description": "Voulez-vous aller en cours",
           "sprite_path": "../Events/Sprites/e1_p1.png",
           "choices": [
-            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "progression_projet": "0" ,"effect":  "id_effet", "items" : "id_item"},
-            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "progression_projet": "0" ,"effect":  "id_effet", "items" : "id_item"}
-          ]
-        },
-        {
-          "sprite_path": "../Events/Sprites/e1_p2.png",
-          "choices": [
-            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "progression_projet": "0", "effect":  "id_effet", "items" : "id_item"},
-            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "progression_projet": "0" ,"effect":  "id_effet", "items" : "id_item"}
+            {"description": "Aller en cours", "energy": -5, "moral": -5, "money": 0, "progression_projet": 1 ,"effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je rentre à ma maison", "energy": 2, "moral": 1, "money": 0, "progression_projet": 0 ,"effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]
     },
     "1B": {
-      "description": "This is another event description",
-      "time_slots": ["Early-Morning", "Evening"],
+      "name":"Evénement BDE",
+      "description": "Un événement organisé par le BDE se déroule aujourd’hui",
+      "time_slots": ["Morning", "Evening"],
+      "week_end" : false,
+      "week_event": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e2_p1.png",
+          "description": "Voulez-vous participer à cet événement",
           "choices": [
-            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "progression_projet": "0", "effect": "id_effet", "items" : "id_item"}
+            {"description": "Oui je participe", "energy": -5, "moral": 5, "money": 0, "progression_projet": 0, "effect": "id_effet", "items" : "id_item"},
+            {"description": "Non je go travailler", "energy": -2, "moral": -1, "money": 0, "progression_projet": 2, "effect": "id_effet", "items" : "id_item"},
+            {"description": "Je teste juste pour voir", "energy": -1, "moral": 2, "money": 0, "progression_projet": 1, "effect": "id_effet", "items" : "id_item"}
           ]
         }
       ]
     },
-    "3D": {
-      "description": "This is the third event description",
-      "time_slots": ["Weekend"],
+    "1C": {
+      "name": "Tuto Indien",
+      "description": "Tu trouves un tuto Indien",
+      "time_slots": ["Morning", "Evening"],
+      "week_end" : false,
+      "week_event": false,
       "phases": [
         {
           "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Il te permet de terminer ton projet tout-de-suite",
           "choices": [
-            {"description": "This is the first choice description", "Energy": -5, "Morale": 5, "money": "0", "progression_projet": "0", "effect":  "id_effet", "items" : "id_item"}
+            {"description": "Go le finir maintenant", "energy": -1, "moral": -1, "money": 0, "progression_projet": 20, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je n'ai besoin de personne", "energy": 0, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "1D": {
+      "name":"Pause Bar",
+      "description": "Petite pause au bar",
+      "time_slots": ["Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tes amis te proposent d'y aller",
+          "choices": [
+            {"description": "J'ai soif de fou go", "energy": -1, "moral": 2, "money": -2, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Le projet avant tout", "energy": -2, "moral": -1, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "1E": {
+      "name":"Probleme RATP",
+      "description": "Il y a une personne qui a fait un malaise dans le train",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu risques de rater les cours du matin que fais-tu ?",
+          "choices": [
+            {"description": "Je suis Flash je cours vite", "energy": -4, "moral": 0, "money": -2, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je vais attendre ca va durée 5 min", "energy": -2, "moral": -1, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "1F": {
+      "name":"Probleme de réveil",
+      "description": "Tu ne t'es pas réveillé terrible",
+      "time_slots": ["Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Que fais-tu",
+          "choices": [
+            {"description": "Perdu pour perdu dodo", "energy": 2, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "C'est maintenant ou jamais j'y vais", "energy": -2, "moral": -1, "money": 0, "progression_projet": 1, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "1G": {
+      "name":"Portefeuille trouvé",
+      "description": "Tu trouves un portefeuille sur le sol",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Que fais-tu",
+          "choices": [
+            {"description": "C'est mon argent maintenant", "energy": 0, "moral": 0, "money": 5, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je suis un bon citoyen je vais le rendre", "energy": 0, "moral": 0, "money": 0, "progression_projet": 2, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je suis fatigué je vais dormir", "energy": 2, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "1H": {
+      "name":"Crêpes BDE",
+      "description": "Jour des crêpes organisé par le BDE",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Veux-tu en acheter",
+          "choices": [
+            {"description": "J'ai faim", "energy": 0, "moral": 1, "money": -5, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je suis un bon citoyen je vais le rendre", "energy": 0, "moral": 0, "money": "0", "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "1I": {
+      "name":"Module HEP",
+      "description": "Aujourd'hui c'est le module HEP",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Veux-tu y aller",
+          "choices": [
+            {"description": "J'y vais", "energy": -1, "moral": 1, "money": 0, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je rentre chez moi pour progresser sur le projet", "energy": -2, "moral": -1, "money": 0, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "1J": {
+      "name":"Compétition de jeu vidéo",
+      "description": "Le BDE organise une compétition de jeu vidéo",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Veux-tu y participer",
+          "choices": [
+            {"description": "Je suis trop chaud je participe", "energy": -1, "moral": 2, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Je rentre chez moi pour progresser sur le projet", "energy": -2, "moral": -1, "money": 0, "progression_projet": "2", "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "1K": {
+      "name":"Loterie étudiante",
+      "description": "Surprise, une loterie étudiante est organisée",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tentes-tu ta chance ",
+          "choices": [
+            {"description": "Je crois à ma chance", "energy": -1, "moral": 2, "money": -5, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"},
+            {"description": "Mouais en vrai non j'ai 0 luck","energy": 0, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2A": {
+      "name":"Energie à zero",
+      "description": "Tu as trop travaillé ces derniers jours",
+      "time_slots": ["Morning","Evening"],
+      "week_event": false,
+      "week_end" : false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu dois te reposer",
+          "choices": [
+            {"description": "Go dormir (skip la journée)", "energy": 5, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2B": {
+      "name":"Réveil naturel",
+      "description": "Tu t'es réveillé de façon naturelle, tu te sens en forme",
+      "time_slots": ["Morning"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu te prépare a aller en cours",
+          "choices": [
+            {"description": "C'est parti", "energy": 1, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2C": {
+      "name":"Maladie",
+      "description": "Tu sembles avoir de la fièvre",
+      "time_slots": ["Morning"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu es malade",
+          "choices": [
+            {"description": "Go dormir (skip la journée)", "energy": 5, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2D": {
+      "name":"Faim",
+      "description": "Tu commences a avoir faim",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu as du mal a te concentrer",
+          "choices": [
+            {"description": "J'ai faiiiiiiiiiim", "energy": 0, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2E": {
+      "name":"Cours qui se termine tard",
+      "description": "L'intervenant décide de prolonger son cours",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Cela te permet de progresser plus sur ton projet",
+          "choices": [
+            {"description": "Progresser plus sur le projet", "energy": -1, "moral": -1, "money": 0, "progression_projet": 3, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2F": {
+      "name":"Tout va bien",
+      "description": "Bizarrement rien ne se passe",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu continues ta journée normalement",
+          "choices": [
+            {"description": "C'est trop beau pour être vrai", "energy": 1, "moral": 1, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2G": {
+      "name":"Prof absent",
+      "description": "L'intervenant n'ai pas présent",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu es un peu fatigué",
+          "choices": [
+            {"description": "Je me repose quelques minute", "energy": 1, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2H": {
+      "name":"Cours ennuyeux",
+      "description": "Tu sens que tu t'ennuies pendant ce cours",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu es obligé de rester jusqu'à la fin",
+          "choices": [
+            {"description": "Bon je vais avancer sur mon projet", "energy": 0, "moral": 0, "money": 0, "progression_projet": 3, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2I": {
+      "name":"Cours Dubert",
+      "description": "C'est fini, tu tombes sur le pire prof que tu n'aies jamais vu, on se dirait à l'armée",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu sens que ces 4 heures vont être tres longues",
+          "choices": [
+            {"description": "J'en peux plus laisser-moi partir", "energy": -2, "moral": -5, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2J": {
+      "name":"Cours Toulma",
+      "description": "Le cours est fluide,tout se passe super bien",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu es inspirer pour avancer plus vite sur ton projet",
+          "choices": [
+            {"description": "J'avance plus vite que d'habitude", "energy": 0, "moral": 0, "money": 0, "progression_projet": 3, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2K": {
+      "name":"Bien manger",
+      "description": "Tu as bien mangé cet midi",
+      "time_slots": ["Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu te sens bien",
+          "choices": [
+            {"description": "J'suis Bieng", "energy": 0, "moral": 2, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "2L": {
+      "name":"Cours en distanciel",
+      "description": "On a un cours en distanciel",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Pratique tu as moins de distance à parcourir",
+          "choices": [
+            {"description": "Ca m'arrange", "energy": 1, "moral": 0, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "3A": {
+      "name":"Repas de famille",
+      "description": "Ta famille t'invite a manger",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : true,
+      "week_event": false,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "Tu es obligé d'y aller ca fait longtemp quand même",
+          "choices": [
+            {"description": "C'est l'occasion de revoir la famille", "energy": 1, "moral": 3, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
+          ]
+        }
+      ]
+    },
+    "4A": {
+      "name":"Semaine de rush",
+      "description": "Tu te retrouve a avoir 2 projets pour cette semaine",
+      "time_slots": ["Morning","Evening"],
+      "week_end" : false,
+      "week_event": true,
+      "phases": [
+        {
+          "sprite_path": "../Events/Sprites/e3_p1.png",
+          "description": "C'est l'heure de travailler et de pleurer",
+          "choices": [
+            {"description": "Pleurer", "energy": 0, "moral": -1, "money": 0, "progression_projet": 0, "effect":  "id_effet", "items" : "id_item"}
           ]
         }
       ]

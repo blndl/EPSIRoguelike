@@ -80,6 +80,16 @@
       "image": "/images/de2020.png",
       "itemshop": true
     },
+    "A9": {
+      "name": "Tabac",
+      "energy": -1,
+      "moral": 2,
+      "price": 10,
+      "consommable": true,
+      "description": "Fumer nuit gravement à votre santé et à celle de votre entourage",
+      "image": "/images/tabac.png",
+      "itemshop": true
+    },
     "B1": {
       "name": "ChatGPT",
       "energy": 0,
@@ -138,6 +148,16 @@
       "consommable": false,
       "description": "+1 moral par jour si le personnage a moins de 5 de moral",
       "image": "/images/bouleantistresse.png",
+      "itemshop": true
+    },
+     "B7": {
+      "name": "Gourde isotherme",
+      "energy": 1,
+      "moral": 1,
+      "price": 15,
+      "consommable": false,
+      "description": "Boit de la bouteille (recharge chaque jour)",
+      "image": "/images/gourdeisotherme.png",
       "itemshop": true
     },
     "C1": {
