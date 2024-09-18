@@ -1,31 +1,43 @@
+import pygame
 from Events.event_gestion import Event
-from player import Player
+from Items.item_gestion import Item
 from generator import Month
 
 # InGame class is used to manage the game loop, the events, the player and the month.
 class InGame:
-    def __init__(self, screen, player, month_data = None):
+    def __init__(self, screen, player, month_data, game,  shop=None, day=0, week=0, month=0, time=0):
+        self.game = game
         self.player = player
         self.week_event = None
-        self.events = Event.load_events("../Events/events.json")
+        self.events = Event.load_events("Events/events.json")
+        self.items = Item.load_items("Items/items.json")
         self.month = Month()
         self.month_data = month_data
-        self.item = None
-        self.update()
+        self.shop = shop
+        self.day = day
+        self.week = week
+        self.month_int = month
+        self.time = time
 
     # events for pygames
-    def handle_event(self): # like clicks DO NOT FORGET
-        pass
+    def handle_events(self, game_event): # like clicks DO NOT FORGET
+        if game_event.type == pygame.KEYDOWN:
+            if game_event.key == pygame.K_ESCAPE:
+                self.game.state = "Pause_menu"
+
+        if game_event.type == pygame.MOUSEBUTTONDOWN:
+            self.update()
+
+
 
     # draw the screen
     def draw(self):
         pass
 
     # update the game
-    def update(self, month_data=None):
+    def update(self):
         pass
-        self.initialize_month_data(month_data)
-        print(self.month_data)
+        self.initialize_month_data()
         self.process_month_data()
 
 
@@ -35,110 +47,155 @@ class InGame:
 
 
     # initialize the month data
-    def initialize_month_data(self, month_data):
-        if not month_data:
+    def initialize_month_data(self):
+        if not self.month_data:
             self.month.generateMonth()
             self.month_data = self.month.return_month()
+            print(self.month_data)
         else:
-            self.month_data = month_data
-
+            print("Month data already initialized")
+            print(self.month_data)
+            return
     # process the month data also the main loop of the game
     def process_month_data(self):
-        time = 0
-        day = 0
-        week = 0
-        month = 0
-        for data in self.month_data:
-            event, item = self.get_event_or_item(data)
-            if day == 0 and time == 0: # start of a new week
-                print("Week Start !")
-                self.week_event = event
-            time, day, week, month = self.update_time_day_week_month(time, day, week, month)
-            if event:
-                print("Event: ", event)
-                self.event_phase(event)
+        index = 0
+        while index < len(self.month_data):
+            index = self.process_week_start(index)
+            print("\nindex : ", index)
+            print("time : ", self.time)
+            if self.time == 0 or self.time == 2 or self.time == 4:
+                self.choices(self.time)
+            else:
+                event, item, index = self.get_event_or_item(self.month_data[index], index)
+                if item and len(self.player.bag) <= 32:
+                    self.player.bag.append(item.item_id)
+                    print("\nItem added to the bag : ", item.item_id)
+                    print("Bag: ", self.player.bag, "\n")
+                else:
+                    self.process_data_entry(event)
+
+            self.update_time_day_week_month()
+            self.time += 1
+
+    def process_week_start(self, index):
+        if self.day == 0 and self.time == 0:  # start of a new week
+            self.week_event = self.month_data[index]
+            self.shop = [self.month_data[index + 1], self.month_data[index + 2]]
+            index += 3
+            print("\nWeek Event: ", self.week_event)
+            print("Shop: ", self.shop)
+        return index
+
+    def process_data_entry(self, event):
+        print("Event: ", event)
+        switch = [0, 2, 4]
+        if self.time in switch or event == False:
+            if self.time in switch:
+                print("it is choice Time: ", self.time)
             else:
                 print("No event")
-                self.choices(time)
-            time += 1
+            self.choices(self.time)
+            return
+
+        elif event:
+            print("Event: ", event)
+            self.event_phase(event)
+            return
+        else:
+            print("Something went wrong... in process_data_entry")
+            print("Event: ", event)
+            return
 
 
     # get the event or item id
-    def get_event_or_item(self, data):
+    def get_event_or_item(self, data, index):
+        print("Data: ", data)
+        print("Events: ", self.events.keys())
+        print("Items: ", self.items.keys())
         event = None
         item = None
         if data in self.events and data != "00":
             event = self.events[data]
-        elif data[0].isalpha() and data != "00":
-            item = self.events[data]
-        return event, item
+        elif data in self.items and data != "00":
+            item = self.items[data]
+        else :
+            print("No event or item found")
+            return False, False, index
+        index += 1
+        print("Event in get_event_or_item: ", event)
+        return event, item, index
 
 
     # update the time, day, week and month of the game
-    def update_time_day_week_month(self, time, day, week, month):
+    def update_time_day_week_month(self):
         # the time of a day
-        if time >= 5:
-            time = 0
-            day += 1
+        if self.time >= 4:
+            self.time = 0
+            self.day += 1
         # the number of days in a week
-        if day >= 7:
-            day = 0
-            week += 1
+        if self.day >= 7:
+            self.day = 0
+            self.week += 1
         #the number of weeks in a month
-        if week >= 4:
-            week = 0
-            month += 1
+        if self.week >= 4:
+            self.week = 0
+            self.day = 0
+            self.time = 0
+            self.month_int += 1
             # recreate a seed for the month
-            self.month_data = self.initialize_month_data()
-
-        print("\nTime: ", time)
-        print("Day: ", day)
-        print("Week: ", week)
-        print("Month: ", month)
-        switch = {
-            0 : "Early-Morning",
-            1 : "Morning",
-            2 : "Lunch",
-            3 : "Afternoon",
-            4 : "Evening",
-        }
-        print(switch.get(time))
-
-        return time, day, week, month
+            self.initialize_month_data() # creates a new seed for the month
+        return
 
     # the differents phases of an event are treated here
     def event_phase(self, event):
+        print("event_phase is running")
+        print("Event: ", event)
         for phase in event.phases_data():
-            user_choice = None
             print("Phase: ", phase)
             # the choices inside an event phase are searched here
             switch = {i: choice for i, choice in enumerate(phase['choices'])}
             print(switch)
             print({key: switch[key]['description'] for key in switch})
-            # if there are choices, the player will have to choose
-            if switch != {}:
-                while user_choice not in switch:
-                    user_choice = int(input("Select a choice: "))
-                    # if the choice is not in the choices, the player will have to choose again
-                    if user_choice not in switch:
-                        print("Invalid choice")
-                print(switch.get(user_choice))
-            # if there is only one choice, the player will have no choice
+            player_choice = self.player_choose(switch)
+            self.player = self.player.update_player(player_choice)
+            print("player updated")
 
-            elif len(switch) == 1:
-                user_choice = 0
-                print(switch.get(user_choice))
+    def player_choose(self, choices, event = None):
+        print("player_choose is running")
+        player_choice = None
+        print("Choices: ", choices)
 
-            # something went wrong...
-            else:
-                print("Something went wrong...")
-                return
+        #if there is only one choice, the player will have no choice
+        if len(choices) == 1:
+            player_choice = choices.get(0)
+            print("player not choice : ", player_choice)
 
-            self.player = self.player.update_player(switch.get(user_choice))
+        # if there are choices, the player will have to choose
+        elif choices != {}:
+            while player_choice not in choices:
+                player_choice = int(input("Select a choice: "))
+                # if the choice is not in the choices, the player will have to choose again
+                if player_choice not in choices:
+                    print("Invalid choice")
+            player_choice = choices.get(player_choice)
+            print("player_choice: ", player_choice)
+
+
+        elif len(choices) == 0:
+            print("No choices found")
+            return None
+        # something went wrong...
+        else:
+            print("Something went wrong... in player_choose")
+            return False
+
+        return player_choice
+
 
     # the choices when no event is happening
     def choices(self, time):
         # needed to get the choices at a specific time
+        print("choices is running")
         switch = {
             0 : "Early-Morning",
             1 : "Morning",
@@ -150,29 +207,5 @@ class InGame:
         choices = {i: choice for i, (key, choice) in
                    enumerate(Event.get_event_by_is_choice_and_time(True, self.events, switch.get(time)).items())
                     }
-        print(f"Your choices : {choices}")
         # if no choices found, print a message
-        if choices == {}:
-            print("No choices available")
-            return
-        # if there is only one choice, the player will have no choice
-        if len(choices) == 1:
-            self.event_phase(choices.get(0))
-        # if there are choices, the player will have to choose
-        else:
-            user_choice = None
-            while user_choice not in choices:
-                user_choice = int(input("Select a choice: "))
-                if user_choice not in choices:
-                    print("Invalid choice")
-            self.event_phase(choices.get(user_choice))
-
-
-
-
-        print(Event.get_event_by_time(switch.get(time), self.events))
-        print(switch.get(time, False))
-
-
-user = Player("Gin")
-game = InGame(None, user)
+        self.event_phase(choices.get(0))
