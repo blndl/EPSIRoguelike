@@ -38,5 +38,11 @@ class Player:
         print(f"\nmoney : {self.money}, \nenergy : {self.energy},\nmoral : {self.moral}")
         return self
 
+    def statChange(self, money, moral, energy):
+        self.money += money
+        self.moral += moral
+        self.energy += energy
+        print(self.moral,self.energy)
+        
     def negative_stats(self, stat):
         print("You have negative ", stat)

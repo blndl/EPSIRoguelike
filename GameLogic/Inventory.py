@@ -187,6 +187,7 @@ class Inventory:
             if "sound" in item_info and item_info["sound"]:
                 sound = pygame.mixer.Sound(item_info["sound"])
                 sound.play()
+                self.player.statchange(item_info['money'],item_info['moral'], item_info['energy'])
 
             del self.player.bag[index]
 
