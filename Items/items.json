@@ -88,7 +88,7 @@
       "price": 10,
       "consommable": true,
       "description": "Fumer nuit gravement à votre santé et à celle de votre entourage",
-      "image": "/images/tabac.png",
+      "image": "Items/Sprites/tabac.png",
       "itemshop": true
     },
     "B1": {
@@ -158,7 +158,7 @@
       "price": 15,
       "consommable": false,
       "description": "Boit de la bouteille (recharge chaque jour)",
-      "image": "/images/gourdeisotherme.png",
+      "image": "Items/Sprites/gourdeisotherme.png",
       "itemshop": true
     },
     "C1": {

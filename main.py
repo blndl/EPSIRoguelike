@@ -24,8 +24,8 @@ class Game:
 
         self.player = Player("Gin")
 
-        self.menu = Menu(self.screen)
-        self.in_game = InGame(self.screen, self.player, self.seed)
+        self.in_game = InGame(self.screen, self.player, self.seed, self)
+        self.menu = Menu(self.screen, self.in_game)
         self.pause_menu = PauseMenu(self.screen)
         self.inventory = Inventory(self, self.screen, self.player)
         self.calendar = Calendar(self.screen)
@@ -40,11 +40,8 @@ class Game:
                 self.running = False
             if self.state == "menu":
                 self.menu.handle_events(event)
-                if self.menu.start_game:
-                    self.state = "in_game"
             if self.state == "in_game":
-                # self.game.handle_events(event)
-                pass
+                self.in_game.handle_events(event)
             if self.state == "Pause_menu":
                 # self.pause_menu.handle_events(event)
                 pass
@@ -57,7 +54,6 @@ class Game:
 
 
     def draw(self):
-        self.screen.fill((0, 0, 0))
         if self.state == "menu":
             self.menu.draw()
         elif self.state == "in_game":
