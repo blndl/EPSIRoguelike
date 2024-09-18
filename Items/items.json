@@ -177,7 +177,7 @@
       "consommable": true,
       "description": "Skip L'evenement du matin.",
       "image": "Items/Sprites/billetderetardratp.png",
-      "sound": "Items/Sound/rapt.mp3",
+      "sound": "Items/Sound/ratp.mp3",
       "itemshop": false
     },
     "C2": {
@@ -188,6 +188,7 @@
       "consommable": true,
       "description": "10% de reduction dans le shop lors de son utilisation",
       "image": "Items/Sprites/coupondereduction.png",
+      "sound": "Items/Sound/stonks.mp3",
       "itemshop": false
     }
   }
