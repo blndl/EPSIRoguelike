@@ -21,7 +21,7 @@ class Game:
         self.seed = self.month.return_month()
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
 
-        self.state = "inventory"
+        self.state = "menu"
 
         self.player = Player("Gin")
 
