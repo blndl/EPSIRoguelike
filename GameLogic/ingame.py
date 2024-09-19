@@ -104,6 +104,7 @@ class InGame:
 
         # assign week event and shop
         self.week_start()
+        self.open_shop()
         # get the event
         self.get_event()
         # adjust the time
@@ -111,9 +112,10 @@ class InGame:
         self.ingame_state = InGameState.PHASE_PROGRESS # change the state to phase progress
 
     def week_start(self):
-        if self.time == 0 and self.week == 0 and self.day == 0:
+        if self.time == 0 and self.day == 0:
             self.week_event = None
             self.shop = []
+            print(self.shop)
             if self.seed[self.index] != "00":  # if the seed is not 00
                 self.week_event = self.events[self.seed[self.index]]
                 print("Week event changed !")
@@ -130,8 +132,14 @@ class InGame:
             print("New week !")
             print("increment index : ", self.index)
 
+    def open_shop(self):
+        if self.day == 2 and self.time == 2:
+            pass
+            # self.game.state = "shop"
+
     def get_event(self, error=0):
         random_event = self.should_trigger_random_event()
+        print("get event entered")
         if random_event:
             if self.seed[self.index] == "00":
                 print("No random event")
@@ -139,26 +147,30 @@ class InGame:
                 print("From based event : ", self.current_event , "00 seed")
 
             else:
-                print("Random event seed : ", self.seed[self.index])
-                if self.seed[self.index][0].isdigit(): # if the seed is a number, char value
-                    print("random if entered !")
-                    self.current_event = self.events[self.seed[self.index]]
+                seed = self.seed[self.index]
+                print("Random event seed : ", seed)
+                print("Index : ", self.index)
+                print(self.events)
+                print(self.events.keys())
+                if seed in self.events.keys() and seed != "00" : # if the seed is a number, char value
+                    self.current_event = self.events[seed]
                     print("Random event : ", self.current_event)
-                    if self.seed[self.index][1].isdigit() and self.seed[self.index] != "00": # if the seed is not 00 and is char, number value
-                        print("Random item")
-                        item = self.items[self.seed[self.index]]
-                        self.index += 1  # increment index because the item had a seed
-                        self.inventory_adder(item)  # manages the inventory of the player
-                    else:
-                        print("SEED ERROR for item : ", self.seed[self.index])
-                        error += 1
+                    self.index += 1  # increment index because the event had a seed
+                elif seed in self.items.keys() and seed != "00": # if the seed is not 00 and is char, number value
+                    print("Random item")
+                    item = self.items[seed]
+                    self.inventory_adder(item)  # manages the inventory of the player
+                elif seed == "00":
+                    print("No item")
                 else:
-                    print("SEED ERROR for event: ", self.seed[self.index])
+                    print("SEED ERROR for item or item: ", seed)
                     error += 1
                     if error > 3:
                         print("Error count : ", error)
                         print("Full seed : ", self.seed)
-                        raise SystemExit("Shutting down the program due to SEED ERROR : ", self.seed[self.index]) # avoid infinity loop
+                        print("Events list : ", self.events)
+                        print("Index : ", self.index)
+                        raise SystemExit(f"Shutting down the program due to SEED ERROR : {seed}") # avoid infinity loop
                     self.get_event(error) # calls itself back to try to get a new event
             # adds index because the event had a seed
             self.index += 1
