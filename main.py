@@ -23,7 +23,7 @@ class Game:
         self.seed = self.month.return_month()
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
 
-        self.state = "shop"
+        self.state = "menu"
         self.font = "pixeboy.ttf"
 
         self.player = Player("Gin")

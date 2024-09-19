@@ -162,12 +162,9 @@ class Shop:
             self.screen.blit(text_surface, (info_box_x, info_box_y + i * 25))
 
     def add_item_to_bag(self, item):
-        # Check if the player has enough money to buy the item
         if self.player.money >= item.price:
-            # Subtract the item price from the player's money
             self.player.money -= item.price
-            # Add the item to the player's bag
-            if len(self.player.bag) < 32:  # Assuming the bag can hold up to 32 items
+            if len(self.player.bag) < 32:
                 self.player.bag.append(item.item_id)
                 print(f"Added {item.name} to bag. Remaining money: {self.player.money}")
             else:
