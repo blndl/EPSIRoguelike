@@ -11,7 +11,6 @@ from GameLogic.shop import Shop
 from generator import Month
 
 
-
 class Game:
     def __init__(self):
         pygame.init()
@@ -23,7 +22,7 @@ class Game:
         self.seed = self.month.return_month()
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
 
-        self.state = "menu"
+        self.state = "shop"
         self.font = "pixeboy.ttf"
 
         self.player = Player("Gin")
@@ -37,8 +36,6 @@ class Game:
         self.calendar = Calendar(self.screen)
 
         pygame.mixer.set_num_channels(1)
-
-
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -57,7 +54,6 @@ class Game:
                 self.inventory.handle_events(event)
             if self.state == "shop":
                 self.shop.handle_events(event)
-
 
     def draw(self):
         if self.state == "menu":
@@ -78,6 +74,10 @@ class Game:
             self.handle_events()
             self.draw()
             self.clock.tick(60)
+
+            if self.state == "shop" and not self.shop.sound_played:
+                self.shop.play_shop_sound()
+                self.shop.sound_played = True
         pygame.quit()
         sys.exit()
 
