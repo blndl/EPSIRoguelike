@@ -8,6 +8,13 @@ class Shop:
         self.ingame = ingame
         self.game = game
 
+        self.shop_sound = pygame.mixer.Sound('Sounds/shop.mp3')
+        self.sound_played = False
+
+        self.catching = pygame.mixer.Sound('Sounds/catching.mp3')
+        self.nope = pygame.mixer.Sound('Sounds/nope.mp3')
+
+
         self.item_rects = []
         self.dragged_item = None
         self.dragged_item_offset = (0, 0)
@@ -56,6 +63,7 @@ class Shop:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 if self.close_button_img_rect.collidepoint(event.pos):
+                    self.play_shop_sound()
                     self.game.state = "in_game"
 
                 # Start dragging an item if clicked
@@ -166,8 +174,9 @@ class Shop:
             self.player.money -= item.price
             if len(self.player.bag) < 32:
                 self.player.bag.append(item.item_id)
-                print(f"Added {item.name} to bag. Remaining money: {self.player.money}")
+                self.catching.play()
             else:
-                print("Bag is full!")
-        else:
-            print("Not enough money to buy this item.")
+                self.nope.play()
+
+    def play_shop_sound(self):
+        self.shop_sound.play()
