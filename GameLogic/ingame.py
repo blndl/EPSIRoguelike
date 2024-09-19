@@ -115,7 +115,7 @@ class InGame:
         if self.time == 0 and self.day == 0:
             self.week_event = None
             self.shop = []
-            print(self.shop)
+            print(self.shop[0].item_id, " ", self.shop[1].item_id)
             if self.seed[self.index] != "00":  # if the seed is not 00
                 self.week_event = self.events[self.seed[self.index]]
                 print("Week event changed !")
@@ -134,8 +134,7 @@ class InGame:
 
     def open_shop(self):
         if self.day == 2 and self.time == 2:
-            pass
-            # self.game.state = "shop"
+            self.game.state = "shop"
 
     def get_event(self, error=0):
         random_event = self.should_trigger_random_event()
@@ -257,22 +256,6 @@ class InGame:
                         self.ingame_state = InGameState.EVENT_PROGRESS
                     break
 
-    # could be used to show the inventory
-    @staticmethod
-    def handle_inventory_view(event):
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_i:
-                pass
-                # i don't know if values are kept betwen the differnt states so i'll just leave it like this for now
-
-    # could be used to pause the game
-    @staticmethod
-    def handle_paused(event):
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_p:
-                pass
-                # same thing
-
     # method to draw the game with the same states as the handle events
     def draw(self):
         if self.ingame_state == InGameState.PHASE_PROGRESS:
@@ -315,13 +298,3 @@ class InGame:
     def draw_choice_buttons(self):
         for button in self.buttons:
             button.draw(self.screen)
-
-    # don't know if i'll use it
-    def update(self):
-        # Update game logic, such as event progression, animations, etc.
-        pass  # Add any necessary update logic here
-
-    # method to change the phase to the inventory view don't know if it's useful but it's here
-    def interrupt_to_inventory(self):
-        # Method to switch to inventory view
-        self.ingame_state = InGameState.INVENTORY_VIEW
