@@ -267,9 +267,14 @@ class InGame:
                 phase_sprite_path = phase_data['sprite_path']
                 event_description = self.current_event.description
 
-                font = pygame.font.Font(None, 36)
-                text_color = (255, 255, 255)
+                # Load custom font
+                custom_font_path = "pixeboy.ttf"
+                font_size = 36  # Adjust the size as needed
+                font = pygame.font.Font(custom_font_path, font_size)
 
+                text_color = (255, 255, 255)  # White color for text
+
+                # Render the text surfaces using the custom font
                 event_description_surface = font.render(f"Event description: {event_description}", True, text_color)
                 phase_description_surface = font.render(f"Phase description: {phase_description}", True, text_color)
 
@@ -277,9 +282,9 @@ class InGame:
                 sprite_image = pygame.image.load(phase_sprite_path)
                 self.screen.blit(sprite_image, (0, 0))
 
-                # Blit the text surfaces onto the screen
-                self.screen.blit(event_description_surface, (50, 50))
-                self.screen.blit(phase_description_surface, (50, 80))
+                # Move the event description text down
+                self.screen.blit(event_description_surface, (50, 380))  # Adjusted position
+                self.screen.blit(phase_description_surface, (50, 420))  # Adjust this if necessary
 
                 # Set initial positions for the first button (top-left)
                 initial_button_x = 50  # Starting X position for the first button in the row
@@ -314,8 +319,20 @@ class InGame:
                     # Draw the button
                     self.screen.blit(button_image, button_rect.topleft)
 
-                    # Render the text and center it on the button
+                    # Calculate maximum text width (button width minus 40 pixels for padding)
+                    max_text_width = scaled_button_width - 55
+
+                    # Render the text and scale it to fit within the max width
                     text_surface = font.render(choice_text, True, (0, 0, 0))
+
+                    # Scale down the text if it exceeds the max width
+                    if text_surface.get_width() > max_text_width:
+                        scale_factor = max_text_width / text_surface.get_width()
+                        new_font_size = int(font_size * scale_factor)
+                        scaled_font = pygame.font.Font(custom_font_path, new_font_size)
+                        text_surface = scaled_font.render(choice_text, True, (0, 0, 0))
+
+                    # Center the text within the button, considering the padding
                     text_rect = text_surface.get_rect(center=button_rect.center)
                     self.screen.blit(text_surface, text_rect)
 
@@ -377,25 +394,41 @@ class InGame:
         self.screen.blit(self.energy_bar, (energy_bar_x, energy_bar_y))
         self.screen.blit(self.moral_bar, (moral_bar_x, moral_bar_y))
 
-    def draw_day_time_bar(self, day_font_size=26, time_font_size=26, day_bar_scale=(200, 75), time_bar_scale=(400, 75)):
+    def draw_day_time_bar(self, day_font_size=26, time_font_size=26, day_bar_scale=(200, 75), time_bar_scale=(250, 75)):
+        # Scale the images for the day and time bars
         scaled_day_bar_img = pygame.transform.scale(self.day_bar_img, day_bar_scale)
         scaled_time_bar_img = pygame.transform.scale(self.day_bar_img, time_bar_scale)
 
+        # Positions for the bars (absolute positions)
         day_bar_x = 350
+        time_bar_x = day_bar_x + day_bar_scale[0]  # Place the time bar right next to the day bar
         bar_y = 0
-        time_bar_x = 550
 
+        # Blit (draw) the bars on the screen
         self.screen.blit(scaled_day_bar_img, (day_bar_x, bar_y))
         self.screen.blit(scaled_time_bar_img, (time_bar_x, bar_y))
 
+        # Load the fonts
         day_font = pygame.font.Font("pixeboy.ttf", day_font_size)
         time_font = pygame.font.Font("pixeboy.ttf", time_font_size)
 
+        # Text content for day and time
         day_text = f"Day: {self.day_of_the_week[self.day]}"
         time_text = f"Time: {self.time_periods[self.time]}"
 
-        day_text_x = day_bar_x
-        day_text_y = 35
+        # Calculate positions for the text (centered on each bar)
+        day_text_surface = day_font.render(day_text, True, (0, 0, 0))
+        time_text_surface = time_font.render(time_text, True, (0, 0, 0))
+
+        day_text_x = day_bar_x + (day_bar_scale[0] - day_text_surface.get_width()) // 2
+        day_text_y = bar_y + (day_bar_scale[1] - day_text_surface.get_height()) // 2
+
+        time_text_x = time_bar_x + (time_bar_scale[0] - time_text_surface.get_width()) // 2
+        time_text_y = bar_y + (time_bar_scale[1] - time_text_surface.get_height()) // 2
+
+        # Blit (draw) the text onto the bars
+        self.screen.blit(day_text_surface, (day_text_x, day_text_y))
+        self.screen.blit(time_text_surface, (time_text_x, time_text_y))
 
     def draw_project_bar(self):
         scaled_project_img = pygame.transform.scale(self.project_img, (50, 50))

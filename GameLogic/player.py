@@ -7,7 +7,7 @@ class Player:
         self.project = project
         self.max_project = max_project
         self.name = name
-        self.money = 0
+        self.money = 999
         self.score = 0
 
         "Inventory slot"
@@ -17,7 +17,7 @@ class Player:
         self.inventory_slot_4 = None
 
         "bag"
-        self.bag = ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "C1", "C2"] # max size of 32 items
+        self.bag = ["A1", "A2", "B7", "B6", "B5", "B4"] # max size of 32 items
 
         self.effects = []
 

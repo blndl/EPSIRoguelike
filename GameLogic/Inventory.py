@@ -38,14 +38,11 @@ class Inventory:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self.game.state = "pause_menu"
-            elif event.key == pygame.K_i and self.game.state == "inventory":
-                self.game.state = "in_game"
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Check if the left mouse button is clicked for dragging or other actions
             if event.button == 1:
                 # Close button check
                 if self.close_button_rect.collidepoint(event.pos):
-                    print("Close button clicked")  # Debugging statement
                     self.game.state = "in_game"
 
                 # Check if an item in the bag is clicked for dragging

@@ -34,7 +34,10 @@ class Game:
         self.inventory = Inventory(self, self.screen, self.player)
         self.shop = Shop(self.screen, self.player, self.in_game, self)
 
-        pygame.mixer.set_num_channels(1)
+        pygame.mixer.music.load("Sounds/main_music.mp3")
+        pygame.mixer.music.play(loops=-1)  # Play music in a loop indefinitely
+
+        pygame.mixer.set_num_channels(2)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -84,6 +87,7 @@ class Game:
         pygame.display.flip()
 
     def run(self):
+        pygame.mixer.init()
         while self.running:
             self.handle_events()
             self.draw()
