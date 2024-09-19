@@ -62,18 +62,25 @@ class Game:
 
     def draw(self):
         if self.state == "menu":
+            print("Drawing menu")  # Debugging statement
             self.menu.draw()
         elif self.state == "tutorial":
+            print("Drawing tutorial")  # Debugging statement
             self.tutorial.draw()
         elif self.state == "in_game":
+            print("Drawing in-game")  # Debugging statement
             self.in_game.draw()
         elif self.state == "inventory":
+            print("Drawing inventory")  # Debugging statement
             self.inventory.draw_inventory()
         elif self.state == "pause_menu":
+            print("Drawing pause menu")  # Debugging statement
             self.pause_menu.draw()
         elif self.state == "shop":
+            print("Drawing shop")  # Debugging statement
             self.shop.draw()
 
+        # Update the display
         pygame.display.flip()
 
     def run(self):

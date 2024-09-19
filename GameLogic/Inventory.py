@@ -45,7 +45,8 @@ class Inventory:
             if event.button == 1:
                 # Close button check
                 if self.close_button_rect.collidepoint(event.pos):
-                    self.game.state = "in_game"  # Change the game state to "in_game" if close button is clicked
+                    print("Close button clicked")  # Debugging statement
+                    self.game.state = "in_game"
 
                 # Check if an item in the bag is clicked for dragging
                 for index, item_id in enumerate(self.player.bag):
