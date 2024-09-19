@@ -23,17 +23,17 @@ class Shop:
         self.debug()
 
     def load_sounds(self):
-        self.shop_sound = pygame.mixer.Sound('Sounds/shop.mp3')
-        self.catching = pygame.mixer.Sound('Sounds/catching.mp3')
-        self.nope = pygame.mixer.Sound('Sounds/nope.mp3')
+        self.shop_sound = pygame.mixer.Sound('Data/Sounds/shop.mp3')
+        self.catching = pygame.mixer.Sound('Data/Sounds/catching.mp3')
+        self.nope = pygame.mixer.Sound('Data/Sounds/nope.mp3')
 
     def load_assets(self):
-        self.shop_bg = pygame.image.load('Sprites/shop_bg.png')
-        self.close_button_img = self.load_and_scale_image('Sprites/shop_close.png', (75, 125))
-        self.close_button_img_hover = self.load_and_scale_image('Sprites/shop_close_hover.png', (75, 125))
-        self.bag_img = self.load_and_scale_image('Sprites/bag.png', (100, 100))
-        self.bag_img_hover = self.load_and_scale_image('Sprites/bag_hover.png', (100, 100))
-        self.coin_img = self.load_and_scale_image('Sprites/coin.png', (35, 35))
+        self.shop_bg = pygame.image.load('Data/Sprites/shop_bg.png')
+        self.close_button_img = self.load_and_scale_image('Data/Sprites/shop_close.png', (75, 125))
+        self.close_button_img_hover = self.load_and_scale_image('Data/Sprites/shop_close_hover.png', (75, 125))
+        self.bag_img = self.load_and_scale_image('Data/Sprites/bag.png', (100, 100))
+        self.bag_img_hover = self.load_and_scale_image('Data/Sprites/bag_hover.png', (100, 100))
+        self.coin_img = self.load_and_scale_image('Data/Sprites/coin.png', (35, 35))
 
     def load_and_scale_image(self, path, size):
         image = pygame.image.load(path).convert_alpha()

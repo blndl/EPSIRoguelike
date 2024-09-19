@@ -1,4 +1,4 @@
-from Json.json import BaseEntity
+from json import BaseEntity
 
 class Item(BaseEntity):
     def __init__(self, item_id, description, price, moral, energy, itemshop, consommable, img, name):

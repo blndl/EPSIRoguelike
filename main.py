@@ -1,14 +1,14 @@
 import pygame
 import sys
 import os
-from GameLogic.menu import Menu
-from GameLogic.ingame import InGame
-from GameLogic.Inventory import Inventory
-from GameLogic.PauseMenu import PauseMenu
-from GameLogic.player import Player
-from GameLogic.shop import Shop
+from menu import Menu
+from ingame import InGame
+from Inventory import Inventory
+from PauseMenu import PauseMenu
+from player import Player
+from shop import Shop
 from generator import Month
-from GameLogic.tuto import Tutorial  # Importez le tutoriel
+from tuto import Tutorial  # Importez le tutoriel
 
 
 class Game:
@@ -23,7 +23,7 @@ class Game:
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
 
         self.state = "menu"  # Commencez par le menu
-        self.font = "pixeboy.ttf"
+        self.font = "Data/pixeboy.ttf"
 
         self.player = Player("Gin")
 
@@ -34,7 +34,7 @@ class Game:
         self.inventory = Inventory(self, self.screen, self.player)
         self.shop = Shop(self.screen, self.player, self.in_game, self)
 
-        pygame.mixer.music.load("Sounds/main_music.mp3")
+        pygame.mixer.music.load("Data/Sounds/main_music.mp3")
         pygame.mixer.music.play(loops=-1)  # Play music in a loop indefinitely
 
         pygame.mixer.set_num_channels(2)

@@ -1,9 +1,9 @@
 import json
 import random
 
-with open('Events/events.json') as f:
+with open('Data/Events/events.json') as f:
     edata = json.load(f)
-with open('Items/items.json') as t:
+with open('Data/Items/items.json') as t:
     idata = json.load(t)
 
 class Day:

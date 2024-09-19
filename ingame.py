@@ -1,6 +1,6 @@
 import pygame
-from Events.event_gestion import Event
-from Items.item_gestion import Item
+from event_gestion import Event
+from item_gestion import Item
 
 pygame.font.init()
 
@@ -24,8 +24,8 @@ class InGame:
         self.ingame_state = InGameState.EVENT_PROGRESS  # State of the game
         self.current_event = None
         self.current_advancement = 0
-        self.events = Event.load_events("Events/events.json")  # Load the events
-        self.items = Item.load_items("Items/items.json")  # Load the items
+        self.events = Event.load_events("Data/Events/events.json")  # Load the events
+        self.items = Item.load_items("Data/Items/items.json")  # Load the items
         self.shop = []
         self.week_event = None
         self.index = 0
@@ -268,7 +268,7 @@ class InGame:
                 event_description = self.current_event.description
 
                 # Load custom font
-                custom_font_path = "pixeboy.ttf"
+                custom_font_path = "Data/pixeboy.ttf"
                 font_size = 36  # Adjust the size as needed
                 font = pygame.font.Font(custom_font_path, font_size)
 
@@ -337,16 +337,16 @@ class InGame:
                     self.screen.blit(text_surface, text_rect)
 
     def load_assets(self):
-        self.bag_img = pygame.image.load("Sprites/bag.png")
-        self.bag_hover_img = pygame.image.load("Sprites/bag_hover.png")
-        self.energy_bar = pygame.image.load("Sprites/bar_energy.png")
-        self.moral_bar = pygame.image.load("Sprites/bar_moral.png")
-        self.coin_img = pygame.image.load("Sprites/coin.png")
-        self.choice_button_img = pygame.image.load("Sprites/choice_button.png")
-        self.choice_button_hover_img = pygame.image.load("Sprites/choice_btn_hover.png")
-        self.day_bar_img = pygame.image.load("Sprites/day_box.png")
-        self.project_img = pygame.image.load("Sprites/winror.png")
-        self.choice_button_false = pygame.image.load("Sprites/choice_btn_false.png")
+        self.bag_img = pygame.image.load("Data/Sprites/bag.png")
+        self.bag_hover_img = pygame.image.load("Data/Sprites/bag_hover.png")
+        self.energy_bar = pygame.image.load("Data/Sprites/bar_energy.png")
+        self.moral_bar = pygame.image.load("Data/Sprites/bar_moral.png")
+        self.coin_img = pygame.image.load("Data/Sprites/coin.png")
+        self.choice_button_img = pygame.image.load("Data/Sprites/choice_button.png")
+        self.choice_button_hover_img = pygame.image.load("Data/Sprites/choice_btn_hover.png")
+        self.day_bar_img = pygame.image.load("Data/Sprites/day_box.png")
+        self.project_img = pygame.image.load("Data/Sprites/winror.png")
+        self.choice_button_false = pygame.image.load("Data/Sprites/choice_btn_false.png")
 
     def load_and_scale(self, path, size):
         image = pygame.image.load(path).convert_alpha()
@@ -363,7 +363,7 @@ class InGame:
 
         self.screen.blit(scaled_coin_img, (coin_x, coin_y))
 
-        coin_font = pygame.font.Font("pixeboy.ttf", 30)
+        coin_font = pygame.font.Font("Data/pixeboy.ttf", 30)
         coin_text = f"{self.player.money}"
         coin_text_surface = coin_font.render(coin_text, True, (255, 255, 255))
 
@@ -409,8 +409,8 @@ class InGame:
         self.screen.blit(scaled_time_bar_img, (time_bar_x, bar_y))
 
         # Load the fonts
-        day_font = pygame.font.Font("pixeboy.ttf", day_font_size)
-        time_font = pygame.font.Font("pixeboy.ttf", time_font_size)
+        day_font = pygame.font.Font("Data/pixeboy.ttf", day_font_size)
+        time_font = pygame.font.Font("Data/pixeboy.ttf", time_font_size)
 
         # Text content for day and time
         day_text = f"Day: {self.day_of_the_week[self.day]}"
@@ -439,7 +439,7 @@ class InGame:
         self.screen.blit(scaled_project_img, (project_x, project_y))
 
         project_text = f"{self.player.project} / {self.player.max_project}"
-        project_font = pygame.font.Font("pixeboy.ttf", 26)
+        project_font = pygame.font.Font("Data/pixeboy.ttf", 26)
         project_text_surface = project_font.render(project_text, True, (255, 255, 255))
 
         text_x = project_x + scaled_project_img.get_width() + 10

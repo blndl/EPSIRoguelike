@@ -5,11 +5,11 @@
       "energy": 1,
       "moral": 2,
       "price": 5,
-      "project":0,
+      "project": 0,
       "consommable": true,
       "description": "A manger.",
-      "image": "Items/Sprites/doritos.png",
-      "sound": "Items/Sound/doritos.mp3",
+      "image": "Data/Items/Sprites/doritos.png",
+      "sound": "Data/Items/Sound/doritos.mp3",
       "itemshop": true
     },
     "A2": {
@@ -17,11 +17,11 @@
       "energy": 2,
       "moral": 0,
       "price": 4,
-      "project":0,
+      "project": 0,
       "consommable": true,
-      "description": "Redonne un petit peu d'énergie !",
-      "image": "Items/Sprites/cafe.png",
-      "sound": "Items/Sound/drinking.mp3",
+      "description": "Redonne un petit peu d'\u00e9nergie !",
+      "image": "Data/Items/Sprites/cafe.png",
+      "sound": "Data/Items/Sound/drinking.mp3",
       "itemshop": true
     },
     "A3": {
@@ -29,11 +29,11 @@
       "energy": 0,
       "moral": 2,
       "price": 4,
-      "project":0,
+      "project": 0,
       "consommable": true,
-      "description": "Bonbon sucré avec une surchouche de sucre. Parfait pour les coups de mou.",
-      "image": "Items/Sprites/haribo.png",
-      "sound": "Items/Sound/haribo.mp3",
+      "description": "Bonbon sucr\u00e9 avec une surchouche de sucre. Parfait pour les coups de mou.",
+      "image": "Data/Items/Sprites/haribo.png",
+      "sound": "Data/Items/Sound/haribo.mp3",
       "itemshop": true
     },
     "A4": {
@@ -41,11 +41,11 @@
       "energy": 4,
       "moral": 0,
       "price": 6,
-      "project":0,
+      "project": 0,
       "consommable": true,
       "description": "Redbull donne des ailes.",
-      "image": "Items/Sprites/redbull.png",
-      "sound": "Items/Sound/redbull.mp3",
+      "image": "Data/Items/Sprites/redbull.png",
+      "sound": "Data/Items/Sound/redbull.mp3",
       "itemshop": true
     },
     "A5": {
@@ -53,11 +53,11 @@
       "energy": 1,
       "moral": 1,
       "price": 4,
-      "project":0,
+      "project": 0,
       "consommable": true,
-      "description": "Boisson chaude donnant un peu de moral et d'énergie",
-      "image": "Items/Sprites/the.png",
-      "sound": "Items/Sound/drinking.mp3",
+      "description": "Boisson chaude donnant un peu de moral et d'\u00e9nergie",
+      "image": "Data/Items/Sprites/the.png",
+      "sound": "Data/Items/Sound/drinking.mp3",
       "itemshop": true
     },
     "A6": {
@@ -65,23 +65,23 @@
       "energy": 3,
       "moral": 2,
       "price": 7,
-      "project":0,
+      "project": 0,
       "consommable": true,
       "description": "Sandwich de fou",
-      "image": "Items/Sprites/sandwich.png",
-      "sound": "Items/Sound/sandwich.mp3",
+      "image": "Data/Items/Sprites/sandwich.png",
+      "sound": "Data/Items/Sound/sandwich.mp3",
       "itemshop": true
     },
     "A7": {
-      "name": "Boîte de vitamin",
+      "name": "Bo\u00eete de vitamin",
       "energy": 1,
       "moral": 0,
       "price": 4,
-      "project":0,
+      "project": 0,
       "consommable": true,
-      "description": "Boîte de vitamin",
-      "image": "Items/Sprites/boitedevitamin.png",
-      "sound": "Items/Sound/pills.mp3",
+      "description": "Bo\u00eete de vitamin",
+      "image": "Data/Items/Sprites/boitedevitamin.png",
+      "sound": "Data/Items/Sound/pills.mp3",
       "itemshop": true
     },
     "A8": {
@@ -89,11 +89,11 @@
       "energy": 0,
       "moral": 0,
       "price": 10,
-      "project":0,
+      "project": 0,
       "consommable": true,
       "description": "Skip le prochain evenement.",
-      "image": "Items/Sprites/de2020.png",
-      "sound": "Items/Sound/dice.mp3",
+      "image": "Data/Items/Sprites/de2020.png",
+      "sound": "Data/Items/Sound/dice.mp3",
       "itemshop": true
     },
     "A9": {
@@ -101,11 +101,11 @@
       "energy": -1,
       "moral": 2,
       "price": 3,
-      "project":0,
+      "project": 0,
       "consommable": true,
-      "description": "Fumer nuit gravement à votre santé et à celle de votre entourage",
-      "image": "Items/Sprites/tabac.png",
-      "sound": "Items/Sound/cig.mp3",
+      "description": "Fumer nuit gravement \u00e0 votre sant\u00e9 et \u00e0 celle de votre entourage",
+      "image": "Data/Items/Sprites/tabac.png",
+      "sound": "Data/Items/Sound/cig.mp3",
       "itemshop": true
     },
     "B1": {
@@ -113,10 +113,10 @@
       "energy": 0,
       "moral": 0,
       "price": 30,
-      "project":2,
+      "project": 2,
       "consommable": false,
-      "description": "Permet d’ajouter +1 point par action de travail mais enleve 25%, Sur chaque project utilise.",
-      "image": "Items/Sprites/chatgpt.png",
+      "description": "Permet d\u2019ajouter +1 point par action de travail mais enleve 25%, Sur chaque project utilise.",
+      "image": "Data/Items/Sprites/chatgpt.png",
       "itemshop": true
     },
     "B2": {
@@ -124,10 +124,10 @@
       "energy": 0,
       "moral": 1,
       "price": 15,
-      "project":0,
+      "project": 0,
       "consommable": false,
       "description": "Remonte le moral chaque jour",
-      "image": "Items/Sprites/casqueaudio.png",
+      "image": "Data/Items/Sprites/casqueaudio.png",
       "itemshop": true
     },
     "B3": {
@@ -135,10 +135,10 @@
       "energy": 1,
       "moral": 0,
       "price": 15,
-      "project":0,
+      "project": 0,
       "consommable": false,
       "description": "Objet qui permet d'utiliser moins d'energy lors du travail",
-      "image": "Items/Sprites/lunetteantilumierebleu.png",
+      "image": "Data/Items/Sprites/lunetteantilumierebleu.png",
       "itemshop": true
     },
     "B4": {
@@ -146,10 +146,10 @@
       "energy": 1,
       "moral": 1,
       "price": 15,
-      "project":0,
+      "project": 0,
       "consommable": false,
       "description": "Objet qui permet de brancher plusieurs appareils en meme temps",
-      "image": "Items/Sprites/multiprise.png",
+      "image": "Data/Items/Sprites/multiprise.png",
       "itemshop": true
     },
     "B5": {
@@ -157,10 +157,10 @@
       "energy": 0,
       "moral": 0,
       "price": 20,
-      "project":1,
+      "project": 1,
       "consommable": false,
       "description": "+1 point au debut du project",
-      "image": "Items/Sprites/ordinateur.png",
+      "image": "Data/Items/Sprites/ordinateur.png",
       "itemshop": true
     },
     "B6": {
@@ -168,21 +168,21 @@
       "energy": 1,
       "moral": 0,
       "price": 15,
-      "project":0,
+      "project": 0,
       "consommable": false,
       "description": "+1 moral par jour si le personnage a moins de 5 de moral",
-      "image": "Items/Sprites/bouleantistresse.png",
+      "image": "Data/Items/Sprites/bouleantistresse.png",
       "itemshop": true
     },
-     "B7": {
+    "B7": {
       "name": "Gourde isotherme",
       "energy": 1,
       "moral": 1,
       "price": 15,
-      "project":0,
+      "project": 0,
       "consommable": false,
       "description": "Boit de la bouteille (recharge chaque jour)",
-      "image": "Items/Sprites/gourdeisotherme.png",
+      "image": "Data/Items/Sprites/gourdeisotherme.png",
       "itemshop": true
     },
     "C1": {
@@ -190,11 +190,11 @@
       "energy": 0,
       "moral": 0,
       "price": 0,
-      "project":0,
+      "project": 0,
       "consommable": true,
       "description": "Skip L'evenement du matin.",
-      "image": "Items/Sprites/billetderetardratp.png",
-      "sound": "Items/Sound/ratp.mp3",
+      "image": "Data/Items/Sprites/billetderetardratp.png",
+      "sound": "Data/Items/Sound/ratp.mp3",
       "itemshop": false
     },
     "C2": {
@@ -202,11 +202,11 @@
       "energy": 0,
       "moral": 0,
       "price": 0,
-      "project":0,
+      "project": 0,
       "consommable": true,
       "description": "10% de reduction dans le shop lors de son utilisation",
-      "image": "Items/Sprites/coupondereduction.png",
-      "sound": "Items/Sound/stonks.mp3",
+      "image": "Data/Items/Sprites/coupondereduction.png",
+      "sound": "Data/Items/Sound/stonks.mp3",
       "itemshop": false
     }
   }

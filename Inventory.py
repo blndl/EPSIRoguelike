@@ -13,14 +13,14 @@ class Inventory:
         self.hovered_item_index = None  # Track the index of the hovered item
 
         # Load the background image
-        self.inv_bg_img = pygame.image.load(os.path.join(self.game.base_dir, "Sprites/inv_bg.png")).convert_alpha()
+        self.inv_bg_img = pygame.image.load(os.path.join(self.game.base_dir, "Data/Sprites/inv_bg.png")).convert_alpha()
 
         # Load buttons
-        self.close_button_img = pygame.image.load(os.path.join(self.game.base_dir, "Sprites/close_button.png")).convert_alpha()
+        self.close_button_img = pygame.image.load(os.path.join(self.game.base_dir, "Data/Sprites/close_button.png")).convert_alpha()
         self.close_button_rect = self.close_button_img.get_rect(topleft=(1150, 50))
 
-        self.trash_img = pygame.image.load(os.path.join(self.game.base_dir, "Sprites/trash.png")).convert_alpha()
-        self.trash_hover_img = pygame.image.load(os.path.join(self.game.base_dir, "Sprites/trash_hover.png")).convert_alpha()
+        self.trash_img = pygame.image.load(os.path.join(self.game.base_dir, "Data/Sprites/trash.png")).convert_alpha()
+        self.trash_hover_img = pygame.image.load(os.path.join(self.game.base_dir, "Data/Sprites/trash_hover.png")).convert_alpha()
         self.trash_rect = self.trash_img.get_rect(bottomleft=(1135, 700))
 
         self.inventory_slot_rects = [
@@ -31,7 +31,7 @@ class Inventory:
         ]
 
         # Load item data from JSON file
-        with open(os.path.join(self.game.base_dir, "Items/items.json"), "r") as file:
+        with open(os.path.join(self.game.base_dir, "Data/Items/items.json"), "r") as file:
             self.item_data = json.load(file)["items"]  # Load the 'items' dictionary
 
     def handle_events(self, event):

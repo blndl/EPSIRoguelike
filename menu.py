@@ -10,10 +10,10 @@ class Menu:
         self.start_button_rect = pygame.Rect(490, 300, 300, 100)
 
         # Load fonts for the title and buttons
-        self.title_font = pygame.font.Font("pixeboy.ttf", 96)  # Larger font for the title
-        self.button_font = pygame.font.Font("pixeboy.ttf", 36)  # Smaller font for the button
+        self.title_font = pygame.font.Font("Data/pixeboy.ttf", 96)  # Larger font for the title
+        self.button_font = pygame.font.Font("Data/pixeboy.ttf", 36)  # Smaller font for the button
 
-        self.menu_bg_img = pygame.image.load("Sprites/epsi.jpg")
+        self.menu_bg_img = pygame.image.load("Data/Sprites/epsi.jpg")
 
         pygame.scrap.init()
         pygame.scrap.set_mode(pygame.SCRAP_CLIPBOARD)
