@@ -7,7 +7,9 @@ from GameLogic.Inventory import Inventory
 from GameLogic.PauseMenu import PauseMenu
 from GameLogic.calendar import Calendar
 from GameLogic.player import Player
+from GameLogic.shop import Shop
 from generator import Month
+
 
 
 class Game:
@@ -22,10 +24,12 @@ class Game:
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
 
         self.state = "menu"
+        self.font = "pixeboy.ttf"
 
         self.player = Player("Gin")
 
         self.in_game = InGame(self.screen, self.player, self.seed, self)
+        self.shop = Shop(self.screen, self.player, self.in_game, self)
         self.menu = Menu(self.screen)
         self.in_game = InGame(self.screen, self.player, self.seed, self)
         self.pause_menu = PauseMenu(self.screen)
@@ -51,6 +55,8 @@ class Game:
                 pass
             if self.state == "inventory":
                 self.inventory.handle_events(event)
+            if self.state == "shop":
+                self.shop.handle_events(event)
 
 
     def draw(self):
@@ -62,6 +68,8 @@ class Game:
             self.inventory.draw_inventory()
         elif self.state == "pause_menu":
             pass
+        elif self.state == "shop":
+            self.shop.draw()
 
         pygame.display.flip()
 
