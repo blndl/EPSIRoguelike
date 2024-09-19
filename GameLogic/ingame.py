@@ -7,13 +7,6 @@ pygame.font.init()
 class InGameState:
     EVENT_PROGRESS = 0
     PHASE_PROGRESS = 1
-    CHOICE_MAKING = 2
-    INVENTORY_VIEW = 3
-    PAUSED = 4
-
-# made a class to draw the text and buttons, but I don't know if it's useful
-class ToDraw:
-    FONT = pygame.font.Font(None, 36)
 
 # button class again idk if it's useful
 class Button:
@@ -69,6 +62,9 @@ class InGame:
 
     # method to handle the time
     def handle_time(self):
+        # line to print the time
+        print(f"Time: {self.time}, Day: {self.day}, Week: {self.week}, Month: {self.month}")
+        print(f"Current time period: {self.time_periods[self.time]}")
         if self.time >= 4:
             self.time = 0
             self.day += 1
@@ -81,32 +77,19 @@ class InGame:
         else:
             self.time += 1
 
-        # line to print the time
-        print(f"Time: {self.time}, Day: {self.day}, Week: {self.week}, Month: {self.month}")
-        print(f"Current time period: {self.time_periods[self.time]}")
 
     # method to handle the in game states
     def handle_events(self, event):
         if self.ingame_state == InGameState.EVENT_PROGRESS:
-            self.handle_event_progress(event) # handle the event progress
+            self.advance_event()
         elif self.ingame_state == InGameState.PHASE_PROGRESS:
             self.handle_phase_progress(event) # handle the phase progress
-        elif self.ingame_state == InGameState.INVENTORY_VIEW:
-            self.handle_inventory_view(event) # not sure about this one
-        elif self.ingame_state == InGameState.PAUSED:
-            self.handle_paused(event) # this one either
-
-    # method to handle the event progress
-    def handle_event_progress(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN: # debugging for now, i mean event then shouldn't change much
-            self.advance_event()
 
     # method to advance the event
     def advance_event(self):
         # debugging only info
-        print("index : ", self.index)
-        print("Items : ", self.items.keys())
-        print("Events : ", self.events.keys())
+        print("\nIndex : ", self.index)
+
         # assign week event and shop
         self.week_start()
         # get the event
@@ -140,33 +123,30 @@ class InGame:
             if self.seed[self.index] == "00":
                 print("No random event")
                 self.current_event = Event.get_event_by_is_choice_and_time(True, self.events, self.time_periods[self.time])
-                print("From based event : ", self.current_event)
+                print("From based event : ", self.current_event , "00 seed")
 
             else:
-                if self.seed[self.index] != "00" and self.seed[self.index][1].isdigit():
-                    self.current_event = Event.get_event_by_is_choice_and_time(True, self.events,
-                                                                               self.time_periods[self.time])
-                    self.current_event = Event.get_event_by_is_choice_and_time(True, self.events,
-                                                                               self.time_periods[self.time])
-                    print("From based event : ", self.current_event, "00 seed")
-                else:
-                    if self.seed[self.index][1].isdigit():
-                        self.current_event = self.events[self.seed[self.index]]
-                        print("Random event : ", self.current_event)
-                        if self.seed[self.index][0].isdigit():
-                            item = self.items[self.seed[self.index]]
-                            self.index += 1  # increment index because the item had a seed
-                            self.inventory_adder(item)  # manages the inventory of the player
-                        else:
-                            print("SEED ERROR for item : ", self.seed[self.index])
+                print("Random event seed : ", self.seed[self.index])
+                if self.seed[self.index][0].isdigit(): # if the seed is a number, char value
+                    print("random if entered !")
+                    self.current_event = self.events[self.seed[self.index]]
+                    print("Random event : ", self.current_event)
+                    if self.seed[self.index][1].isdigit() and self.seed[self.index] != "00": # if the seed is not 00 and is char, number value
+                        print("Random item")
+                        item = self.items[self.seed[self.index]]
+                        self.index += 1  # increment index because the item had a seed
+                        self.inventory_adder(item)  # manages the inventory of the player
                     else:
-                        print("SEED ERROR for event: ", self.seed[self.index])
+                        print("SEED ERROR for item : ", self.seed[self.index])
                         error += 1
-                        if error < 3:
-                            print("Error count : ", error)
-                            raise SystemExit("Shutting down the program due to SEED ERROR") # avoid infinity loop
-                        self.get_event(error) # calls itself back to try to get a new event
-
+                else:
+                    print("SEED ERROR for event: ", self.seed[self.index])
+                    error += 1
+                    if error > 3:
+                        print("Error count : ", error)
+                        print("Full seed : ", self.seed)
+                        raise SystemExit("Shutting down the program due to SEED ERROR : ", self.seed[self.index]) # avoid infinity loop
+                    self.get_event(error) # calls itself back to try to get a new event
             # adds index because the event had a seed
             self.index += 1
             print("Incremented index : ", self.index)
@@ -176,7 +156,7 @@ class InGame:
             print("From based event : ", self.current_event)
 
     def should_trigger_random_event(self):
-        return self.time not in [0, 2, 4]
+        return self.time not in [0, 2, 4] # true if in list
 
     def inventory_adder(self, item):
         if item.consommable:
@@ -208,19 +188,16 @@ class InGame:
     def handle_phase_progress(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN: # debugging for now
             self.advance_phases()
-            self.create_choice_buttons(self.current_event.phases_choices_data(self.current_advancement)) # to make the buttons based on the choices get the choices values
 
     # method to advance the phases
     def advance_phases(self):
         # verify if there are more phases
         print("Curent game state : ", self.ingame_state)
-        if self.current_advancement < len(self.current_event.phases):
-            self.get_choices() # get the choices
 
-            if self.current_advancement +1 < len(self.current_event.phases):
-                self.current_advancement += 1 # increment the advancement
-            else:
-                self.ingame_state = InGameState.EVENT_PROGRESS  # commes back to event progress
+        if self.current_advancement +1 < len(self.current_event.phases):
+            self.current_advancement += 1 # increment the advancement
+        else:
+            self.ingame_state = InGameState.EVENT_PROGRESS  # commes back to event progress
 
     # method to get the choices used to debug
     def get_choices(self):
@@ -239,13 +216,6 @@ class InGame:
         choices = self.current_event.phases_choices_data(self.current_advancement)
         choice = choices[choice_number]
         self.player.update_player(choice)
-
-    # to create the buttons by using a class
-    def create_choice_buttons(self, choices):
-        self.buttons = []
-        for i, choice in enumerate(choices):
-            button = Button(50, 200 + i * 60, 200, 50, choice, ToDraw.FONT)
-            self.buttons.append(button)
 
     # not yet
     def handle_choice_making(self, event):
@@ -280,40 +250,9 @@ class InGame:
 
     # method to draw the game with the same states as the handle events
     def draw(self):
-        if self.ingame_state == InGameState.EVENT_PROGRESS:
-            self.draw_current_event()
-        elif self.ingame_state == InGameState.PHASE_PROGRESS:
+        if self.ingame_state == InGameState.PHASE_PROGRESS:
             self.draw_current_phase()
-        elif self.ingame_state == InGameState.INVENTORY_VIEW:
-            self.game.inventory.draw_inventory()
-        elif self.ingame_state == InGameState.PAUSED:
-            self.game.pause_menu.draw()
         # Add more drawing logic as needed
-
-    # draws on the screen the name and description of the current event
-    def draw_current_event(self):
-        if self.current_event:
-            event_name = self.current_event.name
-            event_description = self.current_event.description
-
-            # Set up font and colors
-            font = pygame.font.Font(None, 36)
-            text_color = (255, 255, 255)  # White
-            background_color = (0, 0, 0)  # Black
-
-            # Render the text
-            name_surface = font.render(f"Event name: {event_name}", True, text_color)
-            description_surface = font.render(f"Event description: {event_description}", True, text_color)
-
-            # Fill the screen with the background color
-            self.screen.fill(background_color)
-
-            # Blit the text surfaces onto the screen
-            self.screen.blit(name_surface, (50, 50))
-            self.screen.blit(description_surface, (50, 100))
-
-            # Update the display
-            pygame.display.flip()
 
     def draw_current_phase(self):
         if self.current_event:
@@ -322,13 +261,15 @@ class InGame:
                 phase_description = phase_data['description']
                 phase_choices = phase_data['choices']
                 phase_sprite_path = phase_data['sprite_path']
+                event_description = self.current_event.description
 
                 # Set up font and colors
                 font = pygame.font.Font(None, 36)
                 text_color = (255, 255, 255)
 
                 # Render the text
-                description_surface = font.render(f"Phase description: {phase_description}", True, text_color)
+                event_description_surface = font.render(f"Event description: {event_description}", True, text_color)
+                phase_description_surface = font.render(f"Phase description: {phase_description}", True, text_color)
                 choices_surface = font.render(f"Choices: {phase_choices}", True, text_color)
                 # Load the sprite image
                 sprite_image = pygame.image.load(phase_sprite_path)
@@ -337,13 +278,15 @@ class InGame:
                 self.screen.blit(sprite_image, (0, 0))
 
                 # Blit the text surfaces onto the screen
-                self.screen.blit(description_surface, (50, 100))
-                self.screen.blit(choices_surface, (50, 50))
+                self.screen.blit(event_description_surface, (50, 50))
+                self.screen.blit(phase_description_surface, (50, 100))
+                self.screen.blit(choices_surface, (50, 150))
 
                 # Update the display
                 pygame.display.flip()
 
 
+    # draw the choice buttons
     def draw_choice_buttons(self):
         for button in self.buttons:
             button.draw(self.screen)
