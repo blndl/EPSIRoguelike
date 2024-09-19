@@ -8,6 +8,7 @@ from GameLogic.PauseMenu import PauseMenu
 from GameLogic.player import Player
 from GameLogic.shop import Shop
 from generator import Month
+from GameLogic.tuto import Tutorial  # Importez le tutoriel
 
 
 class Game:
@@ -21,13 +22,13 @@ class Game:
         self.seed = self.month.return_month()
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
 
-        self.state = "menu"
+        self.state = "menu"  # Commencez par le menu
         self.font = "pixeboy.ttf"
 
         self.player = Player("Gin")
 
-        self.in_game = InGame(self.screen, self.player, self.seed, self)
         self.menu = Menu(self.screen)
+        self.tutorial = Tutorial(self.screen)  # Instance du tutoriel
         self.in_game = InGame(self.screen, self.player, self.seed, self)
         self.pause_menu = PauseMenu(self.screen, self)
         self.inventory = Inventory(self, self.screen, self.player)
@@ -39,22 +40,31 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
+
             if self.state == "menu":
                 self.menu.handle_events(event)
                 if self.menu.start_game:
-                    self.state = "in_game"
-            if self.state == "in_game":
+                    self.state = "tutorial"  # Passer au tutoriel quand le jeu commence
+
+            elif self.state == "tutorial":
+                self.tutorial.handle_events(event)
+                if not self.tutorial.running:
+                    self.state = "in_game"  # Passer au jeu après le tutoriel
+
+            elif self.state == "in_game":
                 self.in_game.handle_events(event)
-            if self.state == "pause_menu":
+            elif self.state == "pause_menu":
                 self.pause_menu.handle_events(event)
-            if self.state == "inventory":
+            elif self.state == "inventory":
                 self.inventory.handle_events(event)
-            if self.state == "shop":
+            elif self.state == "shop":
                 self.shop.handle_events(event)
 
     def draw(self):
         if self.state == "menu":
             self.menu.draw()
+        elif self.state == "tutorial":
+            self.tutorial.draw()
         elif self.state == "in_game":
             self.in_game.draw()
         elif self.state == "inventory":
