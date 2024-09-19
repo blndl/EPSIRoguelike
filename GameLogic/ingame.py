@@ -84,14 +84,19 @@ class InGame:
     def handle_events(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_i:
+                print("Inventory passed")
+                print(self.game.state)
                 self.game.state = "inventory"
+                print(self.game.state)
             elif event.key == pygame.K_ESCAPE:
                 self.game.state = "pause_menu"
+
         elif self.ingame_state == InGameState.EVENT_PROGRESS:
             self.advance_event()
 
         elif self.ingame_state == InGameState.PHASE_PROGRESS:
-            self.handle_phase_progress(event) # handle the phase progress
+            self.advance_phases()
+
             self.ingame_state = InGameState.CHOICE_MAKING
 
         elif self.ingame_state == InGameState.CHOICE_MAKING:
@@ -215,13 +220,11 @@ class InGame:
                 print("Inventory full")
                 print("Item not added to the inventory : ", item.item_id, "", item.name)
 
-    # method to handle the phase progress
-    def handle_phase_progress(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN: # debugging for now
-            self.advance_phases()
 
     # method to advance the phases
     def advance_phases(self):
+        print("len current event : ",len(self.current_event.phases))
+
         # verify if there are more phases
         if self.current_advancement + 1 < len(self.current_event.phases):
             self.current_advancement += 1  # Increment the advancement
