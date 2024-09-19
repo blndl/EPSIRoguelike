@@ -75,6 +75,8 @@ class InGame:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_i:
                 self.game.state = "inventory"
+            elif event.key == pygame.K_ESCAPE:
+                self.game.state = "pause_menu"
 
         elif self.ingame_state == InGameState.EVENT_PROGRESS:
             self.advance_event()

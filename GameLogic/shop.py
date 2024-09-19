@@ -50,7 +50,13 @@ class Shop:
         self.coin_rect = self.coin_img.get_rect(
             topright=(self.close_button_img_rect.left - 50, 20))  # Adjusted rect size
 
+        self.debug()
+
     def handle_events(self, event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                self.game.state = "pause_menu"
+
         if event.type == pygame.MOUSEMOTION:
             self.mouse_pos = event.pos
             self.check_hovered_item()
@@ -108,16 +114,6 @@ class Shop:
             # Create a rect for this item and store it
             item_rect = item.image.get_rect(topleft=(x, y))
             self.item_rects.append((item, item_rect))  # Store the item and its rect together
-
-            # Optionally, draw the item name or other details next to the image
-            item_name_text = self.font.render(item.name, True, (255, 255, 255))
-            self.screen.blit(item_name_text, (x, y + item.image.get_height() + 5))
-
-            # Move to the next position
-            x += item_spacing
-            if x > self.screen.get_width() - item_spacing:  # Move to the next row if needed
-                x = 100
-                y += item_spacing
 
     def draw_close_button(self):
         if self.close_button_img_rect.collidepoint(self.mouse_pos):
@@ -180,3 +176,7 @@ class Shop:
 
     def play_shop_sound(self):
         self.shop_sound.play()
+
+    def debug(self):
+        for item in self.week_items:
+            print(f"Item ID: {item.item_id}, Name: {item.name}, Price: {item.price}, Description: {item.description}")
