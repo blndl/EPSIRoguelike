@@ -80,4 +80,3 @@ class Event(BaseEntity):
     @staticmethod
     def get_event_by_is_choice_and_time(is_choice, events, time):
         return [event for event in events.values() if is_choice == event.is_choice and time in event.time_slots][0]
-
