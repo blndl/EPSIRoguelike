@@ -15,8 +15,6 @@ class Shop:
         self.dragged_item_offset = (0, 0)
 
         self.font = pygame.font.Font(self.game.font, 36)
-        self.coin = self.player.money
-        self.bag = self.player.bag
         self.mouse_pos = pygame.mouse.get_pos()
         self.sound_played = False
 
@@ -44,7 +42,7 @@ class Shop:
     def setup_rects(self):
         self.close_button_img_rect = self.close_button_img.get_rect(topright=(1280 - 10, 10))
         self.bag_img_rect = self.bag_img.get_rect(bottomright=(1280 - 10, 720 - 10))
-        self.coin_rect = self.coin_img.get_rect(topright=(self.close_button_img_rect.left - 50, 20))
+        self.coin_rect = self.coin_img.get_rect(topright=(self.close_button_img_rect.left - 80, 20))
 
     def handle_events(self, event):
         if event.type == pygame.KEYDOWN:
@@ -73,14 +71,20 @@ class Shop:
 
         for item, item_rect in self.item_rects:
             if item_rect.collidepoint(pos):
-                self.dragged_item = {"item": item, "rect": item_rect}
-                self.dragged_item_offset = (pos[0] - item_rect.x, pos[1] - item_rect.y)
+                # Set up the dragged item with the item and its rect
+                self.dragged_item = {
+                    "item": item,
+                    "rect": item_rect,
+                    "offset": (pos[0] - item_rect.x, pos[1] - item_rect.y)
+                }
                 break
 
     def handle_mouse_button_up(self, pos):
         if self.dragged_item:
+            # Check if the dragged item is dropped on the bag
             if self.bag_img_rect.collidepoint(pos):
                 self.add_item_to_bag(self.dragged_item["item"])
+            # Reset the dragged item after dropping
             self.dragged_item = None
 
     def draw(self):
@@ -92,23 +96,32 @@ class Shop:
 
         if self.dragged_item:
             item = self.dragged_item["item"]
-            item_image = pygame.image.load(item.sprite_path).convert_alpha()  # Load the image here
-            item_position = (self.mouse_pos[0] - self.dragged_item_offset[0],
-                             self.mouse_pos[1] - self.dragged_item_offset[1])
-            self.screen.blit(item_image, item_position)  # Blit the loaded surface, not the string
+            item_image = pygame.image.load(item.sprite_path).convert_alpha()
+            # Calculate the position to draw the image based on the mouse position and offset
+            item_position = (self.mouse_pos[0] - self.dragged_item["offset"][0],
+                             self.mouse_pos[1] - self.dragged_item["offset"][1])
+            # Draw the image at the calculated position
+            self.screen.blit(item_image, item_position)
 
     def draw_items(self):
         x, y = 100, 200
-
         self.item_rects = []
 
         for item in self.ingame.shop:
-            item_image = pygame.image.load(item.sprite_path).convert_alpha()  # Load the image here
-            self.screen.blit(item_image, (x, y))
-            x += 100
+            # Skip drawing the item if it's currently being dragged
+            if self.dragged_item and self.dragged_item["item"] == item:
+                continue
 
+            item_image = pygame.image.load(item.sprite_path).convert_alpha()
             item_rect = item_image.get_rect(topleft=(x, y))
             self.item_rects.append((item, item_rect))
+
+            self.screen.blit(item_image, (x, y))
+            x += 120  # Adjust the spacing as needed
+
+            if x > self.screen.get_width() - 120:  # Move to the next row if needed
+                x = 100
+                y += 120
 
     def draw_close_button(self):
         img = self.close_button_img_hover if self.close_button_img_rect.collidepoint(self.mouse_pos) else self.close_button_img
@@ -120,15 +133,19 @@ class Shop:
 
     def draw_coin(self):
         self.screen.blit(self.coin_img, self.coin_rect.topleft)
-        coin_value_text = self.font.render(f"= {self.coin}", True, (255, 255, 255))
+        coin_value_text = self.font.render(f"= {self.player.money}", True, (255, 255, 255))
         text_x = self.coin_rect.right + 2
         text_y = self.coin_rect.y + 8
         self.screen.blit(coin_value_text, (text_x, text_y))
 
     def check_hovered_item(self):
+        self.hovered_item = None
+
         for item, item_rect in self.item_rects:
             if item_rect.collidepoint(self.mouse_pos):
+                self.hovered_item = item
                 self.display_item_info(item)
+                break
 
     def display_item_info(self, item):
         info_text = [
@@ -149,6 +166,7 @@ class Shop:
             self.player.money -= item.price
             if len(self.player.bag) < 32:
                 self.player.bag.append(item.item_id)
+                self.ingame.shop.remove(item)  # Remove the item from the shop after purchase
                 self.catching.play()
             else:
                 self.nope.play()
