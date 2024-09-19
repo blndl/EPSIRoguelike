@@ -82,6 +82,10 @@ class Week:
                 itemlist.append(item_id)
         self.item1 = random.choice(itemlist)
         self.item2 = random.choice(itemlist)
+        while (self.item1 == self.item2):
+            self.item2 = random.choice(itemlist)
+
+            
             
     def generate_week(self):
         list = []
