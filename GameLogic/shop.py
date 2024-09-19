@@ -105,6 +105,7 @@ class Shop:
         for item in self.ingame.shop:
             item_image = pygame.image.load(item.sprite_path).convert_alpha()  # Load the image here
             self.screen.blit(item_image, (x, y))
+            x += 100
 
             item_rect = item_image.get_rect(topleft=(x, y))
             self.item_rects.append((item, item_rect))
