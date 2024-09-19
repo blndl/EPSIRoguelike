@@ -7,7 +7,7 @@ with open('Items/items.json') as t:
     idata = json.load(t)
 
 class Day:
-    WEEKTIME = [ "Morning", "Afternoon", "Evening"]
+    WEEKTIME = ["Morning", "Afternoon"]
 
     def __init__(self, max_event=5):
         self.max_event = max_event
@@ -35,7 +35,7 @@ class Day:
         for i in available_time_slots:
             list = []
             for event_id, event_data in edata['events'].items():
-                if i in event_data["time_slots"]:
+                if i in event_data["time_slots"] and event_data["week_end"] == False and event_data["is_choice"] == False:
                     list.append(event_id)
             if random.choice([True, False]):
                 self.add_event(random.choice(list), i)
@@ -100,7 +100,7 @@ class Week:
         list = []
         if random.choice([True, False]):
             for event_id, event_data in edata['events'].items():
-                if event_data["week_end"]:
+                if event_data["week_end"] and event_data["is_choice"] == False:
                     list.append(event_id) 
             self.days["Saturday"].add_event(random.choice(list), "Morning")
             self.days["Sunday"].add_event(random.choice(list), "Morning")
@@ -144,8 +144,8 @@ class Month:
 
     
 # Example usage
-#month = Month()
-#month.generateMonth()
-#list = month.return_month()
-#str = "".join(list)
-#print(str,' ', len(str))
+month = Month()
+month.generateMonth()
+list = month.return_month()
+str = "".join(list)
+print(str,' ', len(str))
