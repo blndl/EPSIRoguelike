@@ -22,6 +22,8 @@ class InGame:
         self.week_event = None
         self.index = 0
         self.buttons_rects = []
+        self.available = []
+        self.not_available = []
 
         # Time data
         self.time = 0
@@ -211,34 +213,36 @@ class InGame:
         print(
             f"Selected choice: {choice['description']}, money : {choice['money']}, energy : {choice['energy']}, moral : {choice['moral']}, project : {choice['project']}"
         )
-        # Check player stats
-        if choice['money'] + self.player.money < 0:
-            print("Not enough money")
-        elif choice['energy'] + self.player.energy < 0:
-            print("Not enough energy")
-        elif choice['moral'] + self.player.moral < 0:
-            print("Not enough moral")
+
+        # Move directly to the next phase or event
+        if self.current_advancement + 1 < len(self.current_event.phases):
+            print(f"Phase {self.current_advancement} complete.")
+            self.advance_phases()
         else:
-            # Update player stats
-            self.player.update_player(choice)
+            print("All phases complete.")
+            print(f"Event {self.current_event.event_id} complete.")
+            self.advance_event()
 
-            # Move directly to the next phase or event
-            if self.current_advancement + 1 < len(self.current_event.phases):
-                print(f"Phase {self.current_advancement} complete.")
-                self.advance_phases()
-            else:
-                print("All phases complete.")
-                print(f"Event {self.current_event.event_id} complete.")
-                self.advance_event()
-
-            self.buttons_rects = []  # Clear buttons after choice
+        self.buttons_rects = []  # Clear buttons after choice
 
     def handle_choice_making(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            for i, button in enumerate(self.buttons_rects):
-                if button.collidepoint(event.pos):
-                    self.select_choice(i)
+            choices = self.current_event.phases_choices_data(self.current_advancement)
+            for choice in choices:
+                is_good_choice = self.check_available(choice) # true bouton utilisable
+                print("is choice good :", is_good_choice)
+                # choice is choice data
+                # ton bouton
 
+    def check_available(self, choice):
+            if choice['energy'] + self.player.energy < 0:
+                return False
+            elif choice['money'] + self.player.energy < 0:
+                return False
+            elif choice['moral'] + self.player.energy < 0:
+                return False
+            else:
+                return True
 
     # method to draw the game with the same states as the handle events
     def draw(self):
@@ -247,12 +251,10 @@ class InGame:
         # Add more drawing logic as needed
 
     def draw_current_phase(self):
-        print("current event : ", self.current_event)
         if self.current_event:
             if not self.current_advancement >= len(self.current_event.phases):
                 phase_data = self.current_event.phases_data()[self.current_advancement]
                 phase_description = phase_data['description']
-                phase_choices = phase_data['choices']
                 phase_sprite_path = phase_data['sprite_path']
                 event_description = self.current_event.description
 
@@ -287,29 +289,3 @@ class InGame:
                 self.screen.blit(money_surface, (1000, 130))
                 self.screen.blit(energy_surface, (1000, 150))
                 self.screen.blit(moral_surface, (1000, 170))
-
-
-
-
-                # Create buttons directly using pygame.Rect
-                self.buttons_rects = []  # Store rects for each choice to check clicks later
-                button_y = 200  # Starting Y position for buttons
-                for i, choice in enumerate(phase_choices):
-                    choice_text = choice['description']
-                    button_rect = pygame.Rect(50, button_y, 300, 50)
-                    self.buttons_rects.append(button_rect)
-
-                    # Draw the button (rectangle)
-                    pygame.draw.rect(self.screen, (50, 200, 50), button_rect)
-
-                    # Render and draw the text on the button
-                    text_surface = font.render(choice_text, True, (0, 0, 0))
-                    text_rect = text_surface.get_rect(center=button_rect.center)
-                    self.screen.blit(text_surface, text_rect)
-
-                    button_y += 60  # Move the next button down
-
-    # draw the choice buttons
-    def draw_choice_buttons(self):
-        for button in self.buttons_rects:
-            button.draw(self.screen)
