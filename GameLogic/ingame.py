@@ -1,3 +1,5 @@
+from logging import setLogRecordFactory
+
 import pygame
 from Events.event_gestion import Event
 from Items.item_gestion import Item
@@ -60,6 +62,9 @@ class InGame:
         # debugging only
         print("Seed: ", self.seed)
 
+    def game_over(self):
+        print("Game Over")
+        self.game.state = "game_over"
     # method to handle the time
     def handle_time(self):
         # line to print the time
@@ -71,6 +76,10 @@ class InGame:
             if self.day >= 7:
                 self.day = 0
                 self.week += 1
+                if self.player.project < self.player.max_project:
+                    self.game_over()
+                else:
+                    self.player.score = self.player.score + self.player.project
                 if self.week >= 4:
                     self.week = 0
                     self.month += 1
@@ -80,6 +89,9 @@ class InGame:
 
     # method to handle the in game states
     def handle_events(self, event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_i:
+                self.game.state = "inventory"
         if self.ingame_state == InGameState.EVENT_PROGRESS:
             self.advance_event()
         elif self.ingame_state == InGameState.PHASE_PROGRESS:
@@ -108,6 +120,7 @@ class InGame:
             for i in range (1, 3):
                 if self.seed[self.index + i] != "00":
                     self.shop.append(self.items[self.seed[self.index + i]])
+
 
             self.index += 3  # increment index for the 3 values used
 
