@@ -49,9 +49,6 @@ class Game:
             if self.state == "Pause_menu":
                 # self.pause_menu.handle_events(event)
                 pass
-            if self.state == "calendar":
-                # self.calendar.handle_events(event)
-                pass
             if self.state == "inventory":
                 self.inventory.handle_events(event)
 
@@ -63,6 +60,8 @@ class Game:
             self.in_game.draw()
         elif self.state == "inventory":
             self.inventory.draw_inventory()
+        elif self.state == "pause_menu":
+            pass
 
         pygame.display.flip()
 
