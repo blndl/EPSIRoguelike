@@ -27,11 +27,11 @@ class Game:
         self.player = Player("Gin")
 
         self.in_game = InGame(self.screen, self.player, self.seed, self)
-        self.shop = Shop(self.screen, self.player, self.in_game, self)
         self.menu = Menu(self.screen)
         self.in_game = InGame(self.screen, self.player, self.seed, self)
         self.pause_menu = PauseMenu(self.screen, self)
         self.inventory = Inventory(self, self.screen, self.player)
+        self.shop = Shop(self.screen, self.player, self.in_game, self)
 
         pygame.mixer.set_num_channels(1)
 
