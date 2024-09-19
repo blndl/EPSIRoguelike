@@ -4,12 +4,6 @@ from Events.event_gestion import Event
 from Items.item_gestion import Item
 pygame.font.init()
 
-# made in game states to have an easier time managing the game
-class InGameState:
-    EVENT_PROGRESS = 0
-    PHASE_PROGRESS = 1
-    CHOICE_MAKING = 2
-
 # main class of the file
 class InGame:
     def __init__(self, screen, player, seed, game):
@@ -20,7 +14,6 @@ class InGame:
         self.game = game  # Reference to the main Game class
 
         # In-game state data and variables
-        self.ingame_state = InGameState.EVENT_PROGRESS # state of the game
         self.current_event = None
         self.current_advancement = 0
         self.events = Event.load_events("Events/events.json") # load the events
@@ -51,6 +44,9 @@ class InGame:
             5: "Saturday",
             6: "Sunday"
         }
+
+        # function call
+        self.advance_event()
 
         # debugging only
         print("Seed: ", self.seed)
@@ -90,16 +86,7 @@ class InGame:
                 print(self.game.state)
             elif event.key == pygame.K_ESCAPE:
                 self.game.state = "pause_menu"
-
-        elif self.ingame_state == InGameState.EVENT_PROGRESS:
-            self.advance_event()
-
-        elif self.ingame_state == InGameState.PHASE_PROGRESS:
-            self.advance_phases()
-
-            self.ingame_state = InGameState.CHOICE_MAKING
-
-        elif self.ingame_state == InGameState.CHOICE_MAKING:
+        if event.type == pygame.MOUSEBUTTONDOWN:
             self.handle_choice_making(event) # handle the choice making
 
 
@@ -115,7 +102,9 @@ class InGame:
         self.get_event()
         # adjust the time
         self.handle_time()
-        self.ingame_state = InGameState.PHASE_PROGRESS # change the state to phase progress
+        self.current_advancement = 0
+        print("len(self.current_event.phases) : ", len(self.current_event.phases))
+        self.advance_phases()
 
     def week_start(self):
         if self.time == 0 and self.day == 0:
@@ -127,20 +116,8 @@ class InGame:
             for i in range (1, 3):
                 if self.seed[self.index + i] != "00":
                     self.shop.append(self.items[self.seed[self.index + i]])
-            print(self.shop)
-            print(self.shop[0])
-            print(self.shop[1])
-            print(self.shop[0].item_id)
-            print(self.shop[1].item_id)
-            print(type(self.shop[1]))
-
 
             self.index += 3  # increment index for the 3 values used
-
-            # debugging only
-            print("Week event : ", self.week_event)
-            print("Shop : ", self.shop)
-            print("New week !")
             print("increment index : ", self.index)
 
     def open_shop(self):
@@ -150,46 +127,41 @@ class InGame:
 
     def get_event(self, error=0):
         random_event = self.should_trigger_random_event()
-        print("get event entered")
-        if random_event:
+        if not random_event:
+            self.current_event = Event.get_event_by_is_choice_and_time(True, self.events, self.time_periods[self.time])
+            print("From based event : ", self.current_event)
+
+        else:
             if self.seed[self.index] == "00":
                 print("No random event")
-                self.current_event = Event.get_event_by_is_choice_and_time(True, self.events, self.time_periods[self.time])
-                print("From based event : ", self.current_event , "00 seed")
-
+                self.current_event = Event.get_event_by_is_choice_and_time(True, self.events,
+                                                                           self.time_periods[self.time])
+                print("From based event : ", self.current_event, "00 seed")
             else:
                 seed = self.seed[self.index]
                 print("Random event seed : ", seed)
                 print("Index : ", self.index)
                 print(self.events)
                 print(self.events.keys())
-                if seed in self.events.keys() and seed != "00" : # if the seed is a number, char value
+                if seed in self.events.keys() and seed != "00":
                     self.current_event = self.events[seed]
                     print("Random event : ", self.current_event)
-                    self.index += 1  # increment index because the event had a seed
-                elif seed in self.items.keys() and seed != "00": # if the seed is not 00 and is char, number value
+                    self.index += 1
+                elif seed in self.items.keys() and seed != "00":
                     print("Random item")
                     item = self.items[seed]
-                    self.inventory_adder(item)  # manages the inventory of the player
+                    self.inventory_adder(item)
                 elif seed == "00":
                     print("No item")
                 else:
                     print("SEED ERROR for item or item: ", seed)
                     error += 1
                     if error > 3:
-                        print("Error count : ", error)
-                        print("Full seed : ", self.seed)
-                        print("Events list : ", self.events)
-                        print("Index : ", self.index)
-                        raise SystemExit(f"Shutting down the program due to SEED ERROR : {seed}") # avoid infinity loop
-                    self.get_event(error) # calls itself back to try to get a new event
-            # adds index because the event had a seed
+                        raise SystemExit("Shutting down the program due to SEED ERROR : ", seed)
+                    self.get_event(error)
             self.index += 1
             print("Incremented index : ", self.index)
 
-        else:
-            self.current_event = Event.get_event_by_is_choice_and_time(True, self.events, self.time_periods[self.time])
-            print("From based event : ", self.current_event)
 
     def should_trigger_random_event(self):
         return self.time not in [0, 2, 4] # true if in list
@@ -223,47 +195,59 @@ class InGame:
 
     # method to advance the phases
     def advance_phases(self):
-        print("len current event : ",len(self.current_event.phases))
+        if self.current_event is None:
+            print("No current event to advance phases.")
+            return
 
-        # verify if there are more phases
+        # Check if there are more phases to advance
         if self.current_advancement + 1 < len(self.current_event.phases):
-            self.current_advancement += 1  # Increment the advancement
+            self.current_advancement += 1
         else:
             print(f"All phases completed for event {self.current_event.event_id}. Moving to next event.")
-            self.current_advancement = 0  # Reset the advancement
-            self.ingame_state = InGameState.PHASE_PROGRESS  # Go back to event progress state
 
     def select_choice(self, choice_number):
         choices = self.current_event.phases_choices_data(self.current_advancement)
         choice = choices[choice_number]
-        print(f"Selected choice: {choice['description']}, money : {choice['money']}, energy : {choice['energy']}, moral : {choice['moral']}, project : {choice['project']}")
-        self.player.update_player(choice)
+        print(
+            f"Selected choice: {choice['description']}, money : {choice['money']}, energy : {choice['energy']}, moral : {choice['moral']}, project : {choice['project']}"
+        )
+        # Check player stats
+        if choice['money'] + self.player.money < 0:
+            print("Not enough money")
+        elif choice['energy'] + self.player.energy < 0:
+            print("Not enough energy")
+        elif choice['moral'] + self.player.moral < 0:
+            print("Not enough moral")
+        else:
+            # Update player stats
+            self.player.update_player(choice)
+
+            # Move directly to the next phase or event
+            if self.current_advancement + 1 < len(self.current_event.phases):
+                print(f"Phase {self.current_advancement} complete.")
+                self.advance_phases()
+            else:
+                print("All phases complete.")
+                print(f"Event {self.current_event.event_id} complete.")
+                self.advance_event()
+
+            self.buttons_rects = []  # Clear buttons after choice
 
     def handle_choice_making(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             for i, button in enumerate(self.buttons_rects):
                 if button.collidepoint(event.pos):
                     self.select_choice(i)
-                    self.buttons_rects = []  # Clear buttons after choice
 
-                    # Check if the event is finished
-                    if self.current_advancement >= len(self.current_event.phases) - 1:
-                        print(f"Event {self.current_event.event_id} complete.")
-                        self.current_event = None  # Clear current event
-                        self.current_advancement = 0  # Reset phase advancement
-                        self.ingame_state = InGameState.EVENT_PROGRESS  # Go back to event progress state
-                    else:
-                        self.ingame_state = InGameState.PHASE_PROGRESS  # Continue to phase progress
-                    break
 
     # method to draw the game with the same states as the handle events
     def draw(self):
-        if self.ingame_state == InGameState.PHASE_PROGRESS:
-            self.draw_current_phase()
+        self.draw_current_phase()
 
         # Add more drawing logic as needed
 
     def draw_current_phase(self):
+        print("current event : ", self.current_event)
         if self.current_event:
             if not self.current_advancement >= len(self.current_event.phases):
                 phase_data = self.current_event.phases_data()[self.current_advancement]
