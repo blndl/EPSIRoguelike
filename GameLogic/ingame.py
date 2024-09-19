@@ -8,7 +8,7 @@ pygame.font.init()
 class InGameState:
     EVENT_PROGRESS = 0
     PHASE_PROGRESS = 1
-    CHOICE_MAKING = 3
+    CHOICE_MAKING = 2
 
 # main class of the file
 class InGame:
@@ -75,17 +75,21 @@ class InGame:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_i:
                 self.game.state = "inventory"
-        if self.ingame_state == InGameState.EVENT_PROGRESS:
+
+        elif self.ingame_state == InGameState.EVENT_PROGRESS:
             self.advance_event()
         elif self.ingame_state == InGameState.PHASE_PROGRESS:
             self.handle_phase_progress(event) # handle the phase progress
-        elif self.ingame_state == InGameState.CHOICE_MAKING:
-            self.handle_choice_making(event)
+
+        elif self.ingame_state == InGameState.Choice_Making:
+            self.handle_choice_making(event) # handle the choice making
+
 
     # method to advance the event
     def advance_event(self):
         # debugging only info
         print("\nIndex : ", self.index)
+        print("Ingame state : ", self.ingame_state)
         # assign week event and shop
         self.week_start()
 
@@ -106,6 +110,13 @@ class InGame:
             for i in range (1, 3):
                 if self.seed[self.index + i] != "00":
                     self.shop.append(self.items[self.seed[self.index + i]])
+            print(self.shop)
+            print(self.shop[0])
+            print(self.shop[1])
+            print(self.shop[0].item_id)
+            print(self.shop[1].item_id)
+
+
             self.index += 3  # increment index for the 3 values used
 
             # debugging only
@@ -116,6 +127,7 @@ class InGame:
 
     def open_shop(self):
         if self.day == 2 and self.time == 2:
+            self.time =+ 1
             self.game.state = "shop"
 
     def get_event(self, error=0):
@@ -209,11 +221,13 @@ class InGame:
     def select_choice(self, choice_number):
         choices = self.current_event.phases_choices_data(self.current_advancement)
         choice = choices[choice_number]
+        print(f"Selected choice: {choice['description']}, money : {choice['money']}, energy : {choice['energy']}, moral : {choice['moral']}, project : {choice['project']}")
         self.player.update_player(choice)
         self.ingame_state = InGameState.PHASE_PROGRESS
 
     # not yet
     def handle_choice_making(self, event):
+        print("Ingame state : ", self.ingame_state)
         if event.type == pygame.MOUSEBUTTONDOWN:
             for i, button in enumerate(self.buttons):
                 if button.is_clicked(event.pos):
@@ -222,9 +236,9 @@ class InGame:
                     if len(self.current_event.phases) > self.current_advancement :
                         print(f"Event {self.current_event.event_id} complete.")
                         self.current_event = None
-                        self.ingame_state = InGameState.EVENT_PROGRESS
+                        self.ingame_state = InGameState.PHASE_PROGRESS
                     else:
-                        self.ingame_state = InGameState.EVENT_PROGRESS
+                        self.ingame_state = InGameState.PHASE_PROGRESS
                     break
 
     # method to draw the game with the same states as the handle events
@@ -249,7 +263,7 @@ class InGame:
                 # Render the text
                 event_description_surface = font.render(f"Event description: {event_description}", True, text_color)
                 phase_description_surface = font.render(f"Phase description: {phase_description}", True, text_color)
-                choices_surface = font.render(f"Choices: {phase_choices}", True, text_color)
+
                 # Load the sprite image
                 sprite_image = pygame.image.load(phase_sprite_path)
 
@@ -259,10 +273,9 @@ class InGame:
                 # Blit the text surfaces onto the screen
                 self.screen.blit(event_description_surface, (50, 50))
                 self.screen.blit(phase_description_surface, (50, 100))
-                self.screen.blit(choices_surface, (50, 150))
 
                 # Create buttons directly using pygame.Rect
-                self.buttons_rects = []  # Store rects for each button to check clicks later
+                self.buttons_rects = []  # Store rects for each choice to check clicks later
                 button_y = 200  # Starting Y position for buttons
                 for i, choice in enumerate(phase_choices):
                     choice_text = choice['description']
@@ -277,7 +290,7 @@ class InGame:
                     text_rect = text_surface.get_rect(center=button_rect.center)
                     self.screen.blit(text_surface, text_rect)
 
-                    button_y += 60  # Increment Y position for next button
+                    button_y += 60  # Move the next button down
 
     # draw the choice buttons
     def draw_choice_buttons(self):
