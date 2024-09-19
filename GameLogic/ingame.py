@@ -82,7 +82,6 @@ class InGame:
 
     # method to handle the in game states
     def handle_events(self, event):
-        print("Ingame state : ", self.ingame_state)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_i:
                 self.game.state = "inventory"
@@ -228,9 +227,8 @@ class InGame:
             self.current_advancement += 1  # Increment the advancement
         else:
             print(f"All phases completed for event {self.current_event.event_id}. Moving to next event.")
-            self.ingame_state = InGameState.EVENT_PROGRESS  # Move back to event progress
-            self.current_event = None  # Reset current event
             self.current_advancement = 0  # Reset the advancement
+            self.ingame_state = InGameState.PHASE_PROGRESS  # Go back to event progress state
 
     def select_choice(self, choice_number):
         choices = self.current_event.phases_choices_data(self.current_advancement)
@@ -295,9 +293,13 @@ class InGame:
                 # Blit the text surfaces onto the screen
                 self.screen.blit(event_description_surface, (50, 50))
                 self.screen.blit(phase_description_surface, (50, 80))
-                self.screen.blit(current_time_surdace, (50, 100))
-                self.screen.blit(current_day_surface, (50, 120))
-                self.screen.blit(project_surface, (50, 140))
+                self.screen.blit(current_time_surdace, (1000, 50))
+                self.screen.blit(current_day_surface, (1000, 70))
+                self.screen.blit(project_surface, (1000, 90))
+                self.screen.blit(project_max_surface, (1000, 110))
+                self.screen.blit(money_surface, (1000, 130))
+                self.screen.blit(energy_surface, (1000, 150))
+                self.screen.blit(moral_surface, (1000, 170))
 
 
 
