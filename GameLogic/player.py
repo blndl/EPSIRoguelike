@@ -8,6 +8,7 @@ class Player:
         self.max_project = max_project
         self.name = name
         self.money = 0
+        self.score = 0
 
         "Inventory slot"
         self.inventory_slot_1 = None
@@ -45,9 +46,10 @@ class Player:
         self.moral += moral
         self.energy += energy
         self.project += project
-        print(self.moral,self.energy)
+        print(self.moral,self.energy, self.project)
         
     def negative_stats(self, stat, name):
         if stat < 0:
             stat = 0
             print("You have negative", name)
+        return stat
