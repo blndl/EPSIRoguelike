@@ -56,6 +56,11 @@ class InGame:
     def game_over(self):
         print("Game Over")
         self.game.state = "game_over"
+
+    def win(self):
+        print('Score : ', self.player.score)
+        print("YOU WIN !")
+
     # method to handle the time
     def handle_time(self):
         # line to print the time
@@ -74,6 +79,8 @@ class InGame:
                 if self.week >= 4:
                     self.week = 0
                     self.month += 1
+                    if self.index == len(self.seed):
+                        self.win()
         else:
             self.time += 1
 
@@ -231,6 +238,7 @@ class InGame:
             for choice in choices:
                 is_good_choice = self.check_available(choice) # true bouton utilisable
                 print("is choice good :", is_good_choice)
+
                 # choice is choice data
                 # ton bouton
 
