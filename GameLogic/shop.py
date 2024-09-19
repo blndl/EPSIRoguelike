@@ -7,7 +7,9 @@ class Shop:
         self.player = player
         self.ingame = ingame
         self.game = game
-        self.font = self.game.font
+
+        # Load the font using pygame.font.Font
+        self.font = pygame.font.Font(self.game.font, 36)  # 36 is the font size
 
         self.coin = self.player.money
         self.bag = self.player.bag
@@ -19,11 +21,11 @@ class Shop:
 
         self.close_button_img = pygame.image.load('Sprites/shop_close.png').convert_alpha()
         self.close_button_img_hover = pygame.image.load("Sprites/shop_close_hover.png").convert_alpha()
-        self.close_button_img_rect = self.close_button_img_hover.get_rect(botttomright=(150, 150))
+        self.close_button_img_rect = self.close_button_img_hover.get_rect()
 
         self.bag_img = pygame.image.load('Sprites/bag.png').convert_alpha()
         self.bag_img_hover = pygame.image.load('Sprites/bag_hover.png').convert_alpha()
-        self.bag_img_rect = self.bag_img_hover.get_rect(topleft=(150, 150))
+        self.bag_img_rect = self.bag_img_hover.get_rect()
 
         self.coin_img = pygame.image.load('Sprites/coin.png').convert_alpha()
         self.coin_rect = self.coin_img.get_rect(topleft=(150, 150))

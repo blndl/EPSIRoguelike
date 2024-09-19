@@ -16,14 +16,14 @@ class Game:
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((1280, 720))
-        pygame.display.set_caption("EPSI Rogue-Like")
+        pygame.display.set_caption("EPSImester")
         self.clock = pygame.time.Clock()
         self.running = True
         self.month = Month()
         self.seed = self.month.return_month()
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
 
-        self.state = "menu"
+        self.state = "shop"
         self.font = "pixeboy.ttf"
 
         self.player = Player("Gin")
