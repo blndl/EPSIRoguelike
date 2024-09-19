@@ -53,10 +53,12 @@ class InGame:
         # debugging only
         print("Seed: ", self.seed)
 
+    # method to handle the game over
     def game_over(self):
         print("Game Over")
         self.game.state = "game_over"
 
+    # method to handle the win
     def win(self):
         print('Score : ', self.player.score)
         print("YOU WIN !")
