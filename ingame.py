@@ -226,7 +226,16 @@ class InGame:
     def handle_choice_making(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             for i, button in enumerate(self.buttons_rects):
+                # Check if the button was clicked
                 if button.collidepoint(event.pos):
+                    phase_choices = self.current_event.phases_data()[self.current_advancement]['choices']
+                    choice = phase_choices[i]
+
+                    # Check if the choice is available before selecting it
+                    if not self.check_available(choice):
+                        print("Choice is unavailable and cannot be selected.")
+                        continue  # Skip this choice if it's greyed out
+
                     self.select_choice(i)
                     self.buttons_rects = []  # Clear buttons after choice
 

@@ -38,32 +38,11 @@ class Inventory:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self.game.state = "pause_menu"
+
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Check if the left mouse button is clicked for dragging or other actions
             if event.button == 1:
-                # Close button check
-                if self.close_button_rect.collidepoint(event.pos):
-                    self.game.state = "in_game"
-
-                # Check if an item in the bag is clicked for dragging
-                for index, item_id in enumerate(self.player.bag):
-                    item_info = self.item_data.get(item_id)
-                    if item_info:
-                        item_rect = self.get_item_rect(index)
-                        if item_rect.collidepoint(event.pos):
-                            self.dragged_item = {"id": item_id, "index": index, "rect": item_rect, "from": "bag"}
-                            self.dragged_item_offset = (event.pos[0] - item_rect.x, event.pos[1] - item_rect.y)
-                            break  # Only drag one item at a time
-
-                # Check if an item in the inventory slot is clicked for dragging
-                for i, slot_rect in enumerate(self.inventory_slot_rects):
-                    current_slot_item = getattr(self.player, f'inventory_slot_{i + 1}')
-                    if current_slot_item:
-                        if slot_rect.collidepoint(event.pos):
-                            self.dragged_item = {"id": current_slot_item, "index": i, "rect": slot_rect,
-                                                 "from": "inventory"}
-                            self.dragged_item_offset = (event.pos[0] - slot_rect.x, event.pos[1] - slot_rect.y)
-                            break  # Only drag one item at a time
+                self.handle_click(event.pos)
 
             # Right-click to use an item
             elif event.button == 3:
@@ -127,6 +106,41 @@ class Inventory:
 
             # Reset dragged item after drop
             self.dragged_item = None
+
+    def handle_click(self, pos):
+        if self.close_button_rect.collidepoint(pos):
+            self.game.state = "in_game"
+
+        # Check if an item in the bag is clicked for dragging
+        for index, item_id in enumerate(self.player.bag):
+            item_info = self.item_data.get(item_id)
+            if item_info:
+                item_rect = self.get_item_rect(index)
+                if item_rect.collidepoint(pos):
+                    # Setup the dragged item similar to shop.py
+                    self.dragged_item = {
+                        "id": item_id,
+                        "index": index,
+                        "rect": item_rect,
+                        "offset": (pos[0] - item_rect.x, pos[1] - item_rect.y),
+                        "from": "bag"
+                    }
+                    break  # Only drag one item at a time
+
+        # Check if an item in the inventory slot is clicked for dragging
+        for i, slot_rect in enumerate(self.inventory_slot_rects):
+            current_slot_item = getattr(self.player, f'inventory_slot_{i + 1}')
+            if current_slot_item:
+                if slot_rect.collidepoint(pos):
+                    # Setup the dragged item similar to shop.py
+                    self.dragged_item = {
+                        "id": current_slot_item,
+                        "index": i,
+                        "rect": slot_rect,
+                        "offset": (pos[0] - slot_rect.x, pos[1] - slot_rect.y),
+                        "from": "inventory"
+                    }
+                    break  # Only drag one item at a time
 
     def draw_inventory(self):
         # Blit the loaded background image
