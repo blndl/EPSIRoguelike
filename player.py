@@ -17,7 +17,7 @@ class Player:
         self.inventory_slot_4 = None
 
         "bag"
-        self.bag = ["A1", "A2", "B7", "B6", "B5", "B4"] # max size of 32 items
+        self.bag = ["A1", "A2", "B7", "A2", "A3", "A4", "A1"] # max size of 32 items
 
         self.effects = []
 
