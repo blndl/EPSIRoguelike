@@ -3,8 +3,8 @@ import pygame
 class Tutorial:
     def __init__(self, screen):
         self.screen = screen
-        self.font = pygame.font.Font("pixeboy.ttf", 30)
-        self.button_font = pygame.font.Font("pixeboy.ttf", 40)
+        self.font = pygame.font.Font("Data/pixeboy.ttf", 30)
+        self.button_font = pygame.font.Font("Data/pixeboy.ttf", 40)
 
         # Diviser le tutoriel en plusieurs pages
         self.pages = [

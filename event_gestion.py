@@ -1,4 +1,4 @@
-from json import BaseEntity
+from jsonLoader import BaseEntity
 
 class Event(BaseEntity):
     def __init__(self, event_id, description, time_slots, phases, week_event, week_end, is_choice, name):
