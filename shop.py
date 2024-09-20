@@ -28,7 +28,7 @@ class Shop:
         self.nope = pygame.mixer.Sound('Data/Sounds/nope.mp3')
 
     def load_assets(self):
-        self.shop_bg = pygame.image.load('Data/Sprites/shop_bg.png')
+        self.shop_bg = pygame.image.load('Data/Sprites/shopin.png')
         self.close_button_img = self.load_and_scale_image('Data/Sprites/shop_close.png', (75, 125))
         self.close_button_img_hover = self.load_and_scale_image('Data/Sprites/shop_close_hover.png', (75, 125))
         self.bag_img = self.load_and_scale_image('Data/Sprites/bag.png', (100, 100))

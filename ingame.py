@@ -260,12 +260,11 @@ class InGame:
             return True
 
     def draw(self):
-        if self.ingame_state == InGameState.PHASE_PROGRESS:
-            self.draw_current_phase()
-            self.draw_coin()
-            self.draw_bars()
-            self.draw_day_time_bar()
-            self.draw_project_bar()
+        self.draw_current_phase()
+        self.draw_coin()
+        self.draw_bars()
+        self.draw_day_time_bar()
+        self.draw_project_bar()
 
     def draw_current_phase(self):
         if self.current_event:
