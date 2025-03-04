@@ -90,10 +90,10 @@ Events trigger during gameplay with multiple phases:
   ├── item_gestion.py      # Item system implementation
   ├── jsonLoader.py        # JSON data loading utilities
   ├── generator.py         # Random content generation
-  ├── shop.py              # Shop system (referenced but not provided)
-  ├── tuto.py              # Tutorial system (referenced but not provided)
+  ├── shop.py              # Shop system
+  ├── tuto.py              # Tutorial system
   │
-  └── Data/                # Game assets and data (referenced in code)
+  └── Data/                # Game assets and data
       ├── Events/          # Event definitions
       ├── Items/           # Item definitions
       ├── Sounds/          # Sound effects and music
@@ -172,11 +172,53 @@ Generate random game content for each time period.
 - `generate_day()`: Creates daily event schedule
 - `return_month()`: returns the month in a list of values that is of a variable size (e.g : ['4D', 'B2', 'A6', ...])
 
+### Shop
+Manages the shop interface where players can purchase items.
+
+**Attributes:**
+- `screen`: Pygame surface for rendering
+- `player`: Reference to the player object
+- `ingame`: Reference to the InGame object for shop items
+- `sound_played`: Track if the shop sound has been played
+
+**Methods:**
+- `load_assets()`: Loads the shop graphics
+- `handle_events(event)`: Processes user input in the shop
+- `draw()`: Renders the shop interface
+- `draw_items()`: Renders the items available for sale
+- `add_item_to_bag(item)`: Purchases an item and adds it to player's inventory
+- `play_shop_sound()`: Plays the shop entrance sound
+
+### Tutorial
+Manages the tutorial screens that guide new players through the game mechanics.
+
+**Attributes:**
+- `screen`: Pygame surface for rendering
+- `pages`: List of tutorial text pages to display
+- `images`: Optional images to show with tutorial pages
+- `current_page`: Tracks the current tutorial page
+- `running`: Whether the tutorial is still active
+
+**Methods:**
+- `draw()`: Renders the current tutorial page
+- `handle_events(event)`: Processes user input during the tutorial
+- `draw_button()`: Renders the navigation button
+
 ## Installation
 1. Ensure Python and Pygame are installed
 2. Clone the repository
 3. Navigate to the game directory
-4. Run `python main.py`
+4. install dependencies from `requirements.txt`
+5. Run `python main.py`
+
+Or
+
+```shell
+git clone https://github.com/blndl/EPSIRoguelike
+cd EPSIRoguelike
+pip install -r requirements.txt
+python main.py
+```
 
 ## Dependencies
 - Python 3.x
