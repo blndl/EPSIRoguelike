@@ -266,6 +266,7 @@ class InGame:
         self.draw_day_time_bar()
         self.draw_project_bar()
 
+    # draws ui for the current phase of the event
     def draw_current_phase(self):
         if self.current_event:
             if not self.current_advancement >= len(self.current_event.phases):
